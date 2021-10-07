@@ -16,6 +16,10 @@ class CreateBorrowRequestsTable extends Migration
         Schema::create('borrow_requests', function (Blueprint $table) {
             $table->id();
 
+            $table->double('amount');
+            $table->integer('number_of_month_pay')->comment('عدد الشهور التى يتم داد القرض عليها ');
+
+
             $table->unsignedBigInteger('employee_id');
             $table->foreign('employee_id')->references('id')->on('companies')->onDelete('cascade')->onUpdate('cascade');
 

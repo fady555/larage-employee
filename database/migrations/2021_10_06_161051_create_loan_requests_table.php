@@ -19,6 +19,8 @@ class CreateLoanRequestsTable extends Migration
             $table->double('amount');
             $table->integer('number_of_month_pay')->comment('عدد الشهور التى يتم داد القرض عليها ');
 
+            $table->text('reasons');
+            
             $table->unsignedBigInteger('employee_id');
             $table->foreign('employee_id')->references('id')->on('companies')->onDelete('cascade')->onUpdate('cascade');
 

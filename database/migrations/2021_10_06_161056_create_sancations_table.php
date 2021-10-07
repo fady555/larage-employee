@@ -15,6 +15,15 @@ class CreateSancationsTable extends Migration
     {
         Schema::create('sancations', function (Blueprint $table) {
             $table->id();
+
+            $table->double('amoumt');
+
+            $table->unsignedBigInteger('employee_id');
+            $table->foreign('employee_id')->references('id')->on('companies')->onDelete('cascade')->onUpdate('cascade');
+
+            $table->text('reasons');
+
+
             $table->timestamps();
         });
     }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEligibilityRequestOvertimesTable extends Migration
+class CreateOvertimesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,17 @@ class CreateEligibilityRequestOvertimesTable extends Migration
      */
     public function up()
     {
-        Schema::create('eligibility_request_overtimes', function (Blueprint $table) {
+        Schema::create('overtimes', function (Blueprint $table) {
             $table->id();
+
+            $table->double('amount');
+
+            $table->date('start');
+            $table->date('end');
+
             $table->unsignedBigInteger('employee_id');
             $table->foreign('employee_id')->references('id')->on('companies')->onDelete('cascade')->onUpdate('cascade');
 
-            $table->unsignedBigInteger('status_id');
-            $table->foreign('status_id')->references('id')->on('status_requests')->onDelete('cascade')->onUpdate('cascade');
 
             $table->timestamps();
         });
@@ -32,6 +36,6 @@ class CreateEligibilityRequestOvertimesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('eligibility_request_overtimes');
+        Schema::dropIfExists('overtimes');
     }
 }

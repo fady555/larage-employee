@@ -15,6 +15,10 @@ class CreateComapnyDepartmentsTable extends Migration
     {
         Schema::create('comapny_departments', function (Blueprint $table) {
             $table->id();
+            $table->string('depart_en');
+            $table->string('depart_ar');
+            $table->text('description_en')->nullable();
+            $table->text('description_ar')->nullable();
             $table->timestamps();
         });
     }
