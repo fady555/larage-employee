@@ -48,3 +48,7 @@ Route::group($group,function (){
 Route::get('dir',function (){
     return \App\Employee::with('direct')->get();
 });
+
+
+
+

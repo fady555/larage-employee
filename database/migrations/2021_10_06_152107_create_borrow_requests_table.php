@@ -15,6 +15,13 @@ class CreateBorrowRequestsTable extends Migration
     {
         Schema::create('borrow_requests', function (Blueprint $table) {
             $table->id();
+
+            $table->unsignedBigInteger('employee_id');
+            $table->foreign('employee_id')->references('id')->on('companies')->onDelete('cascade')->onUpdate('cascade');
+
+            $table->unsignedBigInteger('status_id');
+            $table->foreign('status_id')->references('id')->on('status_requests')->onDelete('cascade')->onUpdate('cascade');
+
             $table->timestamps();
         });
     }
