@@ -32,8 +32,8 @@ class CreateCompanyBranchesTable extends Migration
             ['address_id'=>'3','company_id'=>'1'],
             ['address_id'=>'8','company_id'=>'1'],
             ['address_id'=>'9','company_id'=>'1'],
-            ['address_id'=>'10','company_id'=>'1'],
-            ['address_id'=>'22','company_id'=>'1'],
+            ['address_id'=>'6','company_id'=>'1'],
+            ['address_id'=>'2','company_id'=>'1'],
             ['address_id'=>'8','company_id'=>'1'],
         ]);
     }

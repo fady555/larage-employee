@@ -43,6 +43,12 @@ class CreateAddressesTable extends Migration
             ['address_desc_en'=>$fak_en->address,'address_desc_ar'=>$fak_ar->address,'address_desc_fr'=>$fak_fr->address,'country_id'=>59,'city_id'=>934],
             ['address_desc_en'=>$fak_en->address,'address_desc_ar'=>$fak_ar->address,'address_desc_fr'=>$fak_fr->address,'country_id'=>59,'city_id'=>934],
             ['address_desc_en'=>$fak_en->address,'address_desc_ar'=>$fak_ar->address,'address_desc_fr'=>$fak_fr->address,'country_id'=>59,'city_id'=>934],
+            ['address_desc_en'=>$fak_en->address,'address_desc_ar'=>$fak_ar->address,'address_desc_fr'=>$fak_fr->address,'country_id'=>59,'city_id'=>934],
+            ['address_desc_en'=>$fak_en->address,'address_desc_ar'=>$fak_ar->address,'address_desc_fr'=>$fak_fr->address,'country_id'=>59,'city_id'=>934],
+            ['address_desc_en'=>$fak_en->address,'address_desc_ar'=>$fak_ar->address,'address_desc_fr'=>$fak_fr->address,'country_id'=>59,'city_id'=>934],
+            ['address_desc_en'=>$fak_en->address,'address_desc_ar'=>$fak_ar->address,'address_desc_fr'=>$fak_fr->address,'country_id'=>59,'city_id'=>934],
+            ['address_desc_en'=>$fak_en->address,'address_desc_ar'=>$fak_ar->address,'address_desc_fr'=>$fak_fr->address,'country_id'=>59,'city_id'=>934],
+            ['address_desc_en'=>$fak_en->address,'address_desc_ar'=>$fak_ar->address,'address_desc_fr'=>$fak_fr->address,'country_id'=>59,'city_id'=>934],
         ]);
     }
 

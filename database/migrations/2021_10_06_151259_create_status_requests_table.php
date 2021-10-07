@@ -22,9 +22,9 @@ class CreateStatusRequestsTable extends Migration
         });
 
         DB::table('status_requests')->insert([
-            ['name_en'=>'Underway','name_ar'=>'قيد التنفيذ'],
-            ['name_en'=>'Approved ','name_ar'=>'تم الموافقه عليه'],
-            ['name_en'=>'Reject','name_ar'=>'تم رفضه'],
+            ['status_en'=>'Underway','status_ar'=>'قيد التنفيذ'],
+            ['status_en'=>'Approved ','status_ar'=>'تم الموافقه عليه'],
+            ['status_en'=>'Reject','status_ar'=>'تم رفضه'],
         ]);
     }
 

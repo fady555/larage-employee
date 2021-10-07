@@ -39,7 +39,8 @@ Route::group($group,function (){
 
 
 
-    Route::view('view','layouts.application');
+    //Route::view('view','hr.basic');
+    Route::view('view','hr.createEmployee');
 
 
 });

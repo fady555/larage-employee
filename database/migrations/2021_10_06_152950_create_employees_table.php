@@ -20,8 +20,11 @@ class CreateEmployeesTable extends Migration
             $table->string('full_name_ar');
             $table->string('full_name_en');
             $table->integer('age');
+            $table->enum('gender', ['F', 'M']);
             $table->string('avatar')->nullable();
             $table->date('data_of_start_work')->nullable();
+
+            $table->integer('number_of_leave')->default(0);
 
             $table->string('number_file')->nullable();
 
@@ -73,14 +76,23 @@ class CreateEmployeesTable extends Migration
             $table->unsignedBigInteger('salary_id');
             $table->foreign('salary_id')->references('id')->on('all_type_salaries')->onUpdate('cascade')->onDelete('cascade');
             //=============================================================
+            $table->unsignedBigInteger('employee_status_id');
+            $table->foreign('employee_status_id')->references('id')->on('employee_statuses')->onUpdate('cascade')->onDelete('cascade');
 
 
+
+            //=============================================================
+            $table->unsignedBigInteger('comapny_departments_id');
+            $table->foreign('comapny_departments_id')->references('id')->on('comapny_departments')->onUpdate('cascade')->onDelete('cascade');
+            //=============================================================
             $table->unsignedBigInteger('company_id');
             $table->foreign('company_id')->references('id')->on('companies');
-
-
+            //=============================================================
             $table->unsignedBigInteger('direct_employee_id');
             $table->foreign('direct_employee_id')->references('id')->on('employees');
+            //=============================================================
+
+
 
             $table->timestamps();
         });
@@ -91,6 +103,7 @@ class CreateEmployeesTable extends Migration
                 'full_name_ar'=>'محمد مصطفى الحسينى',
                 'full_name_en'=>'Muhammad Mustafa al-Husayni',
                 'age'=>32,
+                'gender'=>'M',
                 'avatar'=>null,
                 'data_of_start_work'=>'2000-1-1',
                 'national_id'=>'12345678915678',
@@ -119,6 +132,9 @@ class CreateEmployeesTable extends Migration
                 'level_experience_id'=>4,
                 'contract_id'=>1,
                 'salary_id'=>1,
+                'employee_status_id'=>1,
+
+                'comapny_departments_id'=>1,
                 'company_id'=>1,
                 'direct_employee_id'=>1,
             ]

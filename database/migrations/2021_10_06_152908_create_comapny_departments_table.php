@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 class CreateComapnyDepartmentsTable extends Migration
 {
@@ -21,6 +22,15 @@ class CreateComapnyDepartmentsTable extends Migration
             $table->text('description_ar')->nullable();
             $table->timestamps();
         });
+
+
+        DB::table('comapny_departments')->insert([
+            ['depart_en'=>'Purchase Management','depart_ar'=>'إدارة المشتريات'],
+            ['depart_en'=>'Sales Administration','depart_ar'=>'إدارة المبيعات'],
+            ['depart_en'=>'Operations Management','depart_ar'=>'إدارة العمليات'],
+            ['depart_en'=>'financial Management','depart_ar'=>'الإدارة المالية'],
+            ['depart_en'=>'Human Resource Management','depart_ar'=>'إدارة الموارد البشرية'],
+        ]);
     }
 
     /**
