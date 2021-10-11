@@ -42,6 +42,8 @@ class Employee extends Model
         'military_service_id',
         'company_id',
         'direct_employee_id',
+        'military_services_id',
+
     ];
 
     public function address(){

@@ -87,6 +87,20 @@
 <script src="{{asset('/public/assets/js/date-range.js')}}"></script>
 <script src="{{asset('/public/assets/js/map.js')}}"></script>
 <script src="{{asset('/public/assets/js/custom.js')}}"></script>
+<script>
+    //is-invalid
+    jQuery(document).on("click", ".removeError", function(e) {
+      e.stopPropagation();
+      if(jQuery(this).hasClass('is-invalid')){
+              jQuery(this).removeClass('is-invalid');
+        }
+        else{
+             //jQuery(this).addClass('current-hoverv2');
+        }
+    });
+
+</script>
+
 
 <!------[add js]-->
 @yield('js')

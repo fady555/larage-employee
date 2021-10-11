@@ -22,12 +22,12 @@ class CreateMaritalStatusesTable extends Migration
         });
 
         DB::table('marital_statuses')->insert([
-            ['name_en'=>'Not Specified','name_ar'=>''],
-            ['name_en'=>'Single','name_ar'=>''],
-            ['name_en'=>'Married','name_ar'=>''],
-            ['name_en'=>'Married with Children','name_ar'=>''],
-            ['name_en'=>'Widowed','name_ar'=>''],
-            ['name_en'=>'Divorced','name_ar'=>''],
+            ['name_en'=>'Not Specified','name_ar'=>'غير محدد'],
+            ['name_en'=>'Single','name_ar'=>'عزباء/اعزب'],
+            ['name_en'=>'Married','name_ar'=>'متزوج/متزوجه'],
+            ['name_en'=>'Married with Children','name_ar'=>'متزوج و معه اطفال/متزوجه ومعها اطفال'],
+            ['name_en'=>'Widowed','name_ar'=>'مخطوب/مخطوبه'],
+            ['name_en'=>'Divorced','name_ar'=>'مطلق/مطلقه'],
         ]);
     }
 

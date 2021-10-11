@@ -17,7 +17,7 @@ class CreateEducationStatusesTable extends Migration
         });
 
         DB::table('education_statuses')->insert([
-            ['education_status_ar'=>'Not Specified','education_status_en'=>'غير محدد'],
+            ['education_status_ar'=>'غير محدد','education_status_en'=>'Not Specified'],
             ['education_status_ar'=>'طالب','education_status_en'=>'student'],
             ['education_status_ar'=>'حديث تخرج','education_status_en'=>'A fresh graduate'],
             ['education_status_ar'=>'ذو خبره','education_status_en'=>'Experienced'],

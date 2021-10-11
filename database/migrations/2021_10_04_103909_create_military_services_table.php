@@ -25,6 +25,7 @@ class CreateMilitaryServicesTable extends Migration
             ['name_en'=>'Not Specified','name_ar'=>'غير محدد'],
             ['name_en'=>'postponed from military service','name_ar'=>'مؤجل من الخدمه العسكريه'],
             ['name_en'=>'exempt from the military service','name_ar'=>'معفى من الخدمه العسكريه'],
+            ['name_en'=>'another','name_ar'=>'اخرى'],
         ]);
     }
 

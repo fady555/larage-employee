@@ -29,7 +29,7 @@ class CreateEmployeesTable extends Migration
             $table->string('number_file')->nullable();
 
             $table->string('national_id');
-            $table->longText('national_card_img')->default(json_encode([]))->nullable();
+            $table->text('national_card_img')->nullable();
             $table->text('national_card_address_description')->nullable();
             $table->date('national_card_Release_date');
 
@@ -42,7 +42,7 @@ class CreateEmployeesTable extends Migration
 
 
             $table->string('email')->unique();
-            $table->longText('phones');
+            $table->longText('phones')->default(json_encode([]));
             $table->string('name_of_bank')->nullable();
             $table->string('number_of_account')->nullable();
 
@@ -50,7 +50,7 @@ class CreateEmployeesTable extends Migration
             $table->tinyInteger('number_of_wif_children')->nullable();
 
             $table->time('time_of_attendees');
-            $table->time('time_of_going');
+            $table->time('time_of_go');
 
             $table->longText('experience_description');
 
@@ -58,9 +58,25 @@ class CreateEmployeesTable extends Migration
             $table->unsignedBigInteger('address_id');
             $table->foreign('address_id')->references('id')->on('addresses')->onUpdate('cascade')->onDelete('cascade');
             //=============================================================
-            $table->unsignedBigInteger('jop_id')->nullable(20);
+            $table->unsignedBigInteger('nationality_id');
+            $table->foreign('nationality_id')->references('id')->on('nationalities');
+            //=============================================================
+
+
+            $table->unsignedBigInteger('jop_id')->nullable();
             $table->foreign('jop_id')->references('id')->on('jops')->onUpdate('cascade')->onDelete('cascade');
             //=============================================================
+            $table->unsignedBigInteger('jop_level_id')->nullable();
+            $table->foreign('jop_level_id')->references('id')->on('jop_levels')->onUpdate('cascade')->onDelete('cascade');
+            //=============================================================
+
+            //=============================================================
+            $table->unsignedBigInteger('type_work_id')->nullable();
+            $table->foreign('type_work_id')->references('id')->on('type_of_works')->onUpdate('cascade')->onDelete('cascade');
+            //=============================================================
+
+
+
             $table->unsignedBigInteger('degree_id');
             $table->foreign('degree_id')->references('id')->on('degrees')->onUpdate('cascade')->onDelete('cascade');
             //=============================================================
@@ -70,8 +86,7 @@ class CreateEmployeesTable extends Migration
             $table->unsignedBigInteger('level_experience_id');
             $table->foreign('level_experience_id')->references('id')->on('level_experiences')->onUpdate('cascade')->onDelete('cascade');
             //=============================================================
-            $table->unsignedBigInteger('contract_id');
-            $table->foreign('contract_id')->references('id')->on('contracts')->onUpdate('cascade')->onDelete('cascade');
+
             //=============================================================
             $table->unsignedBigInteger('salary_id');
             $table->foreign('salary_id')->references('id')->on('all_type_salaries')->onUpdate('cascade')->onDelete('cascade');
@@ -88,9 +103,26 @@ class CreateEmployeesTable extends Migration
             $table->unsignedBigInteger('company_id');
             $table->foreign('company_id')->references('id')->on('companies');
             //=============================================================
-            $table->unsignedBigInteger('direct_employee_id');
+            $table->unsignedBigInteger('direct_employee_id')->nullable();
             $table->foreign('direct_employee_id')->references('id')->on('employees');
             //=============================================================
+
+
+
+            //=============================================================
+            $table->unsignedBigInteger('marital_statuses_id');
+            $table->foreign('marital_statuses_id')->references('id')->on('marital_statuses');
+            //=============================================================
+
+            //=============================================================
+            $table->unsignedBigInteger('military_services_id');
+            $table->foreign('military_services_id')->references('id')->on('military_services');
+            //=============================================================
+
+
+
+
+
 
 
 
@@ -123,20 +155,25 @@ class CreateEmployeesTable extends Migration
                 'number_of_wif_husband'=>4,
                 'number_of_wif_children'=>3,
                 'time_of_attendees'=>'80:00',
-                'time_of_going'=>'18:00',
+                'time_of_go'=>'18:00',
                 'experience_description'=>'لديه خبرا فى ادراه الموارد البشريه بشرطات القطاع الخاص',
                 'address_id'=>1,
+                'nationality_id'=>1,
                 'jop_id'=>2,
+                'jop_level_id'=>1,
                 'degree_id'=>3,
                 'education_status_id'=>2,
                 'level_experience_id'=>4,
-                'contract_id'=>1,
+                'type_work_id'=>1,
                 'salary_id'=>1,
                 'employee_status_id'=>1,
 
                 'comapny_departments_id'=>1,
                 'company_id'=>1,
                 'direct_employee_id'=>1,
+
+                'marital_statuses_id'=>1,
+                'military_services_id'=>1,
             ]
             ,
 

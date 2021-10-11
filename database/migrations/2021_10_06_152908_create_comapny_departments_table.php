@@ -20,12 +20,15 @@ class CreateComapnyDepartmentsTable extends Migration
             $table->string('depart_ar');
             $table->text('description_en')->nullable();
             $table->text('description_ar')->nullable();
+        
             $table->timestamps();
         });
 
 
         DB::table('comapny_departments')->insert([
-            ['depart_en'=>'Purchase Management','depart_ar'=>'إدارة المشتريات'],
+            ['depart_en'=>'Executive management','depart_ar'=>'الاداره التنفيذيه'],
+            ['depart_en'=>'Public Administration','depart_ar'=>'الاداره العامه'],
+
             ['depart_en'=>'Sales Administration','depart_ar'=>'إدارة المبيعات'],
             ['depart_en'=>'Operations Management','depart_ar'=>'إدارة العمليات'],
             ['depart_en'=>'financial Management','depart_ar'=>'الإدارة المالية'],
