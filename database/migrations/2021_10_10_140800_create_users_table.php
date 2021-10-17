@@ -20,7 +20,10 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('api_token')->nullable();
             $table->string('password');
-            $table->string('type')->default('company');
+
+            $table->unsignedBigInteger('employee_id');
+            $table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade')->onUpdate('cascade');
+
             $table->rememberToken();
             $table->timestamps();
         });

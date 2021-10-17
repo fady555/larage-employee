@@ -88,6 +88,12 @@ return [
 
     'name must arabic'=>'Full Name Must Be Arabic',
     'address must arabic'=>'Address Must Be Arabic',
+    'choose avatar'=>'Choose Avatar',
+
+    'phone'=>'Phone',
+    'country code'=>'Country Code',
+    'sar'=>'-SAR(SR)(ريال سعودى)',
+
 
 
 

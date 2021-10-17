@@ -6,8 +6,12 @@ use App\Address;
 use App\Employee;
 use App\Http\Controllers\Controller;
 use App\Rules\Arabic;
+use App\Rules\PhoneCode;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+
+use function GuzzleHttp\json_encode;
 
 class EmployeeController extends Controller
 {
@@ -46,10 +50,10 @@ class EmployeeController extends Controller
                 "full_name_en"=>['required','string'],
                 "full_name_ar"=>['required',new Arabic(trans('app.name must arabic'))],
                 "national_id"=>['required','string'],
-                "national_card_Release_date"=>['required','date','date_format:d-m-Y'],
+                "national_card_Release_date"=>['required','date','date_format:Y-m-d'],
                 "passport_id"=>['nullable','string'],
-                "passport_release_date"=>['nullable','date','date_format:d-m-Y'],
-                "passport_expire_date"=>['nullable','date','date_format:d-m-Y'],
+                "passport_release_date"=>['nullable','date','date_format:Y-m-d'],
+                "passport_expire_date"=>['nullable','date','date_format:Y-m-d'],
                 "nationality_id"=>['required','exists:nationalities,id'],
                 "gender"=>['required','in:F,M'],
                 "age"=>['required','numeric','between:1,99'],
@@ -59,7 +63,10 @@ class EmployeeController extends Controller
                 "number_of_wif_children"=>['nullable','numeric','between:1,4'],
                 "name_of_bank"=>['nullable','string'],
                 "number_of_account"=>['nullable','string'],
-                "email"=>['required','email','unique:employees,email'],
+                "email"=>['required','email','unique:employees,email','unique:users,email'],
+
+                "phone"=>['required','string',new PhoneCode('pgone error')],
+
                 "country_id"=>['required','exists:countries,id'],
                 "city_id"=>['nullable','exists:cities,id'],
                 "address_desc_en"=>['required','string'],
@@ -67,18 +74,24 @@ class EmployeeController extends Controller
                 "national_card_address_description"=>['nullable','string'],
                 "passport_address_description"=>['nullable','string'],
                 "degree_id"=>['required','exists:degrees,id'],
-                "experience_description"=>['nullable','string'],
+                "experience_description"=>['required','string'],
                 "jop_id"=>['required','exists:jops,id'],
+
+                'time_of_attendees'=>['required','date_format:H:i'],
+                'time_of_go'=>['required','date_format:H:i'],
+
+                'fixed_salary'=>['required','numeric','min:0','max:1000000'],
+
                 "type_work_id"=>['required','exists:type_of_works,id'],
                 "company_id"=>['required','exists:companies,id'],
                 "branch_id"=>['required','exists:company_branches,id'],
                 "comapny_departments_id"=>['required','exists:comapny_departments,id'],
                 "jop_level_id"=>['required','exists:jop_levels,id'],
-                "number_file"=>['required','string'],
-                "avatar"=>['nullable','file','mimes:pdf'],
-                "national_card_img"=>['required','file','mimes:pdf'],
+                "number_file"=>['nullable','string'],
+                "avatar"=>['nullable','file','mimes:pdf','max:4000'],
+                "national_card_img"=>['required','file','mimes:pdf','max:4000'],
 
-                ];
+            ];
     }
 
 
@@ -103,6 +116,10 @@ class EmployeeController extends Controller
             "name_of_bank"=>trans('app.name_of_bank'),
             "number_of_account"=>trans('app.number_of_account'),
             "email"=>trans('app.email'),
+
+            "phone"=>trans('app.phone'),
+
+
             "city_id"=>trans('app.city'),
             "address_desc_en"=>trans('app.current address en'),
             "address_desc_ar"=>trans('app.current address ar'),
@@ -111,6 +128,8 @@ class EmployeeController extends Controller
             "degree_id"=>trans('app.degree'),
             "experience_description"=>trans('app.experience_description'),
             "jop_id"=>trans('app.jop'),
+            'time_of_attendees'=>trans('app.time_of_attendees'),
+            'time_of_go'=>trans('app.time_of_go'),
             "type_work_id"=>trans('app.type work'),
             "company_id"=>trans('app.company'),
             "branch_id"=>trans('app.branch'),
@@ -130,14 +149,18 @@ class EmployeeController extends Controller
     {
 
 
-        $result =  validator($request->all(),$this->rules(),[],$this->customAttributes());
 
+
+
+        //dd($request->all());
+        $result = validator($request->all(),$this->rules(),[],$this->customAttributes());
+
+        //dd($result);
 
 
         if($result->fails()){
             return back()->withErrors($result)->withInput();
         }
-
 
 
         $newEmployee = request()->all();
@@ -162,9 +185,11 @@ class EmployeeController extends Controller
         //DB::table('employees')->insertGetId($newEmployee);
 
 
-        Employee::create($newEmployee);
+        $x = Employee::create($newEmployee);
 
-        return $newEmployee;
+        //return $x->id;
+
+        User::create(['name'=>$request->full_name_en,'email'=>$request->email,'password'=>env('Defult_Password_Employee','tests2020')]);
 
 
     }

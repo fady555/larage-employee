@@ -29,10 +29,22 @@ class CreateLeaveRequestsTable extends Migration
             $table->timestamps();
         });
 
-        DB::table('leave_requests')->insert([
-            ['start'=>'2021-10-06','end'=>'2021-10-30','reason_description'=>'المدام حامل','employee_id'=>1,'status_id'=>1],
-        ]);
 
+        $fak_en = \Faker\Factory::create();
+        $fak_ar = \Faker\Factory::create('ar_JO');
+
+
+        /*DB::table('leave_requests')->insert([
+            ['start'=>'2021-10-06','end'=>'2021-10-30','reason_description'=>'المدام حامل','employee_id'=>1,'status_id'=>1],
+            ['start'=>'2021-10-06','end'=>'2021-10-30','reason_description'=>$fak_ar->title(),'employee_id'=>$fak_en->randomElement([1,2,3,4,5]),'status_id'=>$fak_en->randomElement([1,2,3])],
+            ['start'=>'2021-10-06','end'=>'2021-10-30','reason_description'=>$fak_ar->title(),'employee_id'=>$fak_en->randomElement([1,2,3,4,5]),'status_id'=>$fak_en->randomElement([1,2,3])],
+            ['start'=>'2021-10-06','end'=>'2021-10-30','reason_description'=>$fak_ar->title(),'employee_id'=>$fak_en->randomElement([1,2,3,4,5]),'status_id'=>$fak_en->randomElement([1,2,3])],
+            ['start'=>'2021-10-06','end'=>'2021-10-30','reason_description'=>$fak_ar->title(),'employee_id'=>$fak_en->randomElement([1,2,3,4,5]),'status_id'=>$fak_en->randomElement([1,2,3])],
+            ['start'=>'2021-10-06','end'=>'2021-10-30','reason_description'=>$fak_ar->title(),'employee_id'=>$fak_en->randomElement([1,2,3,4,5]),'status_id'=>$fak_en->randomElement([1,2,3])],
+            ['start'=>'2021-10-06','end'=>'2021-10-30','reason_description'=>$fak_ar->title(),'employee_id'=>$fak_en->randomElement([1,2,3,4,5]),'status_id'=>$fak_en->randomElement([1,2,3])],
+            ['start'=>'2021-10-06','end'=>'2021-10-30','reason_description'=>$fak_ar->title(),'employee_id'=>$fak_en->randomElement([1,2,3,4,5]),'status_id'=>$fak_en->randomElement([1,2,3])],
+            ['start'=>'2021-10-06','end'=>'2021-10-30','reason_description'=>$fak_ar->title(),'employee_id'=>$fak_en->randomElement([1,2,3,4,5]),'status_id'=>$fak_en->randomElement([1,2,3])],
+        ]);*/
     }
 
     /**

@@ -29,7 +29,8 @@ Create Employee
                             <h2>@lang('app.personal information')</h2>
                             <input  type="file" id="avatar"  name="avatar" class="btn btn-md ml-auto btn-warning d-none form-control" placeholder="dd" />
                             <label  for='avatar' class="ml-auto">
-                                <img   src="http://localhost/hr/public/assets/img/user/user.png" class="user-image ml-auto" alt="User Image">
+                                <img   src="{{ asset('/public/assets/img/user/tdi3NGa.png') }}" width="50px" class="user-image ml-auto" alt="User Image">
+                                <div class="text-warning">@lang('app.choose avatar')</div>
                             </label>
 
                         </div>
@@ -53,7 +54,7 @@ Create Employee
 
                                     <div class="col-md-3 mb-3">
                                         <label>@lang('app.national_card_Release_date')<i class="text-danger">*</i></label>
-                                        <input type="text" name="national_card_Release_date" value="{{old('national_card_Release_date')}}" class="form-control" data-mask="00-00-0000" placeholder="" aria-label="" autocomplete="off" maxlength="10">
+                                        <input type="text" name="national_card_Release_date" value="{{old('national_card_Release_date')}}" class="form-control" data-mask="0000-00-00" placeholder="" aria-label="" autocomplete="off" maxlength="10">
                                     </div>
 
                                     <div class="col-md-3 mb-3">
@@ -68,11 +69,11 @@ Create Employee
 
                                     <div class="col-md-3 mb-3">
                                         <label>@lang('app.passport_release_date')</label>
-                                        <input type="text" name="passport_release_date" value="{{old('passport_release_date')}}" class="form-control" data-mask="00-00-0000" placeholder="" aria-label="" autocomplete="off" maxlength="10">
+                                        <input type="text" name="passport_release_date" value="{{old('passport_release_date')}}" class="form-control" data-mask="0000-00-00" placeholder="" aria-label="" autocomplete="off" maxlength="10">
                                     </div>
                                     <div class="col-md-3 mb-3">
                                         <label>@lang('app.passport_expire_date')</label>
-                                        <input type="text" name="passport_expire_date" value="{{old('passport_expire_date')}}" class="form-control" data-mask="00-00-0000" placeholder="" aria-label="" autocomplete="off" maxlength="10">
+                                        <input type="text" name="passport_expire_date" value="{{old('passport_expire_date')}}" class="form-control" data-mask="0000-00-00" placeholder="" aria-label="" autocomplete="off" maxlength="10">
                                     </div>
 
                                     <div class="col-md-5 mb-3">
@@ -168,25 +169,34 @@ Create Employee
 
 
 
-                                    <div class="col-md-6 mb-3">
+                                    <div class="col-md-9 mb-3">
                                         <label>@lang('app.email')<i class="text-danger">*</i></label>
                                         <input type="email" name="email" value="{{old('email')}}" class="form-control"  placeholder="@lang('app.email')">
                                     </div>
 
-                                    <div class="col-md-2 mb-3">
-                                        <label>@lang('app.phones')<i class="text-danger">*</i></label>
-                                        <i id="phBtn" class="btn btn-block btn-primary"> @lang('app.add phone') <i class="mdi mdi-plus"></i>  </i>
+
+                                    <div class="col-md-6 mb-3">
+                                        <label for="validationServer04">@lang('app.country code')</label>
+
+                                        <select class="form-control" id="codes">
+
+                                           <option></option>
+                                            @foreach (\App\Country_code_phone::get() as $code)
+                                                <option value="{{$code->phonecode}}">{{ $code->name }} ({{$code->phonecode}})</option>
+                                            @endforeach
+                                        </select>
+
                                     </div>
 
-                                    <div class="col-md-4 mb-3">
-                                        <label>@lang('app.phones')<i class="text-danger">*</i></label>
-                                        <input type="text" id="phInp"  class="form-control" data-mask="(999) 999-99999" placeholder="" aria-label="" autocomplete="off" maxlength="14">
+                                    <div class="col-md-6 mb-3">
+                                        <label>@lang('app.phone')<i class="text-danger">*</i></label>
+                                        <input type="text" name="phone"  class="form-control" disabled  >
                                     </div>
-                                </div>
 
-                                <div class="form-row" id="phones">
 
                                 </div>
+
+
 
                         </div>
                     </div>
@@ -430,8 +440,28 @@ Create Employee
 
 
 
-                        </div>
+                            </div>
 
+
+                            <div class="form-row">
+
+                                <div class="col-md-6 mb-3">
+                                    <label >@lang('app.time_of_attendees')<i class="text-danger">*</i></label>
+                                    <input type="text" name="time_of_attendees" value="{{old('time_of_attendees')}}"  class="form-control time">
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+                                    <label >@lang('app.time_of_go')<i class="text-danger">*</i></label>
+                                    <input type="text"   name="time_of_go" value="{{old('time_of_go')}}" class="form-control time" >
+                                </div>
+
+
+
+                                <div class="col-md-6 mb-3">
+                                    <label >@lang('app.Fixed salary')@lang('app.sar')<i class="text-danger">*</i></label>
+                                    <input type="number" name="fixed_salary" value="{{old('fixed_salary')}}" class="form-control" min="0000000" max="1000000">
+                                </div>
+                            </div>
 
 
                             <div class="form-row">
@@ -547,12 +577,6 @@ Create Employee
                             </div>
 
 
-
-
-
-
-
-
                         </div>
                     </div>
                 </div>
@@ -563,8 +587,10 @@ Create Employee
                     <div class="card card-default">
 
                         <div class="card-header card-header-border-bottom bg-primary">
-                            <h2>@lang('app.file name and number')</h2>
-                            <input  type="text" class="btn btn-md ml-auto form-control" name="number_file" />
+                            <h2 class="mr-3">@lang('app.file name and number')</h2>
+                            <div class="form-row">
+                                <input  type="text" class=" ml-auto  form-control" name="number_file" />
+                            </div>
                         </div>
 
                     </div>
@@ -586,222 +612,10 @@ Create Employee
 
 @section('js')
 
-{{------------
 
-<div class="col-md-2 mb-3">
-    <div class="btn-group-sm mb-1">
-        <input type="hidden" class="border-0" name="phones[]" value="(012) 879-17557"  />
-        <button type="button" class="btn btn-outline-info">(012) 879-17557</button>
-        <button type="button" onclick="this.parentNode.remove()" class="btn btn-outline-danger">X</button>
-    </div>
-</div>
-    -----------}}
 
-<script>
+@include('layouts.js_of_employee_page')
 
-    $('input[value=F]').on('change',function(){
-        $('select[name=military_services_id]').attr('disabled',true)
-    })
-
-    $('input[value=M]').on('change',function(){
-        $('select[name=military_services_id]').attr('disabled',false)
-    })
-
-</script>
-
-
-
-<script>
-
-
-function createPhone(appendClassId,value){
-
-let parent1 = document.createElement('div')
-parent1.classList = 'col-md-2 mb-3'
-
-let parent2 = document.createElement('div')
-parent2.classList = 'btn-group-sm mb-1'
-
-let input = document.createElement('input')
-input.classList = 'border-0'
-input.type = 'hidden'
-input.name = 'phones[]'
-input.value = value
-
-
-let button1 = document.createElement('button')
-button1.classList = 'btn btn-outline-info'
-button1.type = 'button'
-button1.innerHTML = value
-
-let button2 = document.createElement('button')
-button2.classList = 'btn btn-outline-danger'
-button2.type = 'button'
-button2.innerHTML = "X"
-button2.onclick = function(){
-    //alert('dfsfdf')
-    this.parentNode.remove()
-}
-
-parent2.appendChild(input)
-parent2.appendChild(button1)
-parent2.appendChild(button2)
-
-parent1.appendChild(parent2)
-
-document.getElementById(appendClassId).appendChild(parent1)
-//console.log(parent1);
-}
-
-//createPhone('phones','55959595595');
-</script>
-
-
-<script>
-    let submit = document.getElementById('phBtn')
-    let inputPhone = document.getElementById('phInp')
-
-    submit.onclick = ()=>{
-        if(inputPhone.value != '' ){createPhone('phones',inputPhone.value)}
-    }
-</script>
-
-
-<script>
-
-function GetCities(country_id){
-        document.getElementById('city_id').textContent = '';
-
-
-
-        $.get("{{url('cities')}}" + "/" + country_id,function (one,two){
-            //console.log(JSON.parse(one.trim()));
-            var cities = JSON.parse(one.trim());
-            var select = document.getElementById('city_id');
-
-
-
-            for(var i = 0 ; i< cities.length ; i++){
-                var option   =document.createElement('option');
-                option.value =cities[i]['id'];
-                option.text  =cities[i]['name_'+"{{app()->getLocale()}}"];
-                select.appendChild(option);
-            }
-        });
-    }
-
-    GetCities($("select[name='country_id']").val())
-
-    function GetBranch(company_id){
-        document.getElementById('branch_id').textContent = '';
-
-
-
-        $.get("{{url('branchs')}}" + "/" + company_id,function (one,two){
-            //console.log(JSON.parse(one.trim()));
-            var branchs = JSON.parse(one.trim());
-            var select = document.getElementById('branch_id');
-
-
-
-            for(var i = 0 ; i< branchs.length ; i++){
-                var option   =document.createElement('option');
-                option.value =branchs[i]['id'];
-                option.text  =branchs[i]['name_branch_'+"{{app()->getLocale()}}"];
-                select.appendChild(option);
-            }
-        });
-    }
-
-
-    GetBranch($("select[name='company_id']").val())
-
-
-
-</script>
-
-
-
-<script>
-
-//levelJopId(1)
-
-
-
-    function levelJopId(department_id,LevelId){
-
-
-
-
-        $.get("{{url('levelJopId')}}" + "/" + department_id + "/" + LevelId ,function (one,two){
-            //console.log(JSON.parse(one.trim())[0]);
-
-            var Responsible_From_employee = JSON.parse(one.trim())[0];
-            var Responsible_for_employee = JSON.parse(one.trim())[1];
-
-
-            var select_From_employee = document.getElementById('select_From_employee');
-            var select_for_employee = document.getElementById('select_for_employee');
-
-
-           select_From_employee.textContent = '';
-           for(var i = 0 ; i< Responsible_From_employee.length ; i++){
-                var option   =document.createElement('option');
-                option.value =Responsible_From_employee[i]['id'];
-                option.text  =Responsible_From_employee[i]['full_name_'+"{{app()->getLocale()}}"];
-                select_From_employee.appendChild(option);
-            }
-
-
-
-
-
-
-
-        });
-    }
-
-
-
-levelJopId($("select[name='comapny_departments_id']").val(),$("select[name='jop_level_id']").val())
-
-
-
-$('#jop_level_id').change(()=>{
-    levelJopId($("select[name='comapny_departments_id']").val(),$("select[name='jop_level_id']").val())
-})
-
-</script>
-
-
-
-{{-----------
-<div class="invalid-feedback">
-Please choose a username.
-</div>
-
-    --------}}
-
-<script>
-
-function makeError(nameInput,errorInput,oldValue){
-    let div = document.createElement('div');
-    div.classList = 'invalid-feedback'
-    div.textContent = errorInput
-
-     $('[name='+nameInput+']').addClass("removeError is-invalid")
-     $('[name='+nameInput+']').val(oldValue)
-
-     $('[name='+nameInput+']').after(div)
-
-}
-
-
-
-
-
-
-</script>
 
 @if($errors->any())
     @foreach($errors->getMessages() as $key => $error)

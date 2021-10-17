@@ -4,6 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+
+
 class Employee extends Model
 {
     protected $table='employees';
@@ -19,6 +21,7 @@ class Employee extends Model
         'national_card_address_description',
         'national_card_Release_date',
         'passport_id',
+        'nationality_id',
         'passport_address_description',
         'passport_release_date',
         'passport_expire_date',
@@ -43,8 +46,15 @@ class Employee extends Model
         'company_id',
         'direct_employee_id',
         'military_services_id',
+        'comapny_departments_id',
+        'marital_statuses_id',
+
 
     ];
+
+
+    //protected $dateFormat = 'Y-d-m';
+
 
     public function address(){
         return $this->belongsTo('App\Address','address_id','id');
@@ -60,9 +70,6 @@ class Employee extends Model
     }
     public function experience(){
         return $this->belongsTo('App\Experience','level_experience_id','id');
-    }
-    public function salary(){
-        return $this->belongsTo('App\AllTypeSalary','salary_id','id');
     }
     public function contract(){
         return $this->belongsTo('App\Contract','contract_id','id');

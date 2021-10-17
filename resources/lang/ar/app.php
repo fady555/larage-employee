@@ -40,7 +40,7 @@ return [
     'name_of_bank'=>'اسم البنك',
     'number_of_account'=>'رقم الحاب',
     'number_of_wif_husband'=>'عدد الزوجات/الازواج ',
-    'number_of_children'=>'عدد الاولاد',
+    'number_of_wif_children'=>'عددالابناء والبنات',
     'time_of_attendees'=>'وقت الحضور',
     'time_of_go'=>'وقت الانصراف',
     'experience_description'=>'وصف الخبرات',
@@ -88,7 +88,12 @@ return [
 
     'name must arabic'=>'الاسم لابد ان يكون بالغه العربيه',
     'address must arabic'=>'العنوان لابد ان يكون بالغه العربيه',
+    'choose avatar'=>'اختر هنا الصوره الشخصيه',
 
+
+    'phone'=>'الجوال',
+    'country code'=>'كود الجوال',
+    'sar'=>'-SAR(SR)(ريال سعودى)',
 
 
 

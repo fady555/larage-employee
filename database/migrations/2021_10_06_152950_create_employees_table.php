@@ -42,7 +42,7 @@ class CreateEmployeesTable extends Migration
 
 
             $table->string('email')->unique();
-            $table->longText('phones')->default(json_encode([]));
+            $table->string('phone');
             $table->string('name_of_bank')->nullable();
             $table->string('number_of_account')->nullable();
 
@@ -51,6 +51,8 @@ class CreateEmployeesTable extends Migration
 
             $table->time('time_of_attendees');
             $table->time('time_of_go');
+
+            $table->double('fixed_salary');
 
             $table->longText('experience_description');
 
@@ -87,12 +89,11 @@ class CreateEmployeesTable extends Migration
             $table->foreign('level_experience_id')->references('id')->on('level_experiences')->onUpdate('cascade')->onDelete('cascade');
             //=============================================================
 
+
             //=============================================================
-            $table->unsignedBigInteger('salary_id');
-            $table->foreign('salary_id')->references('id')->on('all_type_salaries')->onUpdate('cascade')->onDelete('cascade');
-            //=============================================================
-            $table->unsignedBigInteger('employee_status_id');
+            $table->unsignedBigInteger('employee_status_id')->default(2);
             $table->foreign('employee_status_id')->references('id')->on('employee_statuses')->onUpdate('cascade')->onDelete('cascade');
+            //=============================================================
 
 
 
@@ -121,13 +122,14 @@ class CreateEmployeesTable extends Migration
 
 
 
-
-
-
-
-
             $table->timestamps();
         });
+
+
+        $fak_en = \Faker\Factory::create();
+        $fak_ar = \Faker\Factory::create('ar_JO');
+
+
 
 
         DB::table('employees')->insert([
@@ -149,7 +151,7 @@ class CreateEmployeesTable extends Migration
                 'passport_expire_date'=>'',*/
 
                 'email'=>'mohamed_ali@gamil.com',
-                'phones'=>json_encode(['+201287917557']),
+                'phone'=>"(+20)1287917557",
                 'name_of_bank'=>'NBE',
                 'number_of_account'=>56565646,
                 'number_of_wif_husband'=>4,
@@ -165,7 +167,7 @@ class CreateEmployeesTable extends Migration
                 'education_status_id'=>2,
                 'level_experience_id'=>4,
                 'type_work_id'=>1,
-                'salary_id'=>1,
+                'fixed_salary'=>2000,
                 'employee_status_id'=>1,
 
                 'comapny_departments_id'=>1,
@@ -174,8 +176,8 @@ class CreateEmployeesTable extends Migration
 
                 'marital_statuses_id'=>1,
                 'military_services_id'=>1,
-            ]
-            ,
+            ],
+
 
 
         ]);
