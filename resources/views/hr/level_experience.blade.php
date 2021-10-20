@@ -3,8 +3,8 @@
 
 
 @section('title')
-    @if(in_array('show-jops',request()->segments()))@lang('app.jops')
-      @elseif (in_array('edit-jop',request()->segments()))@lang('app.edit jop')
+    @if(in_array('show-levels-experiences',request()->segments()))@lang('app.level experience')
+      @elseif (in_array('edit-level-experience',request()->segments()))@lang('app.edit level experience')
     @endif
 @endsection
 
@@ -34,33 +34,28 @@
         @endif
 
 
-        @if(in_array('show-jops',request()->segments()))
+        @if(in_array('show-levels-experiences',request()->segments()))
         {{--------ADD-------}}
 
         <div class="row">
             <div class="col-lg-12">
                 <div class="card card-default">
                     <div class="card-header card-header-border-bottom">
-                        <h2>@lang('app.jop add')</h2>
+                        <h2>@lang('app.level experience add')</h2>
                     </div>
                     <div class="card-body">
-                        <form method="post" action="{{route('store.jop')}}">
+                        <form method="post" action="{{route('store.level.experience')}}">
                             @csrf
                             <div class="form-row">
 
                                 <div class="col-md-10 mb-3">
-                                    <label>@lang('app.acronym')</label>
-                                    <input type="text" name="nik_name" value="{{old('nik_name')}}" class="form-control"  value="">
+                                    <label>@lang('app.level_experience_en')</label>
+                                    <input type="text" name="level_experience_en" value="{{old('level_experience_en')}}" class="form-control"   value="">
                                 </div>
 
                                 <div class="col-md-10 mb-3">
-                                    <label>@lang('app.The job is in English')</label>
-                                    <input type="text" name="name_en" value="{{old('name_en')}}" class="form-control"   value="">
-                                </div>
-
-                                <div class="col-md-10 mb-3">
-                                    <label>@lang('app.The job is in Arabic')</label>
-                                    <input type="text" name="name_ar" value="{{old('name_ar')}}" class="form-control"   value="">
+                                    <label>@lang('app.level_experience_ar')</label>
+                                    <input type="text" name="level_experience_ar" value="{{old('level_experience_ar')}}" class="form-control"   value="">
                                 </div>
 
                                 <div class="col-md-10 mb-3">
@@ -77,33 +72,28 @@
 
 
 
-        @elseif (in_array('edit-jop',request()->segments()))
+        @elseif (in_array('edit-level-experience',request()->segments()))
         {{-------EDIT-----------}}
 
         <div class="row">
             <div class="col-lg-12">
                 <div class="card card-default">
                     <div class="card-header card-header-border-bottom">
-                        <h2>@lang('app.edit jop')</h2>
+                        <h2>@lang('app.edit level experience')</h2>
                     </div>
                     <div class="card-body">
-                        <form method="post" action="{{route('update.jop',$jop->id)}}">
+                        <form method="post" action="{{route('update.level.experience',$experience->id)}}">
                             @csrf
                             <div class="form-row">
 
                                 <div class="col-md-10 mb-3">
-                                    <label>@lang('app.acronym')</label>
-                                    <input type="text" name="nik_name" value="{{old('nik_name',$jop->nik_name)}}" class="form-control"  placeholder="@lang('app.acronym')" value="">
+                                    <label>@lang('app.level_experience_en')</label>
+                                    <input type="text" name="level_experience_en" value="{{old('level_experience_en',$experience->level_experience_en)}}" class="form-control"   value="">
                                 </div>
 
                                 <div class="col-md-10 mb-3">
-                                    <label>@lang('app.The job is in English')</label>
-                                    <input type="text" name="name_en" value="{{old('name_en',$jop->name_en)}}" class="form-control"  placeholder="@lang('app.The job is in English')" value="">
-                                </div>
-
-                                <div class="col-md-10 mb-3">
-                                    <label>@lang('app.The job is in Arabic')</label>
-                                    <input type="text" name="name_ar" value="{{old('name_ar',$jop->name_ar)}}" class="form-control"  placeholder="@lang('app.The job is in Arabic')" value="">
+                                    <label>@lang('app.level_experience_ar')</label>
+                                    <input type="text" name="level_experience_ar" value="{{old('level_experience_ar',$experience->level_experience_ar)}}" class="form-control"   value="">
                                 </div>
 
                                 <div class="col-md-10 mb-3">
@@ -129,33 +119,31 @@
             <div class="col-lg-12">
                 <div class="card card-default">
                     <div class="card-header card-header-border-bottom ">
-                        <h2>@lang('app.jops')</h2>
+                        <h2>@lang('app.level experience')</h2>
                     </div>
                     <div class="card-body">
                         <table class="table table-bordered text-center ">
                             <thead class="thead-dark">
                                 <tr>
-                                    <th scope="col">@lang('app.acronym')</th>
-                                    <th scope="col">@lang('app.The job is in English')</th>
-                                    <th scope="col">@lang('app.The job is in Arabic')</th>
+                                    <th scope="col">@lang('app.level_experience_en')</th>
+                                    <th scope="col">@lang('app.level_experience_ar')</th>
                                     <th scope="col">@lang('app.action')</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($jops as $jop)
+                                @foreach ($experiences as $experience)
                                 <tr>
-                                    <td>{{$jop->nik_name}}</td>
-                                    <td>{{$jop->name_en}}</td>
-                                    <td>{{$jop->name_ar}}</td>
+                                    <td>{{$experience->level_experience_en}}</td>
+                                    <td>{{$experience->level_experience_ar}}</td>
                                     <td>
                                         <button  class="mb-1 btn btn-sm btn-primary">
                                             <i class=" mdi mdi-square-edit-outline mr-1"></i>
-                                            <a href="{{route('edit.jop',[$jop->id])}}" class="text-dark">@lang('app.edit')</a>
+                                            <a href="{{route('edit.level.experience',[$experience->id])}}" class="text-dark">@lang('app.edit')</a>
                                         </button>
 
                                         <button  class="mb-1 btn btn-sm btn-danger">
                                             <i class=" mdi mdi-delete mr-1"></i>
-                                            <a href="javascript:;" onclick="deleteEle('{{route('delete.jop',[$jop->id])}}','{{route('show.jops')}}')" class="text-dark">@lang('app.delete')</a>
+                                            <a href="javascript:;" onclick="deleteEle('{{route('delete.level.experience',[$experience->id])}}','{{route('show.levels.experiences')}}')" class="text-dark">@lang('app.delete')</a>
                                         </button>
                                      </td>
                                 </tr>

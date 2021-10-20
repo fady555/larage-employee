@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\web\hr\DegreeController;
 use Illuminate\Support\Facades\Route;
 
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -59,32 +60,34 @@ Route::group($group,function (){
     //type of work
     Route::get('show-types-works','TypeWorkController@index')->name('show.types.work');
 
-    Route::post('store-type-work','TypeWorkController@store')->name('store.type-work');
+    Route::post('store-type-work','TypeWorkController@store')->name('store.type.work');
 
-    Route::get('edit-type-work/{id?}','TypeWorkController@edit')->name('edit.type-work');
-    Route::post('update-type-work/{id?}','TypeWorkController@update')->name('update.type-work');
+    Route::get('edit-type-work/{id?}','TypeWorkController@edit')->name('edit.type.work');
+    Route::post('update-type-work/{id?}','TypeWorkController@update')->name('update.type.work');
 
-    Route::post('delete-type-work/{id?}','TypeWorkController@destroy')->name('delete.type-work');
+    Route::post('delete-type-work/{id?}','TypeWorkController@destroy')->name('delete.type.work');
+
     //educations
 
-    Route::get('show-types-works','TypeWorkController@index')->name('show.types.work');
+    Route::get('show-educations','EducationController@index')->name('show.educations');
 
-    Route::post('store-type-work','TypeWorkController@store')->name('store.type-work');
+    Route::post('store-education','EducationController@store')->name('store.education');
 
-    Route::get('edit-type-work/{id?}','TypeWorkController@edit')->name('edit.type-work');
-    Route::post('update-type-work/{id?}','TypeWorkController@update')->name('update.type-work');
+    Route::get('edit-education/{id?}','EducationController@edit')->name('edit.education');
+    Route::post('update-education/{id?}','EducationController@update')->name('update.education');
 
-    Route::post('delete-type-work/{id?}','TypeWorkController@destroy')->name('delete.type-work');
+    Route::post('delete-education/{id?}','EducationController@destroy')->name('delete.education');
+
     //level_experience
 
     Route::get('show-levels-experiences','LevelExperienceController@index')->name('show.levels.experiences');
 
-    Route::post('store-level-experience','LevelExperienceController@store')->name('store.level-experience');
+    Route::post('store-level-experience','LevelExperienceController@store')->name('store.level.experience');
 
-    Route::get('edit-level-experience/{id?}','LevelExperienceController@edit')->name('edit.level-experience');
-    Route::post('update-level-experience/{id?}','LevelExperienceController@update')->name('update.level-experience');
+    Route::get('edit-level-experience/{id?}','LevelExperienceController@edit')->name('edit.level.experience');
+    Route::post('update-level-experience/{id?}','LevelExperienceController@update')->name('update.level.experience');
 
-    Route::post('delete-level-experience/{id?}','LevelExperienceController@destroy')->name('delete.level-experience');
+    Route::post('delete-level-experience/{id?}','LevelExperienceController@destroy')->name('delete.level.experience');
 
     //degreee
 
@@ -93,6 +96,8 @@ Route::group($group,function (){
     Route::post('store-degree','DegreeController@store')->name('store.degree');
 
     Route::get('edit-degree/{id?}','DegreeController@edit')->name('edit.degree');
+
+
     Route::post('update-degree/{id?}','DegreeController@update')->name('update.degree');
 
     Route::post('delete-degree/{id?}','DegreeController@destroy')->name('delete.degree');
@@ -100,10 +105,10 @@ Route::group($group,function (){
 
 
 
-    
+
     //company
 
-    Route::get('show-companies','CompanyController@index')->name('show.companies');
+    /*Route::get('show-companies','CompanyController@index')->name('show.companies');
 
     Route::post('store-degree','CompanyController@store')->name('store.degree');
 
@@ -111,7 +116,7 @@ Route::group($group,function (){
     Route::post('update-degree/{id?}','CompanyController@update')->name('update.degree');
 
     Route::post('delete-degree/{id?}','CompanyController@destroy')->name('delete.degree');
-
+*/
     //company department
 
     Route::get('show-companies-departments','CompanyDepartment@index')->name('show.companies.departments');
@@ -127,7 +132,7 @@ Route::group($group,function (){
 
     Route::get('show-companies-branch','CompanyBranch@index')->name('show.companies.branch');
 
-    Route::post('store-company-branch','CompanyBranch@store')->name('store.company.branch');
+    Route::post('store-company-branch',[DegreeController::class,'store'])->name('store.company.branch');
 
     Route::get('edit-company-branch/{id?}','CompanyBranch@edit')->name('edit.company.branch');
     Route::post('update-company-branch/{id?}','CompanyBranch@update')->name('update.company.branch');
@@ -139,6 +144,16 @@ Route::group($group,function (){
 
     //event
 
+
+
+
+
+    Route::get('edit-degree/{id}', function ($id) {
+
+
+
+        return "fdfdsf"; //view('hr.degree');
+    });
 
 
 

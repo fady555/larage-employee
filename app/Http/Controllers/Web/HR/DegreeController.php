@@ -1,85 +1,94 @@
 <?php
 
-namespace App\Http\Controllers\Web\HR;
+namespace App\Http\Controllers\web\hr;
 
+use App\Degree;
 use App\Http\Controllers\Controller;
+use App\Rules\Arabic;
 use Illuminate\Http\Request;
 
 class DegreeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+       return view('hr.degree')->with(['degrees'=>Degree::whereKeyNot(1)->get()]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function attributes()
     {
-        //
+        return [
+            'degree_en' => trans('app.degree_en'),
+            'degree_ar' => trans('app.degree_ar'),
+        ];
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    public function rules()
+    {
+        return [
+            'degree_en' =>['required','string','unique:degrees,degree_en'],
+            'degree_ar' =>['required','string',new Arabic(trans('app.name must arabic')),'unique:degrees,degree_ar'],
+        ];
+    }
+
+    public function rulesEdit($idd)
+    {
+        return [
+            'degree_en' =>['required','string','unique:degrees,degree_en,'.$idd],
+            'degree_ar' =>['required','string',new Arabic(trans('app.name must arabic')),'unique:degrees,degree_ar,'.$idd],
+        ];
+    }
+
     public function store(Request $request)
     {
-        //
+
+        $result = validator($request->all(),$this->rules(),[],$this->attributes());
+
+        if($result->fails()):
+            return redirect()->back()->withErrors($result)->withInput();
+        endif;
+
+        Degree::create($request->except('_token'));
+        session()->flash('message',trans('app.add_success'));
+
+        return back();
+
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit($id)
     {
-        //
+        return view('hr.degree')->with(['degree'=>Degree::find($id),'degrees'=>Degree::whereKeyNot(1)->get()]);
+
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, $id)
     {
-        //
+        $result = validator($request->all(),$this->rulesEdit($id),[],$this->attributes());
+
+        if($result->fails()):
+            return redirect()->back()->withErrors($result)->withInput();
+        endif;
+
+        Degree::find($id)->update($request->except('_token'));
+        session()->flash('message',trans('app.edit_success'));
+
+        return back();
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy($id)
     {
-        //
+
+        Degree::destroy($id);
+
+        return true;
+
     }
 }

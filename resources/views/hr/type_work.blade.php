@@ -3,8 +3,8 @@
 
 
 @section('title')
-    @if(in_array('show-jops',request()->segments()))@lang('app.jops')
-      @elseif (in_array('edit-jop',request()->segments()))@lang('app.edit jop')
+    @if(in_array('show-types-works',request()->segments()))@lang('app.type work')
+      @elseif (in_array('edit-type-work',request()->segments()))@lang('app.edit type of work')
     @endif
 @endsection
 
@@ -34,33 +34,38 @@
         @endif
 
 
-        @if(in_array('show-jops',request()->segments()))
+        @if(in_array('show-types-works',request()->segments()))
         {{--------ADD-------}}
 
         <div class="row">
             <div class="col-lg-12">
                 <div class="card card-default">
                     <div class="card-header card-header-border-bottom">
-                        <h2>@lang('app.jop add')</h2>
+                        <h2>@lang('app.add type work')</h2>
                     </div>
                     <div class="card-body">
-                        <form method="post" action="{{route('store.jop')}}">
+                        <form method="post" action="{{route('store.type.work')}}">
                             @csrf
                             <div class="form-row">
 
                                 <div class="col-md-10 mb-3">
-                                    <label>@lang('app.acronym')</label>
-                                    <input type="text" name="nik_name" value="{{old('nik_name')}}" class="form-control"  value="">
+                                    <label>@lang('app.work_type_en')</label>
+                                    <input type="text" name="work_type_en" value="{{old('work_type_en')}}" class="form-control"  value="">
                                 </div>
 
                                 <div class="col-md-10 mb-3">
-                                    <label>@lang('app.The job is in English')</label>
-                                    <input type="text" name="name_en" value="{{old('name_en')}}" class="form-control"   value="">
+                                    <label>@lang('app.work_type_ar')</label>
+                                    <input type="text" name="work_type_ar" value="{{old('work_type_ar')}}" class="form-control"   value="">
                                 </div>
 
                                 <div class="col-md-10 mb-3">
-                                    <label>@lang('app.The job is in Arabic')</label>
-                                    <input type="text" name="name_ar" value="{{old('name_ar')}}" class="form-control"   value="">
+                                    <label>@lang('app.description_en')</label>
+                                    <textarea name="description_en" class="form-control">{{old('description_en')}}</textarea>
+                                </div>
+
+                                <div class="col-md-10 mb-3">
+                                    <label>@lang('app.description_ar')</label>
+                                    <textarea name="description_ar" class="form-control">{{old('description_ar')}}</textarea>
                                 </div>
 
                                 <div class="col-md-10 mb-3">
@@ -77,33 +82,38 @@
 
 
 
-        @elseif (in_array('edit-jop',request()->segments()))
+        @elseif (in_array('edit-type-work',request()->segments()))
         {{-------EDIT-----------}}
 
         <div class="row">
             <div class="col-lg-12">
                 <div class="card card-default">
                     <div class="card-header card-header-border-bottom">
-                        <h2>@lang('app.edit jop')</h2>
+                        <h2>@lang('app.edit type of work')</h2>
                     </div>
                     <div class="card-body">
-                        <form method="post" action="{{route('update.jop',$jop->id)}}">
+                        <form method="post" action="{{route('update.type.work',$type_work->id)}}">
                             @csrf
                             <div class="form-row">
 
                                 <div class="col-md-10 mb-3">
-                                    <label>@lang('app.acronym')</label>
-                                    <input type="text" name="nik_name" value="{{old('nik_name',$jop->nik_name)}}" class="form-control"  placeholder="@lang('app.acronym')" value="">
+                                    <label>@lang('app.work_type_en')</label>
+                                    <input type="text" name="work_type_en" value="{{old('work_type_en',$type_work->work_type_en)}}" class="form-control"  value="">
                                 </div>
 
                                 <div class="col-md-10 mb-3">
-                                    <label>@lang('app.The job is in English')</label>
-                                    <input type="text" name="name_en" value="{{old('name_en',$jop->name_en)}}" class="form-control"  placeholder="@lang('app.The job is in English')" value="">
+                                    <label>@lang('app.work_type_ar')</label>
+                                    <input type="text" name="work_type_ar" value="{{old('work_type_ar',$type_work->work_type_ar)}}" class="form-control"   value="">
                                 </div>
 
                                 <div class="col-md-10 mb-3">
-                                    <label>@lang('app.The job is in Arabic')</label>
-                                    <input type="text" name="name_ar" value="{{old('name_ar',$jop->name_ar)}}" class="form-control"  placeholder="@lang('app.The job is in Arabic')" value="">
+                                    <label>@lang('app.description_en')</label>
+                                    <textarea name="description_en" class="form-control">{{old('description_en',$type_work->description_en)}}</textarea>
+                                </div>
+
+                                <div class="col-md-10 mb-3">
+                                    <label>@lang('app.description_ar')</label>
+                                    <textarea name="description_ar" class="form-control">{{old('description_ar',$type_work->description_ar)}}</textarea>
                                 </div>
 
                                 <div class="col-md-10 mb-3">
@@ -135,27 +145,29 @@
                         <table class="table table-bordered text-center ">
                             <thead class="thead-dark">
                                 <tr>
-                                    <th scope="col">@lang('app.acronym')</th>
-                                    <th scope="col">@lang('app.The job is in English')</th>
-                                    <th scope="col">@lang('app.The job is in Arabic')</th>
+                                    <th scope="col">@lang('app.work_type_en')</th>
+                                    <th scope="col">@lang('app.work_type_ar')</th>
+                                    <th scope="col">@lang('app.description_en')</th>
+                                    <th scope="col">@lang('app.description_ar')</th>
                                     <th scope="col">@lang('app.action')</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($jops as $jop)
+                                @foreach ($types_works as $type)
                                 <tr>
-                                    <td>{{$jop->nik_name}}</td>
-                                    <td>{{$jop->name_en}}</td>
-                                    <td>{{$jop->name_ar}}</td>
+                                    <td>{{$type->work_type_en}}</td>
+                                    <td>{{$type->work_type_ar}}</td>
+                                    <td>{{$type->description_en}}</td>
+                                    <td>{{$type->description_ar}}</td>
                                     <td>
                                         <button  class="mb-1 btn btn-sm btn-primary">
                                             <i class=" mdi mdi-square-edit-outline mr-1"></i>
-                                            <a href="{{route('edit.jop',[$jop->id])}}" class="text-dark">@lang('app.edit')</a>
+                                            <a href="{{route('edit.type.work',[$type->id])}}" class="text-dark">@lang('app.edit')</a>
                                         </button>
 
                                         <button  class="mb-1 btn btn-sm btn-danger">
                                             <i class=" mdi mdi-delete mr-1"></i>
-                                            <a href="javascript:;" onclick="deleteEle('{{route('delete.jop',[$jop->id])}}','{{route('show.jops')}}')" class="text-dark">@lang('app.delete')</a>
+                                            <a href="javascript:;" onclick="deleteEle('{{route('delete.type.work',[$type->id])}}','{{route('show.types.work')}}')" class="text-dark">@lang('app.delete')</a>
                                         </button>
                                      </td>
                                 </tr>

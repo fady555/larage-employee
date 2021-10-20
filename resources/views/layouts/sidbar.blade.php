@@ -110,53 +110,53 @@
 
 
                 <li>
-                    <a class="sidenav-item-link" href="#">
-                        <i class="mdi mdi-widgets"></i>
+                    <a class="sidenav-item-link" href="{{route('show.jops')}}">
+                        <i class="mdi mdi-30px  mdi-cogs"></i>
                         <span class="nav-text">@lang('app.jops')</span>
                     </a>
                 </li>
                 <li>
-                    <a class="sidenav-item-link" href="#">
-                        <i class="mdi mdi-30px mdi-spin mdi-star"></i>
+                    <a class="sidenav-item-link" href="{{route('show.types.work')}}">
+                        <i class="mdi mdi-30px  mdi-worker"></i>
                         <span class="nav-text">@lang('app.type work')</span>
                     </a>
                 </li>
                 <li>
-                    <a class="sidenav-item-link" href="#">
-                        <i class="mdi mdi-30px mdi-spin mdi-star"></i>
+                    <a class="sidenav-item-link" href="{{route('show.educations')}}">
+                        <i class="mdi mdi-30px mdi-teach"></i>
                         <span class="nav-text">@lang('app.education')</span>
                     </a>
                 </li>
                 <li>
-                    <a class="sidenav-item-link" href="#">
-                        <i class="mdi mdi-30px mdi-spin mdi-star"></i>
+                    <a class="sidenav-item-link" href="{{route('show.degrees')}}">
+                        <i class="mdi mdi-30px mdi-school"></i>
                         <span class="nav-text">@lang('app.degrees')</span>
                     </a>
                 </li>
 
                 <li>
-                    <a class="sidenav-item-link" href="#">
-                        <i class="mdi mdi-30px mdi-spin mdi-star"></i>
+                    <a class="sidenav-item-link" href="{{route('show.levels.experiences')}}">
+                        <i class="mdi mdi-30px mdi-sort-variant "></i>
                         <span class="nav-text">@lang('app.level experience')</span>
                     </a>
                 </li>
 
                 <li>
                     <a class="sidenav-item-link" href="#">
-                        <i class="mdi mdi-30px mdi-spin mdi-star"></i>
+                        <i class="mdi mdi-30px mdi-bank"></i>
                         <span class="nav-text">@lang('app.companies')</span>
                     </a>
                 </li>
                 <li>
                     <a class="sidenav-item-link" href="#">
-                        <i class="mdi mdi-30px mdi-spin mdi-star"></i>
+                        <i class="mdi mdi-30px mdi-multiplication"></i>
                         <span class="nav-text">@lang('app.company departement')</span>
                     </a>
                 </li>
 
                 <li>
                     <a class="sidenav-item-link" href="#">
-                        <i class="mdi mdi-30px mdi-spin mdi-star"></i>
+                        <i class="mdi mdi-30px mdi-notification-clear-all "></i>
                         <span class="nav-text">@lang('app.requests')</span>
                     </a>
                 </li>

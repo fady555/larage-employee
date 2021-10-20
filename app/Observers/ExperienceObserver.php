@@ -2,62 +2,15 @@
 
 namespace App\Observers;
 
+use App\Employee;
 use App\Experience;
 
 class ExperienceObserver
 {
-    /**
-     * Handle the experience "created" event.
-     *
-     * @param  \App\Experience  $experience
-     * @return void
-     */
-    public function created(Experience $experience)
+    public function deleting(Experience $ex)
     {
         //
-    }
-
-    /**
-     * Handle the experience "updated" event.
-     *
-     * @param  \App\Experience  $experience
-     * @return void
-     */
-    public function updated(Experience $experience)
-    {
-        //
-    }
-
-    /**
-     * Handle the experience "deleted" event.
-     *
-     * @param  \App\Experience  $experience
-     * @return void
-     */
-    public function deleted(Experience $experience)
-    {
-        //
-    }
-
-    /**
-     * Handle the experience "restored" event.
-     *
-     * @param  \App\Experience  $experience
-     * @return void
-     */
-    public function restored(Experience $experience)
-    {
-        //
-    }
-
-    /**
-     * Handle the experience "force deleted" event.
-     *
-     * @param  \App\Experience  $experience
-     * @return void
-     */
-    public function forceDeleted(Experience $experience)
-    {
-        //
+        $employees = Employee::where('level_experience_id',$ex->id);
+        $employees->update(['level_experience_id'=>1]);
     }
 }

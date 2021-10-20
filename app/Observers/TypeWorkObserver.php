@@ -2,62 +2,18 @@
 
 namespace App\Observers;
 
+use App\Employee;
 use App\TypeWork;
 
 class TypeWorkObserver
 {
-    /**
-     * Handle the type work "created" event.
-     *
-     * @param  \App\TypeWork  $typeWork
-     * @return void
-     */
-    public function created(TypeWork $typeWork)
+
+    public function deleting(TypeWork $type)
     {
         //
+        $employees = Employee::where('type_work_id',$type->id);
+        $employees->update(['type_work_id'=>1]);
     }
 
-    /**
-     * Handle the type work "updated" event.
-     *
-     * @param  \App\TypeWork  $typeWork
-     * @return void
-     */
-    public function updated(TypeWork $typeWork)
-    {
-        //
-    }
 
-    /**
-     * Handle the type work "deleted" event.
-     *
-     * @param  \App\TypeWork  $typeWork
-     * @return void
-     */
-    public function deleted(TypeWork $typeWork)
-    {
-        //
-    }
-
-    /**
-     * Handle the type work "restored" event.
-     *
-     * @param  \App\TypeWork  $typeWork
-     * @return void
-     */
-    public function restored(TypeWork $typeWork)
-    {
-        //
-    }
-
-    /**
-     * Handle the type work "force deleted" event.
-     *
-     * @param  \App\TypeWork  $typeWork
-     * @return void
-     */
-    public function forceDeleted(TypeWork $typeWork)
-    {
-        //
-    }
 }

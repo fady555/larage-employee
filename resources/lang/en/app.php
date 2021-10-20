@@ -122,6 +122,32 @@ return [
     'edit_success'=>'Edition has been successful',
     'edit jop'=>'Edit Jop',
 
+    //==================================
+
+    'work_type_en'=>'The type of work is in English',
+    'work_type_ar'=>'The type of work is in Arabic',
+    'description_en'=>'Description in English',
+    'description_ar'=>'Description in Arabic',
+    'edit type of work'=>'Edit type of work',
+
+    //====================================
+
+    'education_status_en'=>'Educational status in English',
+    'education_status_ar'=>'Educational status in Arabic',
+    'edit education'=>'Edit Education',
+    //====================================
+    'level_experience_en'=>'Level experience in English',
+    'level_experience_ar'=>'Level experience in Arabic',
+    'edit level experience'=>'Edit Level experience',
+    //=====================================
+    'degree_en'=>'Degree in English',
+    'degree_ar'=>'Degree in Arabic',
+    'edit degree'=>'Edit Degree',
+    //====================================
+
+
+
+
 
     ''=>'',
     ''=>'',
