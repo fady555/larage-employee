@@ -16,11 +16,11 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected $namespace = 'App\Http\Controllers';
 
-    protected $namespace_web_admin = 'App\Http\Controllers\Web\Admin';
+    protected $namespace_web_others = 'App\Http\Controllers\Web\Others';
     protected $namespace_web_hr = 'App\Http\Controllers\Web\HR';
 
 
-    protected $namespace_api_admin = 'App\Http\Controllers\Api\Admin';
+    protected $namespace_api_others = 'App\Http\Controllers\Api\Others';
     protected $namespace_api_hr = 'App\Http\Controllers\Api\HR';
 
     /**
@@ -51,12 +51,12 @@ class RouteServiceProvider extends ServiceProvider
     {
         $this->mapApiRoutes();
 
-        $this->mapApiAdminRoutes();
+        $this->mapApiOthersRoutes();
         $this->mapApiHrRoutes();
 
         $this->mapWebRoutes();
 
-        $this->mapWebAdminRoutes();
+        $this->mapWebOthersRoutes();
         $this->mapWebHrRoutes();
 
         //
@@ -76,11 +76,11 @@ class RouteServiceProvider extends ServiceProvider
              ->group(base_path('routes/web.php'));
     }
 
-    protected function mapWebAdminRoutes()
+    protected function mapWebOthersRoutes()
     {
         Route::middleware('web')
-            ->namespace($this->namespace_web_admin)
-            ->group(base_path('routes/admin/web.php'));
+            ->namespace($this->namespace_web_others)
+            ->group(base_path('routes/others/web.php'));
     }
 
     protected function mapWebHrRoutes()
@@ -105,12 +105,12 @@ class RouteServiceProvider extends ServiceProvider
              ->group(base_path('routes/api.php'));
     }
 
-    protected function mapApiAdminRoutes()
+    protected function mapApiOthersRoutes()
     {
         Route::prefix('api')
             ->middleware('api')
-            ->namespace($this->namespace_api_admin)
-            ->group(base_path('routes/admin/api.php'));
+            ->namespace($this->namespace_api_others)
+            ->group(base_path('routes/others/api.php'));
     }
 
     protected function mapApiHrRoutes()

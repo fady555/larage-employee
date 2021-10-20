@@ -84,7 +84,8 @@ return [
     'responsible for'=>'مسؤل على ',
     'responsible from'=>'مسئول من ',
     'file name and number'=>'اسم الملف ورقمه',
-    'type work '=>'نوع العمل',
+    'type work'=>'نوع العمل',
+    'add type work'=>'اضافه نوع عمل',
 
     'name must arabic'=>'الاسم لابد ان يكون بالغه العربيه',
     'address must arabic'=>'العنوان لابد ان يكون بالغه العربيه',
@@ -94,6 +95,30 @@ return [
     'phone'=>'الجوال',
     'country code'=>'كود الجوال',
     'sar'=>'-SAR(SR)(ريال سعودى)',
+    'error_phone'=>'الموبيل خاطى',
+
+    'employees'=>'الموظفين',
+    'add employee'=>'اضافه موظف',
+    'jops'=>'الوظائف',
+    'degrees'=>'الدرجات العلميه',
+    'companies'=>'الشركات',
+    'requests'=>'الطلبات',
+    'add request'=>'اضافه طلب',
+
+
+    'edit'=>'تعديل',
+    'delete'=>'حذف',
+    'The job is in English'=>'اسم الوظيفه بالغه الانجليزيه',
+    'The job is in Arabic'=>'اسم الوظيفه بالغه العربيه',
+    'acronym'=>'الاسم المحتصر',
+    'action'=>'اخرى',
+
+
+    'sure'=>'هل انتا متاكد',
+    'revert'=>"لن تتمكن من التراجع عن هذا!",
+    'yes'=>'نعم ، احذفها!',
+    'deleted'=>'تم الحذف!',
+    'has been deleted'=>'تم حذف العنصر الخاص بك.',
 
 
 

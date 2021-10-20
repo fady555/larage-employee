@@ -64,7 +64,7 @@
 
 
 
-                            
+
 
 
 
@@ -77,10 +77,115 @@
                 </li>
 
 
+
+
+                <li  class="has-sub" >
+                    <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#employees"
+                       aria-expanded="false" aria-controls="dashboard">
+                        <i class="mdi mdi-account"></i>
+                        <span class="nav-text">@lang('app.employees')</span> <b class="caret"></b>
+                    </a>
+                    <ul  class="collapse"  id="employees"
+                         data-parent="#sidebar-menu">
+                        <div class="sub-menu">
+
+
+
+                            <li >
+                                <a class="sidenav-item-link" href="index.html">
+                                    <span class="nav-text">@lang('app.employees')</span>
+                                </a>
+                            </li>
+                            <li >
+                                <a class="sidenav-item-link" href="index.html">
+                                    <span class="nav-text">@lang('app.add employee')</span>
+                                </a>
+                            </li>
+
+
+
+                        </div>
+                    </ul>
+                </li>
+
+
                 <li>
                     <a class="sidenav-item-link" href="#">
-                        <i class="mdi mdi-view-dashboard-outline"></i>
-                        <span class="nav-text">Dashboard</span>
+                        <i class="mdi mdi-widgets"></i>
+                        <span class="nav-text">@lang('app.jops')</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="sidenav-item-link" href="#">
+                        <i class="mdi mdi-30px mdi-spin mdi-star"></i>
+                        <span class="nav-text">@lang('app.type work')</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="sidenav-item-link" href="#">
+                        <i class="mdi mdi-30px mdi-spin mdi-star"></i>
+                        <span class="nav-text">@lang('app.education')</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="sidenav-item-link" href="#">
+                        <i class="mdi mdi-30px mdi-spin mdi-star"></i>
+                        <span class="nav-text">@lang('app.degrees')</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a class="sidenav-item-link" href="#">
+                        <i class="mdi mdi-30px mdi-spin mdi-star"></i>
+                        <span class="nav-text">@lang('app.level experience')</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a class="sidenav-item-link" href="#">
+                        <i class="mdi mdi-30px mdi-spin mdi-star"></i>
+                        <span class="nav-text">@lang('app.companies')</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="sidenav-item-link" href="#">
+                        <i class="mdi mdi-30px mdi-spin mdi-star"></i>
+                        <span class="nav-text">@lang('app.company departement')</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a class="sidenav-item-link" href="#">
+                        <i class="mdi mdi-30px mdi-spin mdi-star"></i>
+                        <span class="nav-text">@lang('app.requests')</span>
+                    </a>
+                </li>
+
+
+                <li  class="has-sub" >
+                    <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#requests"
+                       aria-expanded="false" aria-controls="dashboard">
+                        <i class="mdi mdi-account"></i>
+                        <span class="nav-text">@lang('app.requests')</span> <b class="caret"></b>
+                    </a>
+                    <ul  class="collapse"  id="requests"
+                         data-parent="#sidebar-menu">
+                        <div class="sub-menu">
+
+                            <li >
+                                <a class="sidenav-item-link" href="index.html">
+                                    <span class="nav-text">@lang('app.add request')</span>
+                                </a>
+                            </li>
+
+                        </div>
+                    </ul>
+                </li>
+
+                <li>
+                    <a class="sidenav-item-link" href="#">
+                        <i class="mdi mdi-deskphone"></i>
+                        <span class="nav-text">@lang('app.phones')</span>
                     </a>
                 </li>
 

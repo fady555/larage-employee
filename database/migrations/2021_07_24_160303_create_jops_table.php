@@ -15,8 +15,6 @@ class CreateJopsTable extends Migration
             $table->string('name_en')->nullable()->default('NULL');
             $table->string('name_ar')->nullable()->default('NULL');
             $table->string('nik_name');
-            $table->longText('description_en')->nullable();
-            $table->longText('description_ar')->nullable();
             $table->timestamps();
         });
 

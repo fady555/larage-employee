@@ -49,7 +49,7 @@ Create Employee
 
                                     <div class="col-md-6 mb-3">
                                         <label >@lang('app.national id')<i class="text-danger">*</i></label>
-                                        <input type="text" name="national_id" value="{{old('national_id')}}"  class="form-control"  data-mask="9999 9999 9999 9999" placeholder="@lang('app.national id')" aria-label="" autocomplete="off" maxlength="19" ="">
+                                        <input type="text" name="national_id" value="{{old('national_id')}}"  class="form-control"  data-mask="9999999999999999" placeholder="@lang('app.national id')" aria-label="" autocomplete="off" maxlength="19" ="">
                                     </div>
 
                                     <div class="col-md-3 mb-3">
@@ -64,7 +64,7 @@ Create Employee
 
                                     <div class="col-md-6 mb-3">
                                         <label>@lang('app.passport_id')</label>
-                                        <input type="text" name="passport_id" value="{{old('passport_id')}}" class="form-control" data-mask="9999 9999 9999 9999" placeholder="@lang('app.passport_id')" aria-label="" autocomplete="off" maxlength="19">
+                                        <input type="text" name="passport_id" value="{{old('passport_id')}}" class="form-control"  placeholder="@lang('app.passport_id')"  autocomplete="off">
                                     </div>
 
                                     <div class="col-md-3 mb-3">
@@ -123,7 +123,7 @@ Create Employee
                                     <div class="col-md-5 mb-3">
                                         <label>@lang('app.military_services')<i class="text-danger">*</i></label>
 
-                                        <select class="form-control" name="military_services_id">
+                                        <select class="form-control" name="military_services_id" disabled>
 
                                             @foreach(\App\MilitaryService::get() as $ms)
                                             <option value="{{$ms->id}}">{{ $ms->{'name_'.app()->getLocale()} }}</option>
@@ -190,7 +190,7 @@ Create Employee
 
                                     <div class="col-md-6 mb-3">
                                         <label>@lang('app.phone')<i class="text-danger">*</i></label>
-                                        <input type="text" name="phone"  class="form-control" disabled  >
+                                        <input type="text" name="phone" value="{{old('phone')}}" class="form-control" disabled  >
                                     </div>
 
 
@@ -526,7 +526,7 @@ Create Employee
                                 <div class="col-md-4 col-md-offset-1-and-half">
                                     <label>@lang('app.jop level')<i class="text-danger">*</i></label>
 
-                                    <select class="form-control" onchange=""  name="jop_level_id" id="jop_level_id"  >
+                                    <select class="form-control"   name="jop_level_id" id="jop_level_id"  >
 
                                         @if ($errors->any())
                                         <option value="{{old('jop_level_id')}}">{{\App\JopLevel::find(old('jop_level_id'))->{'level_'.app()->getLocale()}  }}</option>
@@ -557,7 +557,7 @@ Create Employee
                                 </div>
 
                                 <div class="col-md-4 mb-3">
-                                    <label >Employee</label>
+                                    <label >.</label>
                                     <input type="text" id="em" class="form-control" disabled>
                                 </div>
 
@@ -589,7 +589,7 @@ Create Employee
                         <div class="card-header card-header-border-bottom bg-primary">
                             <h2 class="mr-3">@lang('app.file name and number')</h2>
                             <div class="form-row">
-                                <input  type="text" class=" ml-auto  form-control" name="number_file" />
+                            <input  type="text" name="number_file" value="{{old('number_file')}}" class=" ml-auto  form-control"  />
                             </div>
                         </div>
 

@@ -10,6 +10,7 @@ use App\Rules\PhoneCode;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 use function GuzzleHttp\json_encode;
 
@@ -51,7 +52,7 @@ class EmployeeController extends Controller
                 "full_name_ar"=>['required',new Arabic(trans('app.name must arabic'))],
                 "national_id"=>['required','string'],
                 "national_card_Release_date"=>['required','date','date_format:Y-m-d'],
-                "passport_id"=>['nullable','string'],
+                "passport_id"=>['nullable','string','max:12'],
                 "passport_release_date"=>['nullable','date','date_format:Y-m-d'],
                 "passport_expire_date"=>['nullable','date','date_format:Y-m-d'],
                 "nationality_id"=>['required','exists:nationalities,id'],
@@ -65,7 +66,7 @@ class EmployeeController extends Controller
                 "number_of_account"=>['nullable','string'],
                 "email"=>['required','email','unique:employees,email','unique:users,email'],
 
-                "phone"=>['required','string',new PhoneCode('pgone error')],
+                "phone"=>['required','string',new PhoneCode(trans('app.error_phone'))],
 
                 "country_id"=>['required','exists:countries,id'],
                 "city_id"=>['nullable','exists:cities,id'],
@@ -153,10 +154,8 @@ class EmployeeController extends Controller
 
 
         //dd($request->all());
+
         $result = validator($request->all(),$this->rules(),[],$this->customAttributes());
-
-        //dd($result);
-
 
         if($result->fails()){
             return back()->withErrors($result)->withInput();
@@ -169,6 +168,8 @@ class EmployeeController extends Controller
         if(isset($newEmployee['avatar'])): $newEmployee['avatar'] = request()->file('avatar')->store('/avatars');endif;
         if(isset($newEmployee['national_card_img'])): $newEmployee['national_card_img'] = request()->file('national_card_img')->store('/national_card_imgs');  endif;
 
+        if(!isset($newEmployee['military_services_id'])): $newEmployee['military_services_id'] = 1; endif;
+
 
 
         $newEmployee['address_id'] = Address::insertGetId([
@@ -180,17 +181,11 @@ class EmployeeController extends Controller
         ]);
 
 
-
-
-        //DB::table('employees')->insertGetId($newEmployee);
-
-
         $x = Employee::create($newEmployee);
 
-        //return $x->id;
+        User::create(['name'=>$request->full_name_en,'email'=>$request->email,'password'=>Hash::make(env('Defult_Password_Employee','tests2020')),'employee_id'=>$x->id]);
 
-        User::create(['name'=>$request->full_name_en,'email'=>$request->email,'password'=>env('Defult_Password_Employee','tests2020')]);
-
+    return "add employee sucess ";
 
     }
 

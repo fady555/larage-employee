@@ -191,10 +191,4 @@ $('#codes').change(()=>{
          $('[name='+nameInput+']').after(div)
 
     }
-
-
-
-
-
-
     </script>

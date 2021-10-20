@@ -26,13 +26,13 @@ class Employee extends Model
         'passport_release_date',
         'passport_expire_date',
         'email',
-        'phones',
+        'phone',
         'name_of_bank',
         'number_of_account',
         'number_of_wif_husband',
         'number_of_wif_children',
         'time_of_attendees',
-        'time_of_going',
+        'time_of_go',
         'experience_description',
         'address_id',
         'jop_id',
@@ -48,6 +48,9 @@ class Employee extends Model
         'military_services_id',
         'comapny_departments_id',
         'marital_statuses_id',
+        'fixed_salary',
+        'military_services_id'
+
 
 
     ];

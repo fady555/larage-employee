@@ -94,6 +94,42 @@ return [
     'country code'=>'Country Code',
     'sar'=>'-SAR(SR)(ريال سعودى)',
 
+    'error_phone'=>'Error Phone',
+
+
+    'employees'=>'Employees',
+    'add employee'=>'Add Employee',
+    'jops'=>'Jops',
+    'degrees'=>'Degrees',
+    'companies'=>'Companies',
+    'requests'=>'Requests',
+    'add request'=>'Add Request',
+
+    'edit'=>'Edit',
+    'delete'=>'Delete',
+    'The job is in English'=>'The job is in English',
+    'The job is in Arabic'=>'The job is in Arabic',
+    'acronym'=>'Acronym',
+    'action'=>'Action',
+
+    'sure'=>'Are you sure?',
+    'revert'=>"You won't be able to revert this!",
+    'yes'=>'Yes, delete it!',
+    'deleted'=>'Deleted!',
+    'has been deleted'=>'Your Element has been deleted.',
+
+    'add_success'=>'Addition has been successful',
+    'edit_success'=>'Edition has been successful',
+    'edit jop'=>'Edit Jop',
+
+
+    ''=>'',
+    ''=>'',
+    ''=>'',
+    ''=>'',
+    ''=>'',
+
+
 
 
 
