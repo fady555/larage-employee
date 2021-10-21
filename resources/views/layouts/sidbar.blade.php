@@ -142,13 +142,13 @@
                 </li>
 
                 <li>
-                    <a class="sidenav-item-link" href="#">
+                    <a class="sidenav-item-link" href="{{route('show.company')}}">
                         <i class="mdi mdi-30px mdi-bank"></i>
                         <span class="nav-text">@lang('app.companies')</span>
                     </a>
                 </li>
                 <li>
-                    <a class="sidenav-item-link" href="#">
+                    <a class="sidenav-item-link" href="{{route('show.companies.departments')}}">
                         <i class="mdi mdi-30px mdi-multiplication"></i>
                         <span class="nav-text">@lang('app.company departement')</span>
                     </a>

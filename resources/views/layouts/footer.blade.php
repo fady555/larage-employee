@@ -1,18 +1,26 @@
+
+
+
+
 <footer class="footer mt-auto">
-    <div class="copyright bg-dark">
-        <p>
-            &copy; <span id="copy-year">2019</span> Copyright Sleek Dashboard Bootstrap Template by
-            <a
-                class="text-primary"
-                href="http://www.iamabdus.com/"
-                target="_blank"
-            >Abdus</a
-            >.
-        </p>
+
+
+
+
+
+@if (file_exists(public_path(str_replace('public/storage','storage',App\Company::first()->logo))))
+<div class="copyright bg-dark">
+    <div class="row">
+        <div class="col-md-10 mb-3">
+            <div class="card">
+                <img style="height:150px" src="{{ asset(App\Company::first()->logo) }}" alt="Card image cap">
+            </div>
+        </div>
     </div>
-    <script>
-        var d = new Date();
-        var year = d.getFullYear();
-        document.getElementById("copy-year").innerHTML = year;
-    </script>
+</div>
+
+@endif
+
+
+
 </footer>

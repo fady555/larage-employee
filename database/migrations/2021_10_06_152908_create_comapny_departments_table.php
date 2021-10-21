@@ -20,7 +20,8 @@ class CreateComapnyDepartmentsTable extends Migration
             $table->string('depart_ar');
             $table->text('description_en')->nullable();
             $table->text('description_ar')->nullable();
-        
+            $table->enum('status',['A','B'])->default('A');
+
             $table->timestamps();
         });
 

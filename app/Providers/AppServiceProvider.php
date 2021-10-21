@@ -2,10 +2,12 @@
 
 namespace App\Providers;
 
+use App\ComapnyDepartment;
 use App\Degree;
 use App\Education;
 use App\Experience;
 use App\Jop;
+use App\Observers\CompDepartmentObserver;
 use App\Observers\DegreeObserver;
 use App\Observers\EducationObserver;
 use App\Observers\ExperienceObserver;
@@ -38,5 +40,6 @@ class AppServiceProvider extends ServiceProvider
         Education::observe(EducationObserver::class);
         Experience::observe(ExperienceObserver::class);
         TypeWork::observe(TypeWorkObserver::class);
+        ComapnyDepartment::observe(CompDepartmentObserver::class);
     }
 }

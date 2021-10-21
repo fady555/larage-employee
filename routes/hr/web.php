@@ -116,14 +116,14 @@ Route::group($group,function (){
 
     //company department
 
-    Route::get('show-companies-departments','CompanyDepartment@index')->name('show.companies.departments');
+    Route::get('show-companies-departments','CompanyDepartmentController@index')->name('show.companies.departments');
 
-    Route::post('store-company-department','CompanyDepartment@store')->name('store.company.department');
+    Route::post('store-company-department','CompanyDepartmentController@store')->name('store.company.department');
 
-    Route::get('edit-company-department/{id?}','CompanyDepartment@edit')->name('edit.company.department');
-    Route::post('update-company-department/{id?}','CompanyDepartment@update')->name('update.company.department');
+    Route::get('edit-company-department/{id?}','CompanyDepartmentController@edit')->name('edit.company.department');
+    Route::post('update-company-department/{id?}','CompanyDepartmentController@update')->name('update.company.department');
 
-    Route::post('delete-company-department/{id?}','CompanyDepartment@destroy')->name('delete.company.department');
+    Route::post('delete-company-department/{id?}','CompanyDepartmentController@destroy')->name('delete.company.department');
 
     //conpany branch
 

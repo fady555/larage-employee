@@ -147,6 +147,7 @@ return [
 
 
 
+
     'name_company_en'=>'Company name in English',
     'name_company_ar'=>'Company name in Arabic',
     'logo'=>'Logo',
@@ -155,7 +156,14 @@ return [
     'company data'=>'Company Information',
     'company address head office'=>'Company Address Head Office',
     'save'=>'Save',
-    'telphones'=>'Telphones'
+    'telphones'=>'Telphones',
+
+    //=====================================
+    'depart_en'=>'Department in English',
+    'depart_ar'=>'Department in Arabic',
+    'edit depart'=>'Edit Department',
+    'add depart'=>'Add Department',
+    //====================================
 
 
 
