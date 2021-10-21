@@ -147,13 +147,15 @@ return [
 
 
 
-
-
-    ''=>'',
-    ''=>'',
-    ''=>'',
-    ''=>'',
-    ''=>'',
+    'name_company_en'=>'Company name in English',
+    'name_company_ar'=>'Company name in Arabic',
+    'logo'=>'Logo',
+    'description_en'=>'Description in English',
+    'description_ar'=>'Description in Arabic',
+    'company data'=>'Company Information',
+    'company address head office'=>'Company Address Head Office',
+    'save'=>'Save',
+    'telphones'=>'Telphones'
 
 
 

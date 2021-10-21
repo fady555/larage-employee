@@ -106,7 +106,7 @@ Route::get('notifiy',function(){
 
 
 
-Route::view('/vv','hr.jop');
+Route::view('/vv','hr/company');
 
 
 

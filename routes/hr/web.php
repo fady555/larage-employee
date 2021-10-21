@@ -108,15 +108,12 @@ Route::group($group,function (){
 
     //company
 
-    /*Route::get('show-companies','CompanyController@index')->name('show.companies');
+    Route::get('show-company','CompanyController@index')->name('show.company');
 
-    Route::post('store-degree','CompanyController@store')->name('store.degree');
+    Route::post('store-company','CompanyController@store')->name('store.company');
 
-    Route::get('edit-degree/{id?}','CompanyController@edit')->name('edit.degree');
-    Route::post('update-degree/{id?}','CompanyController@update')->name('update.degree');
+    Route::post('update-company/{id?}','CompanyController@update')->name('update.company');
 
-    Route::post('delete-degree/{id?}','CompanyController@destroy')->name('delete.degree');
-*/
     //company department
 
     Route::get('show-companies-departments','CompanyDepartment@index')->name('show.companies.departments');

@@ -66,8 +66,9 @@
     </div>
 </div>
 
-
+{{-----------------
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDCn8TFXGg17HAUcNpkwtxxyT9Io9B_NcM" defer></script>
+------------------}}
 <script src="{{asset('/public/assets/plugins/jquery/jquery.min.js')}}"></script>
 <script src="{{asset('/public/assets/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <script src="{{asset('/public/assets/plugins/toaster/toastr.min.js')}}"></script>
@@ -85,7 +86,10 @@
 <script src="{{asset('/public/assets/js/sleek.js')}}"></script>
 <script src="{{asset('/public/assets/js/chart.js')}}"></script>
 <script src="{{asset('/public/assets/js/date-range.js')}}"></script>
+{{----------
 <script src="{{asset('/public/assets/js/map.js')}}"></script>
+-----------}}
+
 <script src="{{asset('/public/assets/js/custom.js')}}"></script>
 <script>
     //is-invalid

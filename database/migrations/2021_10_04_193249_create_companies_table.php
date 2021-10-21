@@ -21,8 +21,14 @@ class CreateCompaniesTable extends Migration
             $table->string('logo')->nullable();
             $table->text('description_en')->nullable();
             $table->text('description_ar')->nullable();
-            $table->date('data_of_start_contracting');
-            $table->date('data_of_expire_contracting');
+
+            //=============================================================
+            $table->unsignedBigInteger('address_id');
+            $table->foreign('address_id')->references('id')->on('addresses')->onUpdate('cascade')->onDelete('cascade');
+            //=============================================================
+            $table->text('telphones')->nullable();
+           /* $table->date('data_of_start_contracting');
+            $table->date('data_of_expire_contracting');*/
             $table->timestamps();
         });
 
@@ -31,10 +37,12 @@ class CreateCompaniesTable extends Migration
                 'name_company_en'=>'Al nor',
                 'name_company_ar'=>' شركه النور',
                 //'logo'=>'',
-                //'description_en'=>'',
+                'description_en'=>'A leading company in electric lights',
                 'description_ar'=>'شركه رائده فى المصابيح الكهربيه',
-                'data_of_start_contracting'=>'2021-8-9',
-                'data_of_expire_contracting'=>'2021-9-9',
+                'address_id'=>5,
+                'telphones'=>"06445454544",
+                /*'data_of_start_contracting'=>'2021-8-9',
+                'data_of_expire_contracting'=>'2021-9-9',*/
             ],
         ]);
     }
