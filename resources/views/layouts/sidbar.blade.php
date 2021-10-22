@@ -149,8 +149,14 @@
                 </li>
                 <li>
                     <a class="sidenav-item-link" href="{{route('show.companies.departments')}}">
-                        <i class="mdi mdi-30px mdi-multiplication"></i>
+                        <i class="mdi mdi-30px mdi-atom"></i>
                         <span class="nav-text">@lang('app.company departement')</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="sidenav-item-link" href="{{route('show.companies.branchs')}}">
+                        <i class="mdi mdi-30px mdi-bank-transfer-in"></i>
+                        <span class="nav-text">@lang('app.company branch')</span>
                     </a>
                 </li>
 

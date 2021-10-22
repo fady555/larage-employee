@@ -164,6 +164,16 @@ return [
     'edit depart'=>'Edit Department',
     'add depart'=>'Add Department',
     //====================================
+    //=====================================
+    'name_branch_en'=>'Branch in English',
+    'name_branch_ar'=>'Branch in Arabic',
+    'edit branch'=>'Edit Branch',
+    'add branch'=>'Add Branch',
+    'company branch address'=>'Company Branch Address',
+    'company branch'=>'Company Branch',
+    //====================================
+
+    'branch address'=>'Branch Address',
 
 
 

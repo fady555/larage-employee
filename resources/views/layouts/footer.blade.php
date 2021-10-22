@@ -7,7 +7,7 @@
 
 
 
-
+{{--------------
 @if (file_exists(public_path(str_replace('public/storage','storage',App\Company::first()->logo))))
 <div class="copyright bg-dark">
     <div class="row">
@@ -21,6 +21,6 @@
 
 @endif
 
-
+-------------}}
 
 </footer>

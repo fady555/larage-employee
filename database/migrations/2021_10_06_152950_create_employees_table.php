@@ -108,7 +108,9 @@ class CreateEmployeesTable extends Migration
             $table->foreign('direct_employee_id')->references('id')->on('employees');
             //=============================================================
 
-
+            $table->unsignedBigInteger('company_branch_id');
+            $table->foreign('company_branch_id')->references('id')->on('company_branches');
+            //=============================================================
 
             //=============================================================
             $table->unsignedBigInteger('marital_statuses_id');
@@ -172,6 +174,7 @@ class CreateEmployeesTable extends Migration
 
                 'comapny_departments_id'=>1,
                 'company_id'=>1,
+                'company_branch_id'=>1,
                 'direct_employee_id'=>1,
 
                 'marital_statuses_id'=>1,

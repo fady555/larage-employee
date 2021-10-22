@@ -127,14 +127,14 @@ Route::group($group,function (){
 
     //conpany branch
 
-    Route::get('show-companies-branch','CompanyBranch@index')->name('show.companies.branch');
+    Route::get('show-companies-branch','CompanyBranchController@index')->name('show.companies.branchs');
 
-    Route::post('store-company-branch',[DegreeController::class,'store'])->name('store.company.branch');
+    Route::post('store-company-branch','CompanyBranchController@store')->name('store.company.branch');
 
-    Route::get('edit-company-branch/{id?}','CompanyBranch@edit')->name('edit.company.branch');
-    Route::post('update-company-branch/{id?}','CompanyBranch@update')->name('update.company.branch');
+    Route::get('edit-company-branch/{id?}','CompanyBranchController@edit')->name('edit.company.branch');
+    Route::post('update-company-branch/{id?}','CompanyBranchController@update')->name('update.company.branch');
 
-    Route::post('delete-company-branch/{id?}','CompanyBranch@destroy')->name('delete.company.branch');
+    Route::post('delete-company-branch/{id?}','CompanyBranchController@destroy')->name('delete.company.branch');
 
 
     //generals

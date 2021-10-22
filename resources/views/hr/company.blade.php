@@ -37,7 +37,7 @@
             <div class="col-lg-12">
                 <div class="card card-default">
                     <div class="card-header card-header-border-bottom">
-                        <h2>@lang('app.company data')</h2>
+                        <h1>@lang('app.company data')</h1>
                     </div>
 
 
@@ -81,7 +81,7 @@
                                     </div>
                                     {{-------------company addrees ---------------------}}
                                     <div class="card-header card-header-border-bottom">
-                                        <h2>@lang('app.company address head office')</h2>
+                                        <h1>@lang('app.company address head office')</h1>
                                     </div>
 
                                     <div class="form-row">
