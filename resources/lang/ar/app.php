@@ -48,7 +48,7 @@ return [
     'jop'=>'الوظيفه',
     'degree'=>'الدرجه التعلميه الجامعيه',
     'education'=>'الحاله التعلميه',
-    'level experience'=>'مستو الخبره',
+    'level experience'=>'درجه الخبره',
     'contract'=>'العقد',
     'contractس'=>'العقود',
     'Fixed salary'=>'المرتب الاساسى',
@@ -72,7 +72,7 @@ return [
     'jop add'=>'اضافه وظيفه',
     'degree add'=>'اضافه درجه تعليميه',
     'education add'=>'اَضافه حاله تعلميه',
-    'level experience add'=>'اضافه متوى خبره',
+    'level experience add'=>'اضافه درجه خبره',
     'add'=>'اضافه',
 
     'company'=>'المؤسسه/الشركه',
@@ -80,7 +80,7 @@ return [
 
 
 
-    'jop level'=>'مستوى الوظيفه',
+    'jop level'=>'درجه الوظيفه',
     'responsible for'=>'مسؤل على ',
     'responsible from'=>'مسئول من ',
     'file name and number'=>'اسم الملف ورقمه',
@@ -138,9 +138,9 @@ return [
     'education_status_ar'=>'الحاله التعلميه بالغه العربيه',
     'edit education'=>'التعديل على  الحاله التعلميه',
     //====================================
-    'level_experience_en'=>'مستوى الخبره بالغه الانجليزيه',
-    'level_experience_ar'=>'مستوى الخبره بالغه العربيه',
-    'edit level experience'=>'التعديل على مستوى الخبره',
+    'level_experience_en'=>'درجه الخبره بالغه الانجليزيه',
+    'level_experience_ar'=>'درجه الخبره بالغه العربيه',
+    'edit level experience'=>'التعديل على درجه الخبره',
     //=====================================
     'degree_en'=>'الدرجه اتعلميه بالغه الانجليزيه',
     'degree_ar'=>'الدرجه العلميه بالغه العربيه',
