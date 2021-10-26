@@ -4,6 +4,7 @@ use App\City;
 use App\CompanyBranch;
 use App\Employee;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Route;
@@ -44,15 +45,6 @@ Route::group($group,function (){
     Route::get('/home', 'HomeController@index')->name('home');
 
 
-
-    //Route::view('view','hr.basic');
-    //Route::view('view','hr.createEmployee');
-
-
-
-
-    //Route::view('/vv','hr.jop');
-
 });
 
 
@@ -91,22 +83,11 @@ Route::get('levelJopId/{department_id?}/{LevelId?}',function($department_id,$Lev
 
 
 
-Route::get('notifiy',function(){
+Route::get('read-nofifications/{id?}',function($id){
 
+    User::find($id)->notifications->markAsRead();
 
-    $user = User::find(2);
-
-    Notification::send($user,new \App\Notifications\EmployeeNotifiy(['user_id'=>1,'employee_id'=>1,'type_id'=>1]));
-
-     //$user->notifications;
-
-
-
-})->name('notifiy');
-
-
-
-Route::view('/vv','hr/company');
+});
 
 
 

@@ -175,6 +175,22 @@ return [
 
     'branch address'=>'Branch Address',
 
+    'title event en'=>'Title Event in English',
+    'title event ar'=>'Title Event in Arabic',
+    'for_whom'=>'For whom',
+
+//FOR_HR,FOR_COMPANY
+    'events and effects'=>'Events And Effects',
+    'add events and effects'=>'Add Events And Effects',
+    'edit event and effect'=>'Edit Event And Effect',
+    'for company'=>'For Company',
+    'for hr'=>'For HR',
+    'latest events and effects'=>'Latest Events And Effects',
+
+    'all'=>'All',
+    'delete all'=>'Delete All',
+    'language'=>'Language',
+
 
 
 

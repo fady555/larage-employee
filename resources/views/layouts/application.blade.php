@@ -47,11 +47,12 @@
 
 
 <body class="sidebar-fixed sidebar-dark header-light header-fixed" id="body">
+{{--------------
 <script>
     NProgress.configure({ showSpinner: false });
     NProgress.start();
 </script>
-
+------------}}
 <div class="mobile-sticky-body-overlay"></div>
 
 <div class="wrapper">
@@ -102,6 +103,23 @@
              //jQuery(this).addClass('current-hoverv2');
         }
     });
+
+</script>
+
+<script>
+
+
+
+function read(id){
+    //console.log(id);
+
+    $.get('{{url(url('read-nofifications'))}}'+'/'+id);
+    //mdi-spin text-primary
+
+    $('.readnotifiy').removeClass('mdi-spin text-primary');
+
+
+}
 
 </script>
 

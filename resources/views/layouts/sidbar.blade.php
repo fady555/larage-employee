@@ -2,7 +2,7 @@
     <div id="sidebar" class="sidebar sidebar-with-footer">
         <!-- Aplication Brand -->
         <div class="app-brand">
-            <a href="/index.html">
+            <a href="#">
                 <svg
                     class="brand-icon"
                     xmlns="http://www.w3.org/2000/svg"
@@ -157,6 +157,13 @@
                     <a class="sidenav-item-link" href="{{route('show.companies.branchs')}}">
                         <i class="mdi mdi-30px mdi-bank-transfer-in"></i>
                         <span class="nav-text">@lang('app.company branch')</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a class="sidenav-item-link" href="{{route('show.events.effects')}}">
+                        <i class="mdi mdi-30px mdi-incognito"></i>
+                        <span class="nav-text">@lang('app.events and effects')</span>
                     </a>
                 </li>
 

@@ -173,7 +173,24 @@ return [
     'company branch'=>'فرع المؤسسه/الشركه',
     //====================================
 
-   // 'branch address'=>'Branch Address',
+   'branch address'=>'عنوان الفرع',
+
+    'title'=>'عنوان الحدث',
+    'for_whom'=>'لمن',
+
+    //FOR_HR,FOR_COMPANY
+    'events and effects'=>'افعاليات والاحدات',
+    'add events and effects'=>'اضافه فعاليه/حدث',
+    'edit event and effect'=>'تحديث الفعاليه او الحدث',
+    'for company'=>'الى الشركه',
+    'for hr'=>'الى ادراه الموارد البشريه',
+    'latest events and effects'=>'الفعاليات ولاحداث الاقدم',
+
+    'all'=>'الكل',
+    'delete all'=>'حذف الكل',
+    'language'=>'اختر اللغه',
+
+
 
 
 

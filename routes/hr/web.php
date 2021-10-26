@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 use App\Http\Controllers\Web\HR\EmployeeController;
+use Illuminate\Support\Facades\DB;
 
 /*
 |--------------------------------------------------------------------------
@@ -137,7 +138,17 @@ Route::group($group,function (){
     Route::post('delete-company-branch/{id?}','CompanyBranchController@destroy')->name('delete.company.branch');
 
 
-    //generals
+    //events and effects
+
+    Route::get('show-events-effects/{forWhom?}','EventAndEffectController@index')->name('show.events.effects');
+
+    Route::post('store-event-effect','EventAndEffectController@store')->name('store.event.effect');
+
+    Route::get('edit-event-effect/{id?}/{forWhom?}','EventAndEffectController@edit')->name('edit.event.effect');
+    Route::post('update-event-effect/{id?}','EventAndEffectController@update')->name('update.event.effect');
+
+    Route::post('delete-event-effect/{id?}','EventAndEffectController@destroy')->name('delete.event.effect');
+
 
     //event
 
@@ -145,16 +156,14 @@ Route::group($group,function (){
 
 
 
-    Route::get('edit-degree/{id}', function ($id) {
 
-
-
-        return "fdfdsf"; //view('hr.degree');
-    });
 
 
 
 
 
 });
+
+
+
 

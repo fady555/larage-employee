@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 class CreateUsersTable extends Migration
 {
@@ -27,6 +28,61 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
+
+
+        $fak_en = \Faker\Factory::create();
+
+        DB::table('users')->insert([
+            ['name'=>$fak_en->name(),'email'=>'fadyfared141@gmail.com','password'=>'$2y$10$CvNMruPNAv02ZM05iCPp7OGgOYDInzczf706HACP1NaAvHfv6zVpG','employee_id'=>1],
+            /*['name'=>$fak_en->name(),'email'=>$fak_en->email,'password'=>'$2y$10$CvNMruPNAv02ZM05iCPp7OGgOYDInzczf706HACP1NaAvHfv6zVpG','employee_id'=>1],
+            ['name'=>$fak_en->name(),'email'=>$fak_en->email,'password'=>'$2y$10$CvNMruPNAv02ZM05iCPp7OGgOYDInzczf706HACP1NaAvHfv6zVpG','employee_id'=>1],
+            ['name'=>$fak_en->name(),'email'=>$fak_en->email,'password'=>'$2y$10$CvNMruPNAv02ZM05iCPp7OGgOYDInzczf706HACP1NaAvHfv6zVpG','employee_id'=>1],
+            ['name'=>$fak_en->name(),'email'=>$fak_en->email,'password'=>'$2y$10$CvNMruPNAv02ZM05iCPp7OGgOYDInzczf706HACP1NaAvHfv6zVpG','employee_id'=>1],
+            ['name'=>$fak_en->name(),'email'=>$fak_en->email,'password'=>'$2y$10$CvNMruPNAv02ZM05iCPp7OGgOYDInzczf706HACP1NaAvHfv6zVpG','employee_id'=>1],
+            ['name'=>$fak_en->name(),'email'=>$fak_en->email,'password'=>'$2y$10$CvNMruPNAv02ZM05iCPp7OGgOYDInzczf706HACP1NaAvHfv6zVpG','employee_id'=>1],
+            ['name'=>$fak_en->name(),'email'=>$fak_en->email,'password'=>'$2y$10$CvNMruPNAv02ZM05iCPp7OGgOYDInzczf706HACP1NaAvHfv6zVpG','employee_id'=>1],
+            ['name'=>$fak_en->name(),'email'=>$fak_en->email,'password'=>'$2y$10$CvNMruPNAv02ZM05iCPp7OGgOYDInzczf706HACP1NaAvHfv6zVpG','employee_id'=>1],
+            ['name'=>$fak_en->name(),'email'=>$fak_en->email,'password'=>'$2y$10$CvNMruPNAv02ZM05iCPp7OGgOYDInzczf706HACP1NaAvHfv6zVpG','employee_id'=>1],
+            ['name'=>$fak_en->name(),'email'=>$fak_en->email,'password'=>'$2y$10$CvNMruPNAv02ZM05iCPp7OGgOYDInzczf706HACP1NaAvHfv6zVpG','employee_id'=>1],
+            ['name'=>$fak_en->name(),'email'=>$fak_en->email,'password'=>'$2y$10$CvNMruPNAv02ZM05iCPp7OGgOYDInzczf706HACP1NaAvHfv6zVpG','employee_id'=>1],
+            ['name'=>$fak_en->name(),'email'=>$fak_en->email,'password'=>'$2y$10$CvNMruPNAv02ZM05iCPp7OGgOYDInzczf706HACP1NaAvHfv6zVpG','employee_id'=>1],
+            ['name'=>$fak_en->name(),'email'=>$fak_en->email,'password'=>'$2y$10$CvNMruPNAv02ZM05iCPp7OGgOYDInzczf706HACP1NaAvHfv6zVpG','employee_id'=>1],
+            ['name'=>$fak_en->name(),'email'=>$fak_en->email,'password'=>'$2y$10$CvNMruPNAv02ZM05iCPp7OGgOYDInzczf706HACP1NaAvHfv6zVpG','employee_id'=>1],
+            ['name'=>$fak_en->name(),'email'=>$fak_en->email,'password'=>'$2y$10$CvNMruPNAv02ZM05iCPp7OGgOYDInzczf706HACP1NaAvHfv6zVpG','employee_id'=>1],
+            ['name'=>$fak_en->name(),'email'=>$fak_en->email,'password'=>'$2y$10$CvNMruPNAv02ZM05iCPp7OGgOYDInzczf706HACP1NaAvHfv6zVpG','employee_id'=>1],
+            ['name'=>$fak_en->name(),'email'=>$fak_en->email,'password'=>'$2y$10$CvNMruPNAv02ZM05iCPp7OGgOYDInzczf706HACP1NaAvHfv6zVpG','employee_id'=>1],
+            ['name'=>$fak_en->name(),'email'=>$fak_en->email,'password'=>'$2y$10$CvNMruPNAv02ZM05iCPp7OGgOYDInzczf706HACP1NaAvHfv6zVpG','employee_id'=>1],
+            ['name'=>$fak_en->name(),'email'=>$fak_en->email,'password'=>'$2y$10$CvNMruPNAv02ZM05iCPp7OGgOYDInzczf706HACP1NaAvHfv6zVpG','employee_id'=>1],
+            ['name'=>$fak_en->name(),'email'=>$fak_en->email,'password'=>'$2y$10$CvNMruPNAv02ZM05iCPp7OGgOYDInzczf706HACP1NaAvHfv6zVpG','employee_id'=>1],
+            ['name'=>$fak_en->name(),'email'=>$fak_en->email,'password'=>'$2y$10$CvNMruPNAv02ZM05iCPp7OGgOYDInzczf706HACP1NaAvHfv6zVpG','employee_id'=>1],
+            ['name'=>$fak_en->name(),'email'=>$fak_en->email,'password'=>'$2y$10$CvNMruPNAv02ZM05iCPp7OGgOYDInzczf706HACP1NaAvHfv6zVpG','employee_id'=>1],
+            ['name'=>$fak_en->name(),'email'=>$fak_en->email,'password'=>'$2y$10$CvNMruPNAv02ZM05iCPp7OGgOYDInzczf706HACP1NaAvHfv6zVpG','employee_id'=>1],
+            ['name'=>$fak_en->name(),'email'=>$fak_en->email,'password'=>'$2y$10$CvNMruPNAv02ZM05iCPp7OGgOYDInzczf706HACP1NaAvHfv6zVpG','employee_id'=>1],
+            ['name'=>$fak_en->name(),'email'=>$fak_en->email,'password'=>'$2y$10$CvNMruPNAv02ZM05iCPp7OGgOYDInzczf706HACP1NaAvHfv6zVpG','employee_id'=>1],
+            ['name'=>$fak_en->name(),'email'=>$fak_en->email,'password'=>'$2y$10$CvNMruPNAv02ZM05iCPp7OGgOYDInzczf706HACP1NaAvHfv6zVpG','employee_id'=>1],
+            ['name'=>$fak_en->name(),'email'=>$fak_en->email,'password'=>'$2y$10$CvNMruPNAv02ZM05iCPp7OGgOYDInzczf706HACP1NaAvHfv6zVpG','employee_id'=>1],
+            ['name'=>$fak_en->name(),'email'=>$fak_en->email,'password'=>'$2y$10$CvNMruPNAv02ZM05iCPp7OGgOYDInzczf706HACP1NaAvHfv6zVpG','employee_id'=>1],
+            ['name'=>$fak_en->name(),'email'=>$fak_en->email,'password'=>'$2y$10$CvNMruPNAv02ZM05iCPp7OGgOYDInzczf706HACP1NaAvHfv6zVpG','employee_id'=>1],
+            ['name'=>$fak_en->name(),'email'=>$fak_en->email,'password'=>'$2y$10$CvNMruPNAv02ZM05iCPp7OGgOYDInzczf706HACP1NaAvHfv6zVpG','employee_id'=>1],
+            ['name'=>$fak_en->name(),'email'=>$fak_en->email,'password'=>'$2y$10$CvNMruPNAv02ZM05iCPp7OGgOYDInzczf706HACP1NaAvHfv6zVpG','employee_id'=>1],
+            ['name'=>$fak_en->name(),'email'=>$fak_en->email,'password'=>'$2y$10$CvNMruPNAv02ZM05iCPp7OGgOYDInzczf706HACP1NaAvHfv6zVpG','employee_id'=>1],
+            ['name'=>$fak_en->name(),'email'=>$fak_en->email,'password'=>'$2y$10$CvNMruPNAv02ZM05iCPp7OGgOYDInzczf706HACP1NaAvHfv6zVpG','employee_id'=>1],
+            ['name'=>$fak_en->name(),'email'=>$fak_en->email,'password'=>'$2y$10$CvNMruPNAv02ZM05iCPp7OGgOYDInzczf706HACP1NaAvHfv6zVpG','employee_id'=>1],
+            ['name'=>$fak_en->name(),'email'=>$fak_en->email,'password'=>'$2y$10$CvNMruPNAv02ZM05iCPp7OGgOYDInzczf706HACP1NaAvHfv6zVpG','employee_id'=>1],
+            ['name'=>$fak_en->name(),'email'=>$fak_en->email,'password'=>'$2y$10$CvNMruPNAv02ZM05iCPp7OGgOYDInzczf706HACP1NaAvHfv6zVpG','employee_id'=>1],
+            ['name'=>$fak_en->name(),'email'=>$fak_en->email,'password'=>'$2y$10$CvNMruPNAv02ZM05iCPp7OGgOYDInzczf706HACP1NaAvHfv6zVpG','employee_id'=>1],
+            ['name'=>$fak_en->name(),'email'=>$fak_en->email,'password'=>'$2y$10$CvNMruPNAv02ZM05iCPp7OGgOYDInzczf706HACP1NaAvHfv6zVpG','employee_id'=>1],
+            ['name'=>$fak_en->name(),'email'=>$fak_en->email,'password'=>'$2y$10$CvNMruPNAv02ZM05iCPp7OGgOYDInzczf706HACP1NaAvHfv6zVpG','employee_id'=>1],
+            ['name'=>$fak_en->name(),'email'=>$fak_en->email,'password'=>'$2y$10$CvNMruPNAv02ZM05iCPp7OGgOYDInzczf706HACP1NaAvHfv6zVpG','employee_id'=>1],
+            ['name'=>$fak_en->name(),'email'=>$fak_en->email,'password'=>'$2y$10$CvNMruPNAv02ZM05iCPp7OGgOYDInzczf706HACP1NaAvHfv6zVpG','employee_id'=>1],
+            ['name'=>$fak_en->name(),'email'=>$fak_en->email,'password'=>'$2y$10$CvNMruPNAv02ZM05iCPp7OGgOYDInzczf706HACP1NaAvHfv6zVpG','employee_id'=>1],
+            ['name'=>$fak_en->name(),'email'=>$fak_en->email,'password'=>'$2y$10$CvNMruPNAv02ZM05iCPp7OGgOYDInzczf706HACP1NaAvHfv6zVpG','employee_id'=>1],
+            ['name'=>$fak_en->name(),'email'=>$fak_en->email,'password'=>'$2y$10$CvNMruPNAv02ZM05iCPp7OGgOYDInzczf706HACP1NaAvHfv6zVpG','employee_id'=>1],
+            ['name'=>$fak_en->name(),'email'=>$fak_en->email,'password'=>'$2y$10$CvNMruPNAv02ZM05iCPp7OGgOYDInzczf706HACP1NaAvHfv6zVpG','employee_id'=>1],
+            ['name'=>$fak_en->name(),'email'=>$fak_en->email,'password'=>'$2y$10$CvNMruPNAv02ZM05iCPp7OGgOYDInzczf706HACP1NaAvHfv6zVpG','employee_id'=>1],
+            ['name'=>$fak_en->name(),'email'=>$fak_en->email,'password'=>'$2y$10$CvNMruPNAv02ZM05iCPp7OGgOYDInzczf706HACP1NaAvHfv6zVpG','employee_id'=>1],
+        */ ]);
+
     }
 
     /**

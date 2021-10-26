@@ -6,12 +6,14 @@ use App\ComapnyDepartment;
 use App\CompanyBranch;
 use App\Degree;
 use App\Education;
+use App\EventAndEffects;
 use App\Experience;
 use App\Jop;
 use App\Observers\CompanyBranchObserver;
 use App\Observers\CompDepartmentObserver;
 use App\Observers\DegreeObserver;
 use App\Observers\EducationObserver;
+use App\Observers\EventEffectObserver;
 use App\Observers\ExperienceObserver;
 use App\Observers\JopObserver;
 use App\Observers\TypeWorkObserver;
@@ -44,5 +46,6 @@ class AppServiceProvider extends ServiceProvider
         TypeWork::observe(TypeWorkObserver::class);
         ComapnyDepartment::observe(CompDepartmentObserver::class);
         CompanyBranch::observe(CompanyBranchObserver::class);
+        EventAndEffects::observe(EventEffectObserver::class);
     }
 }

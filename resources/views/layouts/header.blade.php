@@ -2,64 +2,80 @@
     <nav class="navbar navbar-static-top navbar-expand-lg">
         <!-- Sidebar toggle button -->
         <button id="sidebar-toggler" class="sidebar-toggle">
-            <span class="sr-only">Toggle navigation</span>
         </button>
-        <!-- search form -->
-        <div class="search-form d-none d-lg-inline-block">
-            <div class="input-group">
-                <button type="button" name="search" id="search-btn" class="btn btn-flat">
-                    <i class="mdi mdi-magnify"></i>
-                </button>
-                <input type="text" name="query" id="search-input" class="form-control" placeholder="'button', 'chart' etc."
-                       autofocus autocomplete="off" />
-            </div>
-            <div id="search-results-container">
-                <ul id="search-results"></ul>
+
+        <!-- language-->
+
+
+        <div class="btn-group btn-lg mb-1">
+            <button type="button" class="btn btn-primary">@lang('app.language')</button>
+            <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
+            </button>
+            <div class="dropdown-menu w-25">
+
+
+                @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                    <a class="dropdown-item" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">{{ $properties['native'] }}</a>
+                @endforeach
+
+
             </div>
         </div>
 
-        <div class="navbar-right ">
-            <ul class="nav navbar-nav">
-                <!-- Github Link Button -->
-                <li class="github-link mr-3">
 
-                </li>
-                <li class="dropdown notifications-menu">
+
+        <div class="navbar-right ml-auto  ">
+            <ul class="nav navbar-nav">
+
+
+
+{{-----------------
+    --------------
+
+
+
+    User::find(1)   ==> change with auth()->user()
+
+    -----------------
+    ----------------}}
+
+
+
+
+                <li class="dropdown notifications-menu" onclick="read('{{App\User::find(1)->id}}')">
+
                     <button class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="mdi mdi-bell-outline"></i>
+                        <i class=" readnotifiy mdi mdi-bell-outline @if(App\User::find(1)->unreadnotifications->count()) mdi-spin text-primary @endif ">
+                        </i>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-right">
-                        <li class="dropdown-header">You have 5 notifications</li>
-                        <li>
-                            <a href="#">
-                                <i class="mdi mdi-account-plus"></i> New user registered
-                                <span class=" font-size-12 d-inline-block float-right"><i class="mdi mdi-clock-outline"></i> 10 AM</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="mdi mdi-account-remove"></i> User deleted
-                                <span class=" font-size-12 d-inline-block float-right"><i class="mdi mdi-clock-outline"></i> 07 AM</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="mdi mdi-chart-areaspline"></i> Sales report is ready
-                                <span class=" font-size-12 d-inline-block float-right"><i class="mdi mdi-clock-outline"></i> 12 PM</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="mdi mdi-account-supervisor"></i> New client
-                                <span class=" font-size-12 d-inline-block float-right"><i class="mdi mdi-clock-outline"></i> 10 AM</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="mdi mdi-server-network-off"></i> Server overloaded
-                                <span class=" font-size-12 d-inline-block float-right"><i class="mdi mdi-clock-outline"></i> 05 AM</span>
-                            </a>
-                        </li>
+                        <li class="dropdown-header">You have {{App\User::find(1)->notifications->count()}} notifications</li>
+
+
+
+
+
+                        @foreach (App\User::find(1)->notifications as $noty)
+
+
+
+
+                                <li >
+                                    <a href="#" >
+                                        <i class="mdi mdi-incognito  "></i>  {{   $noty->data['title_'.app()->getlocale()] }}  <br/>
+                                        <span class=" font-size-10 d-inline-block float-right "><i class="mdi mdi-clock-outline"></i>  {{date('d-M-y h:m A',strtotime($noty->data['created_at'])) }} </span>
+                                    </a>
+                                    <div class="dropdown-divider"></div>
+                                </li>
+
+
+
+
+                        @endforeach
+
+
+
+
                         <li class="dropdown-footer">
                             <a class="text-center" href="#"> View All </a>
                         </li>
@@ -110,6 +126,10 @@
                 </li>
             </ul>
         </div>
+
+
+
+
     </nav>
 
 
