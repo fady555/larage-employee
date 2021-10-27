@@ -196,6 +196,9 @@ return [
     'generals'=>'Generals',
     'add generals'=>'Add Generals',
     'edit generals'=>'edit Generals',
+    'show'=>'Show',
+
+    'notification'=>'Notification'
 
 
 

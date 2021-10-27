@@ -2,6 +2,8 @@
 
 namespace App\Notifications;
 
+use App\Employee;
+use App\General;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -42,10 +44,12 @@ class GeneralNotification extends Notification
      */
     public function toMail($notifiable)
     {
+        $gen = General::find($this->data->id);
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+                    ->action(trans('app.show'), url('/show-notifications'))
+                    ->line($gen->description_en)
+                    ->line($gen->description_ar);
+
     }
 
     public function toDatabase(){

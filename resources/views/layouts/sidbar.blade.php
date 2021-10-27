@@ -168,6 +168,20 @@
                 </li>
 
                 <li>
+                    <a class="sidenav-item-link" href="{{route('show.generals')}}">
+                        <i class="mdi mdi-30px mdi-rename-box"></i>
+                        <span class="nav-text">@lang('app.generals')</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a class="sidenav-item-link" href="{{route('show.notifications')}}">
+                        <i class="mdi mdi-30px mdi-bell-outline"></i>
+                        <span class="nav-text">@lang('app.notification')</span>
+                    </a>
+                </li>
+
+                <li>
                     <a class="sidenav-item-link" href="#">
                         <i class="mdi mdi-30px mdi-notification-clear-all "></i>
                         <span class="nav-text">@lang('app.requests')</span>

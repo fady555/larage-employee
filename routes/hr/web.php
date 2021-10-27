@@ -159,11 +159,16 @@ Route::group($group,function (){
 
     Route::post('store-general','GeneralController@store')->name('store.general');
 
-    Route::get('edit-general/{id?}','GeneralController@edit')->name('edit.general');
+    ///Route::get('edit-general/{id?}','GeneralController@edit')->name('edit.general');
     Route::post('update-general/{id?}','GeneralController@update')->name('update.general');
 
     Route::post('delete-general/{id?}','GeneralController@destroy')->name('delete.general');
 
+
+    //show notification
+
+
+    Route::get('show-notifications','ShowNotiController@index')->name('show.notifications');
 
 
 

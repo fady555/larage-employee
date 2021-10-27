@@ -90,26 +90,18 @@ class GeneralController extends Controller
 
 
 
-    public function show($id)
-    {
-        //
-    }
-
-
-    public function edit($id)
-    {
-        //
-    }
-
-
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
 
     public function destroy($id)
     {
-        //
+
+
+        if($id == '*'):
+            General::truncate();
+        else:
+            General::destroy($id);
+        endif;
+
+        return true;
+
     }
 }

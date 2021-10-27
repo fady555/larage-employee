@@ -61,7 +61,7 @@
 
 
                                 <li >
-                                    <a href="#" >
+                                    <a >
                                         <i class="mdi mdi-incognito  "></i>  {{   $noty->data['title_'.app()->getlocale()] }}  <br/>
                                         <span class=" font-size-10 d-inline-block float-right "><i class="mdi mdi-clock-outline"></i>  {{date('d-M-y h:m A',strtotime($noty->data['created_at'])) }} </span>
                                     </a>
@@ -77,7 +77,7 @@
 
 
                         <li class="dropdown-footer">
-                            <a class="text-center" href="#"> View All </a>
+                            <a class="text-center" href="{{route('show.notifications')}}"> View All </a>
                         </li>
                     </ul>
                 </li>

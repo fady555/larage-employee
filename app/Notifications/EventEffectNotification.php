@@ -33,7 +33,7 @@ class EventEffectNotification extends Notification
      */
     public function via($notifiable)
     {
-        return [/*'mail',*/'database'];
+        return ['mail','database'];
     }
 
     /**
@@ -44,10 +44,13 @@ class EventEffectNotification extends Notification
      */
     public function toMail($notifiable)
     {
+        $gen = EventAndEffects::find($this->data->id);
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+
+                    ->action(trans('app.show'), url('/show-notifications'))
+                    ->line($gen->description_en)
+                    ->line($gen->description_ar);
+
     }
 
     public function toDatabase($notifiable)
