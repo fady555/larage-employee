@@ -2,13 +2,12 @@
 
 namespace App\Notifications;
 
-use App\EventAndEffects;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class EventEffectNotification extends Notification
+class GeneralNotification extends Notification
 {
     use Queueable;
 
@@ -18,8 +17,7 @@ class EventEffectNotification extends Notification
      * @return void
      */
 
-     public $data;
-
+    public $data;
     public function __construct($data)
     {
         $this->data = $data;
@@ -33,7 +31,7 @@ class EventEffectNotification extends Notification
      */
     public function via($notifiable)
     {
-        return [/*'mail',*/'database'];
+        return ['mail','database'];
     }
 
     /**
@@ -50,17 +48,13 @@ class EventEffectNotification extends Notification
                     ->line('Thank you for using our application!');
     }
 
-    public function toDatabase($notifiable)
-    {
-
+    public function toDatabase(){
         return [
             'id'=>$this->data->id,
             'title_en'=>$this->data->title_en,
             'title_ar'=>$this->data->title_ar,
             'created_at'=>$this->data->created_at,
         ];
-
-
     }
 
     /**

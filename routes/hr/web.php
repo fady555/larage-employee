@@ -150,7 +150,20 @@ Route::group($group,function (){
     Route::post('delete-event-effect/{id?}','EventAndEffectController@destroy')->name('delete.event.effect');
 
 
-    //event
+
+
+
+    //genenrals
+
+    Route::get('show-generals','GeneralController@index')->name('show.generals');
+
+    Route::post('store-general','GeneralController@store')->name('store.general');
+
+    Route::get('edit-general/{id?}','GeneralController@edit')->name('edit.general');
+    Route::post('update-general/{id?}','GeneralController@update')->name('update.general');
+
+    Route::post('delete-general/{id?}','GeneralController@destroy')->name('delete.general');
+
 
 
 

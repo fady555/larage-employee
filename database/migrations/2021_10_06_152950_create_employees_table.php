@@ -181,6 +181,52 @@ class CreateEmployeesTable extends Migration
                 'military_services_id'=>1,
             ],
 
+            [
+                'full_name_ar'=>'معتز ابراهيم حمدان',
+                'full_name_en'=>'Moataz Ibrahim Hamdan',
+                'age'=>32,
+                'gender'=>'M',
+                'avatar'=>null,
+                'data_of_start_work'=>'2000-1-1',
+                'national_id'=>'12345678915678',
+                'national_card_img'=>null,
+                'national_card_address_description'=>"",
+                'national_card_Release_date'=>'2000-1-1',
+                /*
+                'passport_id'=>'',
+                'passport_address_description'=>'',
+                'passport_release_date'=>'',
+                'passport_expire_date'=>'',*/
+
+                'email'=>'moataz2020@gamil.com',
+                'phone'=>"(+20)1287917557",
+                'name_of_bank'=>'NBE',
+                'number_of_account'=>56565646,
+                'number_of_wif_husband'=>4,
+                'number_of_wif_children'=>3,
+                'time_of_attendees'=>'80:00',
+                'time_of_go'=>'18:00',
+                'experience_description'=>'لديه خبرا فى ادراه الموارد البشريه بشرطات القطاع الخاص',
+                'address_id'=>1,
+                'nationality_id'=>1,
+                'jop_id'=>2,
+                'jop_level_id'=>1,
+                'degree_id'=>3,
+                'education_status_id'=>2,
+                'level_experience_id'=>4,
+                'type_work_id'=>1,
+                'fixed_salary'=>2000,
+                'employee_status_id'=>1,
+
+                'comapny_departments_id'=>1,
+                'company_id'=>1,
+                'company_branch_id'=>1,
+                'direct_employee_id'=>1,
+
+                'marital_statuses_id'=>1,
+                'military_services_id'=>1,
+            ],
+
 
 
         ]);

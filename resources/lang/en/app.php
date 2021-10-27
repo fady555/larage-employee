@@ -179,7 +179,7 @@ return [
     'title event ar'=>'Title Event in Arabic',
     'for_whom'=>'For whom',
 
-//FOR_HR,FOR_COMPANY
+    //FOR_HR,FOR_COMPANY
     'events and effects'=>'Events And Effects',
     'add events and effects'=>'Add Events And Effects',
     'edit event and effect'=>'Edit Event And Effect',
@@ -190,6 +190,12 @@ return [
     'all'=>'All',
     'delete all'=>'Delete All',
     'language'=>'Language',
+
+    //generals
+
+    'generals'=>'Generals',
+    'add generals'=>'Add Generals',
+    'edit generals'=>'edit Generals',
 
 
 

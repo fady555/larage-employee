@@ -83,10 +83,13 @@ class Employee extends Model
     public function militar_service(){
         return $this->belongsTo('App\MilitaryService','military_service_id','id');
     }
-    public function company(){
-        return $this->belongsTo('App\Company','company_id','id');
-    }
+
     public function direct(){
         return $this->hasMany(Employee::class,'direct_employee_id','id');
     }
+
+    public function user(){
+        return $this->hasOne(User::class,'id');
+    }
+
 }

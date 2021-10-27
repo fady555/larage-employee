@@ -34,7 +34,6 @@ class CreateUsersTable extends Migration
 
         DB::table('users')->insert([
             ['name'=>$fak_en->name(),'email'=>'fadyfared141@gmail.com','password'=>'$2y$10$CvNMruPNAv02ZM05iCPp7OGgOYDInzczf706HACP1NaAvHfv6zVpG','employee_id'=>1],
-            /*['name'=>$fak_en->name(),'email'=>$fak_en->email,'password'=>'$2y$10$CvNMruPNAv02ZM05iCPp7OGgOYDInzczf706HACP1NaAvHfv6zVpG','employee_id'=>1],
             ['name'=>$fak_en->name(),'email'=>$fak_en->email,'password'=>'$2y$10$CvNMruPNAv02ZM05iCPp7OGgOYDInzczf706HACP1NaAvHfv6zVpG','employee_id'=>1],
             ['name'=>$fak_en->name(),'email'=>$fak_en->email,'password'=>'$2y$10$CvNMruPNAv02ZM05iCPp7OGgOYDInzczf706HACP1NaAvHfv6zVpG','employee_id'=>1],
             ['name'=>$fak_en->name(),'email'=>$fak_en->email,'password'=>'$2y$10$CvNMruPNAv02ZM05iCPp7OGgOYDInzczf706HACP1NaAvHfv6zVpG','employee_id'=>1],
@@ -81,7 +80,8 @@ class CreateUsersTable extends Migration
             ['name'=>$fak_en->name(),'email'=>$fak_en->email,'password'=>'$2y$10$CvNMruPNAv02ZM05iCPp7OGgOYDInzczf706HACP1NaAvHfv6zVpG','employee_id'=>1],
             ['name'=>$fak_en->name(),'email'=>$fak_en->email,'password'=>'$2y$10$CvNMruPNAv02ZM05iCPp7OGgOYDInzczf706HACP1NaAvHfv6zVpG','employee_id'=>1],
             ['name'=>$fak_en->name(),'email'=>$fak_en->email,'password'=>'$2y$10$CvNMruPNAv02ZM05iCPp7OGgOYDInzczf706HACP1NaAvHfv6zVpG','employee_id'=>1],
-        */ ]);
+            ['name'=>$fak_en->name(),'email'=>$fak_en->email,'password'=>'$2y$10$CvNMruPNAv02ZM05iCPp7OGgOYDInzczf706HACP1NaAvHfv6zVpG','employee_id'=>1],
+         ]);
 
     }
 
