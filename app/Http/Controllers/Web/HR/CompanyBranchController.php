@@ -101,6 +101,10 @@ class CompanyBranchController extends Controller
     {
 
 
+        $protect = [1];
+        if(in_array($id,$protect)){
+            return back();
+        }
 
         $result = validator($request->all(),$this->rulesEdit($id),[],$this->attributes());
 
@@ -130,6 +134,11 @@ class CompanyBranchController extends Controller
 
     public function destroy($id)
     {
+
+        $protect = [1];
+        if(in_array($id,$protect)){
+            return true;
+        }
 
         CompanyBranch::destroy($id);
 

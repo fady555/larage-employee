@@ -12,7 +12,7 @@ class CompanyDepartmentController extends Controller
 
     public function index()
     {
-        return view('hr.company_department')->with(['departments'=>ComapnyDepartment::where('status','A')->get()]);
+        return view('hr.company_department')->with(['departments'=>ComapnyDepartment::skip(3)->take(PHP_INT_MAX)->where('status','A')->get()]);
     }
 
     public function attributes()
@@ -68,12 +68,17 @@ class CompanyDepartmentController extends Controller
 
     public function edit($id)
     {
-        return view('hr.company_department')->with(['department'=>ComapnyDepartment::find($id),'departments'=>ComapnyDepartment::where('status','A')->get()]);
+        return view('hr.company_department')->with(['department'=>ComapnyDepartment::find($id),'departments'=>ComapnyDepartment::skip(3)->take(PHP_INT_MAX)->where('status','A')->get()]);
     }
 
 
     public function update(Request $request, $id)
     {
+
+        $protect = [1,2,3];
+        if(in_array($id,$protect)){
+            return back();
+        }
         $result = validator($request->all(),$this->rulesEdit($id),[],$this->attributes());
 
         if($result->fails()):
@@ -90,6 +95,10 @@ class CompanyDepartmentController extends Controller
     public function destroy($id)
     {
 
+        $protect = [1,2,3];
+        if(in_array($id,$protect)){
+            return true;
+        }
         ComapnyDepartment::destroy($id);
 
         return true;

@@ -1,5 +1,6 @@
 <?php
 
+use App\Employee;
 use App\Http\Controllers\web\hr\DegreeController;
 use Illuminate\Support\Facades\Route;
 
@@ -171,8 +172,54 @@ Route::group($group,function (){
     Route::get('show-notifications','ShowNotiController@index')->name('show.notifications');
 
 
+    //get employee respon from for
+    Route::get('getemployee-from-for/{branch?}/{department?}/{level?}', function ($branch,$department,$level)
+     {
 
 
+        //return $branch.$department.$level;
+
+
+
+        if($level == 3):
+            $employeeFrom =Employee::where('jop_level_id',$level-1)->get();
+        elseif($level == 4):
+            $employeeFrom =Employee::where('company_branch_id',$branch)->where('comapny_departments_id',$department)->where('jop_level_id',$level-1)->get();
+        endif;
+
+
+        if($level == 3):
+            $employeeFor =Employee::where('jop_level_id',$level+1)->get();
+        elseif($level == 4):
+            $employeeFor =Employee::where('company_branch_id',$branch)->where('comapny_departments_id',$department)->where('jop_level_id',$level+1)->get();
+        endif;
+
+
+
+        $data[] = $employeeFrom;
+        $data[] = $employeeFor;
+
+
+        return json_encode($data);
+
+
+    })->name('form.for');
+
+
+
+   
+
+    //executive manger
+    Route::get('show-executive-manger','BasicEmployeeController@editMangerEceutive')->name('show.executive.manger');
+    Route::post('update-executive-manger','BasicEmployeeController@updateMangerEceutive')->name('update.executive.manger');
+    
+    //genral manger
+    Route::get('show-general-manger','BasicEmployeeController@editGeneralManger')->name('show.general.manger');
+    Route::post('update-general-manger','BasicEmployeeController@updateGeneralManger')->name('update.general.manger');
+
+    //hr
+    Route::get('show-hr-manger','BasicEmployeeController@editHrDirect')->name('show.hr.manger');
+    Route::post('update-hr-manger','BasicEmployeeController@updateHrDirect')->name('update.hr.manger');
 
 
 

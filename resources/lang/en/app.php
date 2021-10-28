@@ -198,7 +198,8 @@ return [
     'edit generals'=>'edit Generals',
     'show'=>'Show',
 
-    'notification'=>'Notification'
+    'notification'=>'Notification',
+    'Executive Director'=>'Executive Director (CEO)',
 
 
 

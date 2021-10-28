@@ -147,18 +147,50 @@
                         <span class="nav-text">@lang('app.companies')</span>
                     </a>
                 </li>
-                <li>
-                    <a class="sidenav-item-link" href="{{route('show.companies.departments')}}">
-                        <i class="mdi mdi-30px mdi-atom"></i>
-                        <span class="nav-text">@lang('app.company departement')</span>
-                    </a>
-                </li>
+
+
                 <li>
                     <a class="sidenav-item-link" href="{{route('show.companies.branchs')}}">
                         <i class="mdi mdi-30px mdi-bank-transfer-in"></i>
                         <span class="nav-text">@lang('app.company branch')</span>
                     </a>
                 </li>
+
+                <li>
+                    <a class="sidenav-item-link" href="{{route('show.companies.departments')}}">
+                        <i class="mdi mdi-30px mdi-atom"></i>
+                        <span class="nav-text">@lang('app.company departement')</span>
+                    </a>
+                </li>
+
+                {{----------------------}}
+
+                <li>
+                    <a class="sidenav-item-link" href="{{route('show.companies.branchs')}}">
+                        <i class="mdi mdi-30px mdi-chess-queen"></i>
+                        <span class="nav-text">@lang('app.hrs')</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a class="sidenav-item-link" href="{{route('show.executive.manger')}}">
+                        <i class="mdi mdi-30px mdi-chess-king"></i>
+                        <span class="nav-text">@lang('app.Executive Director')</span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a class="sidenav-item-link" href="{{route('show.companies.branchs')}}">
+                        <i class="mdi mdi-30px mdi-chess-pawn"></i>
+                        <span class="nav-text">@lang('app.general manger')</span>
+                    </a>
+                </li>
+
+                {{---------------------}}
+
+
+
+
 
                 <li>
                     <a class="sidenav-item-link" href="{{route('show.events.effects')}}">

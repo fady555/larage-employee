@@ -60,13 +60,13 @@
 
                                     <div class="col-md-10 mb-3 ">
                                         <label>@lang('app.logo')</label>
-                                        <input type="file" name="logo"  value="{{old('logo')}}" class="d-none form-control"   value="">
+                                        <input type="file" name="logo" id="logo"  value="{{old('logo')}}" class="d-none form-control"   value="">
                                     </div>
 
 
                                     <div class="col-md-10 mb-3">
                                         <div class="card">
-                                            <img style="height:150px" src="{{ asset($company->logo) }}" alt="Card image cap">
+                                            <img style="height:150px" id='imgShow' src="{{ asset($company->logo) }}" alt="Card image cap">
                                         </div>
                                     </div>
 
@@ -341,6 +341,15 @@
 
 
 
+</script>
+
+<script>
+logo.onchange = evt => {
+  const [file] = logo.files
+  if (file) {
+    imgShow.src = URL.createObjectURL(file)
+  }
+}
 </script>
 
 @endsection

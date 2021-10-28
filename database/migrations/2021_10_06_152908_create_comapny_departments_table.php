@@ -29,6 +29,8 @@ class CreateComapnyDepartmentsTable extends Migration
         DB::table('comapny_departments')->insert([
             ['depart_en'=>'Executive management','depart_ar'=>'الاداره التنفيذيه'],
             ['depart_en'=>'Public Administration','depart_ar'=>'الاداره العامه'],
+            ['depart_en'=>'head Human Resource Management','depart_ar'=>' إدارة الموارد البشريةالرئسيه'],
+
 
             ['depart_en'=>'Sales Administration','depart_ar'=>'إدارة المبيعات'],
             ['depart_en'=>'Operations Management','depart_ar'=>'إدارة العمليات'],

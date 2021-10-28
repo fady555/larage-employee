@@ -30,6 +30,7 @@ class CreateTableEventsAndEffects extends Migration
 
 
         DB::table('events_and_effects')->insert([
+            /*['title_en'=>$fak_en->title(),'title_ar'=>$fak_ar->title(),'description_en'=>$fak_en->text(),'description_ar'=>$fak_ar->text(),'for_whom'=>$fak_en->randomElement(['FOR_HR','FOR_COMPANY']),'created_at'=>'2021-10-22 20:08:01'],
             ['title_en'=>$fak_en->title(),'title_ar'=>$fak_ar->title(),'description_en'=>$fak_en->text(),'description_ar'=>$fak_ar->text(),'for_whom'=>$fak_en->randomElement(['FOR_HR','FOR_COMPANY']),'created_at'=>'2021-10-22 20:08:01'],
             ['title_en'=>$fak_en->title(),'title_ar'=>$fak_ar->title(),'description_en'=>$fak_en->text(),'description_ar'=>$fak_ar->text(),'for_whom'=>$fak_en->randomElement(['FOR_HR','FOR_COMPANY']),'created_at'=>'2021-10-22 20:08:01'],
             ['title_en'=>$fak_en->title(),'title_ar'=>$fak_ar->title(),'description_en'=>$fak_en->text(),'description_ar'=>$fak_ar->text(),'for_whom'=>$fak_en->randomElement(['FOR_HR','FOR_COMPANY']),'created_at'=>'2021-10-22 20:08:01'],
@@ -42,7 +43,7 @@ class CreateTableEventsAndEffects extends Migration
             ['title_en'=>$fak_en->title(),'title_ar'=>$fak_ar->title(),'description_en'=>$fak_en->text(),'description_ar'=>$fak_ar->text(),'for_whom'=>$fak_en->randomElement(['FOR_HR','FOR_COMPANY']),'created_at'=>'2021-10-22 20:08:01'],
             ['title_en'=>$fak_en->title(),'title_ar'=>$fak_ar->title(),'description_en'=>$fak_en->text(),'description_ar'=>$fak_ar->text(),'for_whom'=>$fak_en->randomElement(['FOR_HR','FOR_COMPANY']),'created_at'=>'2021-10-22 20:08:01'],
             ['title_en'=>$fak_en->title(),'title_ar'=>$fak_ar->title(),'description_en'=>$fak_en->text(),'description_ar'=>$fak_ar->text(),'for_whom'=>$fak_en->randomElement(['FOR_HR','FOR_COMPANY']),'created_at'=>'2021-10-22 20:08:01'],
-            ['title_en'=>$fak_en->title(),'title_ar'=>$fak_ar->title(),'description_en'=>$fak_en->text(),'description_ar'=>$fak_ar->text(),'for_whom'=>$fak_en->randomElement(['FOR_HR','FOR_COMPANY']),'created_at'=>'2021-10-22 20:08:01'],
+            */
         ]);
     }
 

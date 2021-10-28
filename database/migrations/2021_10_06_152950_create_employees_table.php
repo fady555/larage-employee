@@ -52,7 +52,7 @@ class CreateEmployeesTable extends Migration
             $table->time('time_of_attendees');
             $table->time('time_of_go');
 
-            $table->double('fixed_salary');
+            $table->double('fixed_salary')->default(0);
 
             $table->longText('experience_description');
 
@@ -73,7 +73,7 @@ class CreateEmployeesTable extends Migration
             //=============================================================
 
             //=============================================================
-            $table->unsignedBigInteger('type_work_id')->nullable();
+            $table->unsignedBigInteger('type_work_id')->nullable()->default(1);
             $table->foreign('type_work_id')->references('id')->on('type_of_works')->onUpdate('cascade')->onDelete('cascade');
             //=============================================================
 
@@ -136,9 +136,9 @@ class CreateEmployeesTable extends Migration
 
         DB::table('employees')->insert([
             [
-                'full_name_ar'=>'محمد مصطفى الحسينى',
-                'full_name_en'=>'Muhammad Mustafa al-Husayni',
-                'age'=>32,
+                'full_name_en'=>'chief executive officer (un define)',
+                'full_name_ar'=>'الرئيس التنفيذى (غير محدد)',
+                'age'=>0,
                 'gender'=>'M',
                 'avatar'=>null,
                 'data_of_start_work'=>'2000-1-1',
@@ -182,9 +182,9 @@ class CreateEmployeesTable extends Migration
             ],
 
             [
-                'full_name_ar'=>'معتز ابراهيم حمدان',
-                'full_name_en'=>'Moataz Ibrahim Hamdan',
-                'age'=>32,
+                'full_name_en'=>'General Director (un define)',
+                'full_name_ar'=>'المدير العام(غير محدد)',
+                'age'=>0,
                 'gender'=>'M',
                 'avatar'=>null,
                 'data_of_start_work'=>'2000-1-1',
@@ -209,8 +209,8 @@ class CreateEmployeesTable extends Migration
                 'experience_description'=>'لديه خبرا فى ادراه الموارد البشريه بشرطات القطاع الخاص',
                 'address_id'=>1,
                 'nationality_id'=>1,
-                'jop_id'=>2,
-                'jop_level_id'=>1,
+                'jop_id'=>3,
+                'jop_level_id'=>2,
                 'degree_id'=>3,
                 'education_status_id'=>2,
                 'level_experience_id'=>4,
@@ -222,6 +222,53 @@ class CreateEmployeesTable extends Migration
                 'company_id'=>1,
                 'company_branch_id'=>1,
                 'direct_employee_id'=>1,
+
+                'marital_statuses_id'=>1,
+                'military_services_id'=>1,
+            ],
+
+
+            [
+                'full_name_en'=>'head hr  Director (un define)',
+                'full_name_ar'=>'االاتش ار االمدير المباشر(غير محدد)',
+                'age'=>0,
+                'gender'=>'M',
+                'avatar'=>null,
+                'data_of_start_work'=>'2000-1-1',
+                'national_id'=>'12345678915678',
+                'national_card_img'=>null,
+                'national_card_address_description'=>"",
+                'national_card_Release_date'=>'2000-1-1',
+                /*
+                'passport_id'=>'',
+                'passport_address_description'=>'',
+                'passport_release_date'=>'',
+                'passport_expire_date'=>'',*/
+
+                'email'=>'moataz2020@gamil.com',
+                'phone'=>"(+20)1287917557",
+                'name_of_bank'=>'NBE',
+                'number_of_account'=>56565646,
+                'number_of_wif_husband'=>4,
+                'number_of_wif_children'=>3,
+                'time_of_attendees'=>'80:00',
+                'time_of_go'=>'18:00',
+                'experience_description'=>'لديه خبرا فى ادراه الموارد البشريه بشرطات القطاع الخاص',
+                'address_id'=>1,
+                'nationality_id'=>1,
+                'jop_id'=>4,
+                'jop_level_id'=>3,
+                'degree_id'=>3,
+                'education_status_id'=>2,
+                'level_experience_id'=>4,
+                'type_work_id'=>1,
+                'fixed_salary'=>2000,
+                'employee_status_id'=>1,
+
+                'comapny_departments_id'=>1,
+                'company_id'=>1,
+                'company_branch_id'=>1,
+                'direct_employee_id'=>2,
 
                 'marital_statuses_id'=>1,
                 'military_services_id'=>1,

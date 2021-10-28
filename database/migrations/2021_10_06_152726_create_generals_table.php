@@ -33,6 +33,7 @@ class CreateGeneralsTable extends Migration
         $fak_ar = \Faker\Factory::create('ar_JO');
 
         DB::table('generals')->insert([
+            /*['title_en'=>$fak_en->title(),'title_ar'=>$fak_ar->title(),'description_en'=>$fak_en->text(),'description_ar'=>$fak_ar->text(),'created_at'=>'2021-10-22 20:08:01'],
             ['title_en'=>$fak_en->title(),'title_ar'=>$fak_ar->title(),'description_en'=>$fak_en->text(),'description_ar'=>$fak_ar->text(),'created_at'=>'2021-10-22 20:08:01'],
             ['title_en'=>$fak_en->title(),'title_ar'=>$fak_ar->title(),'description_en'=>$fak_en->text(),'description_ar'=>$fak_ar->text(),'created_at'=>'2021-10-22 20:08:01'],
             ['title_en'=>$fak_en->title(),'title_ar'=>$fak_ar->title(),'description_en'=>$fak_en->text(),'description_ar'=>$fak_ar->text(),'created_at'=>'2021-10-22 20:08:01'],
@@ -45,7 +46,7 @@ class CreateGeneralsTable extends Migration
             ['title_en'=>$fak_en->title(),'title_ar'=>$fak_ar->title(),'description_en'=>$fak_en->text(),'description_ar'=>$fak_ar->text(),'created_at'=>'2021-10-22 20:08:01'],
             ['title_en'=>$fak_en->title(),'title_ar'=>$fak_ar->title(),'description_en'=>$fak_en->text(),'description_ar'=>$fak_ar->text(),'created_at'=>'2021-10-22 20:08:01'],
             ['title_en'=>$fak_en->title(),'title_ar'=>$fak_ar->title(),'description_en'=>$fak_en->text(),'description_ar'=>$fak_ar->text(),'created_at'=>'2021-10-22 20:08:01'],
-            ['title_en'=>$fak_en->title(),'title_ar'=>$fak_ar->title(),'description_en'=>$fak_en->text(),'description_ar'=>$fak_ar->text(),'created_at'=>'2021-10-22 20:08:01'],
+            */
         ]);
 
 

@@ -13,7 +13,7 @@ class JopController extends Controller
 
     public function index()
     {
-        return view('hr.jop')->with(['jops'=>Jop::whereKeyNot(1)->get()]);
+        return view('hr.jop')->with(['jops'=>Jop::skip(4)->take(PHP_INT_MAX)->get()]);
     }
 
     public function attributes()
@@ -45,6 +45,9 @@ class JopController extends Controller
 
     public function store(Request $request)
     {
+
+
+
         $result = validator($request->all(),$this->rules(),[],$this->attributes());
 
         if($result->fails()):
@@ -57,7 +60,7 @@ class JopController extends Controller
         return back();
     }
 
-    
+
     public function show($id)
     {
         //
@@ -66,12 +69,17 @@ class JopController extends Controller
 
     public function edit($id)
     {
-        return view('hr.jop')->with(['jop'=>Jop::find($id),'jops'=>Jop::whereKeyNot(1)->get()]);
+        return view('hr.jop')->with(['jop'=>Jop::find($id),'jops'=>Jop::skip(4)->take(PHP_INT_MAX)->get()]);
     }
 
 
     public function update(Request $request, $id)
     {
+
+        $protect = [1,2,3,4];
+        if(in_array($id,$protect)){
+            return back();
+        }
         $result = validator($request->all(),$this->rulesEdit($id),[],$this->attributes());
 
         if($result->fails()):
@@ -87,6 +95,11 @@ class JopController extends Controller
 
     public function destroy($id)
     {
+
+        $protect = [1,2,3,4];
+        if(in_array($id,$protect)){
+            return true;
+        }
 
         Jop::destroy($id);
 
