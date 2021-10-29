@@ -90,6 +90,22 @@ Route::get('read-nofifications/{id?}',function($id){
 });
 
 
+Route::get('img/{a?}/{b?}', [
+    'as'         => 'img.show',
+    'uses'       => 'ImagesController@show',
+    'middleware' => 'auth',
+]);
+
+//{{URL("/img/".'national_card_imgs/5un422FebQH1SVdbHipqzSPIAs6w5uFuoAdGL201.jpg')}}
+
+
+Route::view('/ii', 'hr.basic');
+
+
+
+
+
+
 
 
 

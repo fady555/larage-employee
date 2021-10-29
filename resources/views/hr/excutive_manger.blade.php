@@ -17,18 +17,18 @@
 <div class="content-wrapper">
     <div class="content">
 
-        @if (session()->has('message'))
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="alert alert-success alert-highlighted" role="alert">
-                    {{session()->get('message')}}
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button>
+            @if (session()->has('message'))
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="alert alert-success alert-highlighted" role="alert">
+                        {{session()->get('message')}}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
-        @endif
+            @endif
 
 
             <form class="form-row" method="POST"  action="{{route('update.executive.manger')}}" runat="server" enctype="multipart/form-data">
@@ -43,7 +43,14 @@
                             <input  type="file"  accept="image/*" id="avatar"  name="avatar" class="btn btn-md ml-auto btn-warning d-none form-control" placeholder="dd" />
 
                             <label  for='avatar' class="ml-auto">
-                                <img   src="{{ asset('/public/assets/img/user/tdi3NGa.png') }}" width="70px" id='imgShow' class="user-image ml-auto" alt="User Image">
+
+                               @if(is_null($employee->avatar))
+                                    <img src="{{ asset('/public/assets/img/user/tdi3NGa.png') }}" width="70px" id='imgShow' class="user-image ml-auto" alt="User Image">
+                               @else:
+                                    <img src="{{ URL("/img/".$employee->avatar) }}" width="70px" id='imgShow' class="user-image ml-auto" alt="User Image">
+                               @endif;
+
+
                                 <div class="text-warning">@lang('app.choose avatar')</div>
                             </label>
 
@@ -73,15 +80,21 @@
 
                                     <div class="col-md-3 mb-3">
                                         <input type="file"  accept="image/*" id='card' name="national_card_img" value="{{old('national_card_img')}}"  class="form-control-file d-none"  placeholder="@lang('app.national card img')" >
-                                    
+
                                         <label for="card" class="ml-auto">
-                                        <img src="http://localhost/hr/public/assets/img/user/tdi3NGa.png" width="70px" id="cardShow" class="user-image ml-auto" alt="User Image">
+
+                                            @if(is_null($employee->national_card_img))
+                                                    <img src="{{ asset('/public/assets/img/user/tdi3NGa.png') }}" width="70px" id='cardShow' class="user-image ml-auto" alt="User Image">
+                                            @else:
+                                                    <img src="{{ URL("/img/".$employee->national_card_img) }}" width="70px" id='cardShow' class="user-image ml-auto" alt="User Image">
+                                            @endif;
+
                                         <div>@lang('app.national card img')</div>
                                         </label>
-                                    
+
                                     </div>
 
-                                    
+
 
                                     <div class="col-md-6 mb-3">
                                         <label>@lang('app.passport_id')</label>
@@ -124,20 +137,20 @@
 
                                             <li class="d-inline-block mr-3">
                                                 <label class="control control-radio">@lang('app.male')
-                                                    <input type="radio" name="genderCheeck" value="M" onchange="$('[name=gender]').val(this.value); $('[name=gender]').click()" @if($errors->any()) @if(old('gender') == 'M') checked @endif  @endif   @if($employee->gender == 'M') checked @endif >
+                                                    <input type="radio" name="genderCheeck" value="M" onchange="$('[name=gender]').val(this.value); $('[name=gender]').click()"  @if(old('gender',$employee->gender) == 'M') checked @endif    >
                                                     <div class="control-indicator"></div>
                                                 </label>
                                             </li>
 
                                             <li class="d-inline-block ">
                                                 <label class="control control-radio">@lang('app.female')
-                                                    <input type="radio" name="genderCheeck" value="F" onchange="$('[name=gender]').val(this.value); $('[name=gender]').click()" @if($errors->any()) @if(old('gender') == 'F') checked @endif  @endif  @if($employee->gender == 'F') checked @endif >
+                                                    <input type="radio" name="genderCheeck" value="F" onchange="$('[name=gender]').val(this.value); $('[name=gender]').click()"  @if(old('gender',$employee->gender) == 'F') checked @endif  >
                                                     <div class="control-indicator"></div>
                                                 </label>
                                             </li>
 
                                         </ul>
-                                        <input type="hidden" class="form-control" name="gender" value="@if($errors->any()) @if(old('gender') == 'M') M @elseif (old('gender') == 'F') F @endif  @endif   @if($employee->gender == 'M') M @elseif ($employee->gender == 'F') F @endif"  />
+                                        <input type="hidden" class="form-control" name="gender" value="@if($errors->any()) @if(old('gender') == 'M') M @elseif (old('gender') == 'F') F @endif  @else @if($employee->gender == 'M') M @elseif ($employee->gender == 'F') F @endif   @endif "  />
                                     </div>
 
                                     <div class="col-md-2 mb-3">
@@ -210,7 +223,6 @@
 
                                         <select class="form-control" id="codes">
 
-                                        <option value=""></option>
 
                                            <option></option>
                                             @foreach (\App\Country_code_phone::get() as $code)
@@ -412,10 +424,11 @@
                         </div>
                     </div>
                 </div>
-                
 
 
-                <button class="btn btn-primary btn-lg btn-block" type="submit">@lang('app.submit')</button>
+                <button onclick="event.preventDefault();" class="btn btn-primary btn-lg btn-block btnEdit">@lang('app.edit')</button>
+                <button type="submit" class="btn btn-primary btn-lg btn-block btnSave d-none">@lang('app.save')</button>
+
 
             </form>
 
@@ -440,6 +453,27 @@
         <script> makeError('{{$key}}','{{$error[0]}}','{{old($key)}}') </script>
     @endforeach
 @endif
+
+
+
+<script>
+
+$("input,textarea,select").attr('disabled',true);
+
+function edit(){
+  $("input,textarea,select").attr('disabled',false);
+  $(".btnEdit").addClass('d-none');
+  $(".btnSave").removeClass('d-none');
+  $(".btnSave").addClass('btn-danger');
+
+}
+
+$(".btnEdit").on('click',()=>{
+    edit();
+})
+
+
+</script>
 
 
 

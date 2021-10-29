@@ -27,7 +27,7 @@ class BasicEmployeeController extends Controller
     public function updateMangerEceutive(Request $request,$id=1){
 
 
-        //return $request->all();
+        //return $request->all('gender');
 
         $result = validator($request->all(),$this->rules($id),[],$this->customAttributes());
 
@@ -39,7 +39,7 @@ class BasicEmployeeController extends Controller
         $editEmployee = request()->except('_token');
 
 
-        
+
         if(isset($editEmployee['avatar'])): $editEmployee['avatar'] = request()->file('avatar')->store('/avatars');endif;
         if(isset($editEmployee['national_card_img'])): $editEmployee['national_card_img'] = request()->file('national_card_img')->store('/national_card_imgs');  endif;
 
@@ -115,7 +115,7 @@ class BasicEmployeeController extends Controller
                 'fixed_salary'=>['nullable','numeric','min:0','max:1000000'],
 
                 "type_work_id"=>['nullable','exists:type_of_works,id'],
-                
+
                 "avatar"=>['nullable','file','mimes:png,jpg','max:4000'],
                 "national_card_img"=>['nullable','file','mimes:png,jpg','max:4000'],
 

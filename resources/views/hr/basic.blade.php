@@ -16,6 +16,9 @@
 <div class="content-wrapper">
     <div class="content">
 
+
+        <img src="{{URL("/img/".\App\Employee::find(1)->national_card_img)}}" />
+
     </div>
 </div>
 

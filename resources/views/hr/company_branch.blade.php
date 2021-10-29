@@ -256,7 +256,7 @@
                                             </button>
                                             <div class="dropdown-menu " aria-labelledby="dropdownMenuButton">
                                                 <a class="dropdown-item" href="javascript:;">{{$branch->address->country->{'name_'.app()->getlocale()} }}</a>
-                                                <a class="dropdown-item" href="javascript:;">{{$branch->address->city->{'name_'.app()->getlocale()} }}</a>
+                                                <a class="dropdown-item" href="javascript:;">@if(!is_null($branch->address->city )) {{$branch->address->city->{'name_'.app()->getlocale()} }}@endif</a>
                                                 <a class="dropdown-item" href="javascript:;" onClick="this.setSelectionRange(0, this.value.length)">{{$branch->address->{'address_desc_'.app()->getlocale()} }}</a>
                                             </div>
                                         </div>

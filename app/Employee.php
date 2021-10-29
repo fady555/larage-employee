@@ -49,7 +49,8 @@ class Employee extends Model
         'comapny_departments_id',
         'marital_statuses_id',
         'fixed_salary',
-        'military_services_id'
+        'military_services_id',
+        'gender',
 
 
 

@@ -198,7 +198,7 @@ class CreateEmployeesTable extends Migration
                 'passport_release_date'=>'',
                 'passport_expire_date'=>'',*/
 
-                'email'=>'moataz2020@gamil.com',
+                'email'=>'moataz2026666660@gamil.com',
                 'phone'=>"(+20)1287917557",
                 'name_of_bank'=>'NBE',
                 'number_of_account'=>56565646,

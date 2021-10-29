@@ -3,16 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Faker\Provider\Image;
+
+use Image;
 
 class ImagesController extends Controller
 {
-    public function show($user_id, $slug)
+    public function show($a,$b)
     {
-        $storagePath = storage_path('app/images/users/' . $user_id . '/' . $slug);
 
-        Image::make();
+        $storagePath = storage_path('app/'.'/'.$a.'/'.$b);
         return Image::make($storagePath)->response();
-
     }
 }
