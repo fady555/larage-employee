@@ -6,7 +6,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-        <title></title>
+        <title>@lang('app.login')</title>
 
         <!-- GOOGLE FONTS -->
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500|Poppins:400,500,600,700|Roboto:400,500" rel="stylesheet"/>
@@ -47,10 +47,26 @@
 <div class="container d-flex flex-column justify-content-between vh-100">
     <div class="row justify-content-center mt-5">
         <div class="col-xl-5 col-lg-6 col-md-10">
+
+            @if (session()->has('message'))
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="alert alert-success alert-highlighted" role="alert">
+                       {{session()->get('message')}}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            @endif
+
             <div class="card">
                 <div class="card-header bg-primary">
                     <div class="app-brand">
-                        <a href="/index.html">
+                        <a >
                             <svg class="brand-icon" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid" width="30" height="33"
                                  viewBox="0 0 30 33">
                                 <g fill="none" fill-rule="evenodd">

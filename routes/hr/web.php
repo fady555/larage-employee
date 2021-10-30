@@ -60,7 +60,7 @@ Route::group($group,function (){
     Route::post('delete-jop/{id?}','JopController@destroy')->name('delete.jop');
 
     //type of work
-    Route::get('show-types-works','TypeWorkController@index')->name('show.types.work');
+    Route::get('show-types-works','TypeWorkController@index')->name('show.types.work')->middleware('hr_perm:30');
 
     Route::post('store-type-work','TypeWorkController@store')->name('store.type.work');
 

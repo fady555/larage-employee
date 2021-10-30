@@ -203,7 +203,9 @@ return [
     'Executive Director'=>'Executive Director (CEO)',
     'General Director'=>'General Director (GD)',
     'Humman Resuorce Director'=>'Humman Resuorce Director (HRD)',
+    'hr_page'=>'This page is dedicated to the Human Resources Department',
 
+    'hr_permission'=>'You do not have permission to access this page',
 
 
 

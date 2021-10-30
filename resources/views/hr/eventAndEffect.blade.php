@@ -23,7 +23,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="alert alert-success alert-highlighted" role="alert">
-                   {{session()->get('message')}}
+                   {!! session()->get('message') !!}
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
@@ -31,7 +31,7 @@
             </div>
         </div>
 
-        @endif
+        @endiff
 
 
         @if(in_array('show-events-effects',request()->segments()))
