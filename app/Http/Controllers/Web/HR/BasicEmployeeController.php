@@ -15,16 +15,16 @@ class BasicEmployeeController extends Controller
     //---------------executive manger ---------------
     public function editMangerEceutive(){
 
-         $employee = Employee::with(['address'])->first();
+        $employee = Employee::with(['address'])->find(1);
 
-        return view('hr.excutive_manger')->with(['employee'=>$employee]);
+        return view('hr.mangers')->with(['employee'=>$employee]);
 
     }
 
 
 
 
-    public function updateMangerEceutive(Request $request,$id=1){
+    public function updateMangerEceutive(Request $request,$id = 1){
 
 
         //return $request->all('gender');
@@ -59,21 +59,77 @@ class BasicEmployeeController extends Controller
 
     //-----------------Gneral manger -------------------
     public function editGeneralManger(){
+        $employee = Employee::with(['address'])->find(2);
+
+        return view('hr.mangers')->with(['employee'=>$employee]);
 
     }
 
-    public function updateGeneralManger(){
+    public function updateGeneralManger(Request $request,$id = 2){
 
+
+        $result = validator($request->all(),$this->rules($id),[],$this->customAttributes());
+
+        if($result->fails()):
+            return redirect()->back()->withErrors($result)->withInput();
+        endif;
+
+
+        $editEmployee = request()->except('_token');
+
+
+
+        if(isset($editEmployee['avatar'])): $editEmployee['avatar'] = request()->file('avatar')->store('/avatars');endif;
+        if(isset($editEmployee['national_card_img'])): $editEmployee['national_card_img'] = request()->file('national_card_img')->store('/national_card_imgs');  endif;
+
+        if(!isset($editEmployee['military_services_id'])): $editEmployee['military_services_id'] = 1; endif;
+
+
+
+
+        $x = Employee::with(['address'])->find($id)->update($editEmployee);
+
+
+        session()->flash('message',trans('app.edit_success'));
+
+        return back();
     }
 
     //------------------Hr director -----------------
 
     public function editHrDirect(){
+        $employee = Employee::with(['address'])->find(3);
+
+        return view('hr.mangers')->with(['employee'=>$employee]);
 
     }
 
-    public function updateHrDirect(){
+    public function updateHrDirect(Request $request,$id = 3){
+        $result = validator($request->all(),$this->rules($id),[],$this->customAttributes());
 
+        if($result->fails()):
+            return redirect()->back()->withErrors($result)->withInput();
+        endif;
+
+
+        $editEmployee = request()->except('_token');
+
+
+
+        if(isset($editEmployee['avatar'])): $editEmployee['avatar'] = request()->file('avatar')->store('/avatars');endif;
+        if(isset($editEmployee['national_card_img'])): $editEmployee['national_card_img'] = request()->file('national_card_img')->store('/national_card_imgs');  endif;
+
+        if(!isset($editEmployee['military_services_id'])): $editEmployee['military_services_id'] = 1; endif;
+
+
+
+
+        $x = Employee::with(['address'])->find($id)->update($editEmployee);
+
+
+        session()->flash('message',trans('app.edit_success'));
+
+        return back();
     }
     //-----------------------------------------------
 

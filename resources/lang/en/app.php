@@ -199,7 +199,10 @@ return [
     'show'=>'Show',
 
     'notification'=>'Notification',
+
     'Executive Director'=>'Executive Director (CEO)',
+    'General Director'=>'General Director (GD)',
+    'Humman Resuorce Director'=>'Humman Resuorce Director (HRD)',
 
 
 

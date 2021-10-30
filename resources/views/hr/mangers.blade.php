@@ -3,7 +3,16 @@
 
 
 @section('title')
-    @lang('app.Executive Director')
+
+
+    @if (in_array('show-executive-manger',request()->segments()))
+        @lang('app.Executive Director')
+    @elseif (in_array('show-general-manger',request()->segments()))
+        @lang('app.General Director')
+    @elseif (in_array('show-hr-manger',request()->segments()))
+        @lang('app.Humman Resuorce Director')
+    @endif
+
 @endsection
 
 @section('css')
@@ -31,7 +40,16 @@
             @endif
 
 
+
+        @if (in_array('show-executive-manger',request()->segments()))
             <form class="form-row" method="POST"  action="{{route('update.executive.manger')}}" runat="server" enctype="multipart/form-data">
+        @elseif (in_array('show-general-manger',request()->segments()))
+            <form class="form-row" method="POST"  action="{{route('update.general.manger')}}" runat="server" enctype="multipart/form-data">
+        @elseif (in_array('show-hr-manger',request()->segments()))
+            <form class="form-row" method="POST"  action="{{route('update.hr.manger')}}" runat="server" enctype="multipart/form-data">
+        @endif
+
+
 
                 @csrf
 
@@ -39,7 +57,16 @@
                 <div class="col-lg-12">
                     <div class="card card-default">
                         <div class="card-header card-header-border-bottom bg-primary">
-                            <h2>@lang('app.personal information') @lang('app.Executive Director')</h2>
+
+                            @if (in_array('show-executive-manger',request()->segments()))
+                                <h2>@lang('app.personal information') @lang('app.Executive Director')</h2>
+                            @elseif (in_array('show-general-manger',request()->segments()))
+                                <h2>@lang('app.personal information') @lang('app.General Director')</h2>
+                            @elseif (in_array('show-hr-manger',request()->segments()))
+                                <h2>@lang('app.personal information') @lang('app.Humman Resuorce Director')</h2>
+                            @endif
+
+
                             <input  type="file"  accept="image/*" id="avatar"  name="avatar" class="btn btn-md ml-auto btn-warning d-none form-control" placeholder="dd" />
 
                             <label  for='avatar' class="ml-auto">

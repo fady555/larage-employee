@@ -42,20 +42,20 @@
 
 
 
-                <li class="dropdown notifications-menu" onclick="read('{{App\User::find(1)->id}}')">
+                <li class="dropdown notifications-menu" onclick="read('{{auth()->user()->id}}')">
 
                     <button class="dropdown-toggle" data-toggle="dropdown">
-                        <i class=" readnotifiy mdi mdi-bell-outline @if(App\User::find(1)->unreadnotifications->count()) mdi-spin text-primary @endif ">
+                        <i class=" readnotifiy mdi mdi-bell-outline @if(auth()->user()->unreadnotifications->count()) mdi-spin text-primary @endif ">
                         </i>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-right">
-                        <li class="dropdown-header">You have {{App\User::find(1)->notifications->count()}} notifications</li>
+                        <li class="dropdown-header">You have {{auth()->user()->notifications->count()}} notifications</li>
 
 
 
 
 
-                        @foreach (App\User::find(1)->notifications as $noty)
+                        @foreach (auth()->user()->notifications as $noty)
 
 
 

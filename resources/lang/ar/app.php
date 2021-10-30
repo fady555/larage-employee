@@ -190,6 +190,21 @@ return [
     'delete all'=>'حذف الكل',
     'language'=>'اختر اللغه',
 
+    //generals
+
+    'generals'=>'تعاميم',
+    'add generals'=>'اضافه تعميم',
+    'edit generals'=>'تعديل تعميم',
+    'show'=>'اظهار',
+
+    'notification'=>'اشعارت',
+
+    'Executive Director'=>'المدير التنفيذ',
+    'General Director'=>'المدير العام',
+    'Humman Resuorce Director'=>'المدير المباشر لقطاع الموارد البشريه',
+
+
+
 
 
 

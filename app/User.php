@@ -16,8 +16,9 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','employee_id',
+        'name', 'email', 'password','employee_id','api_token','permissions_array'
     ];
+
 
     /**
      * The attributes that should be hidden for arrays.
@@ -36,4 +37,6 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
 }

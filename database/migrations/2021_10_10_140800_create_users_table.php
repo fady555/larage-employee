@@ -25,6 +25,10 @@ class CreateUsersTable extends Migration
             $table->unsignedBigInteger('employee_id');
             $table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade')->onUpdate('cascade');
 
+            $table->longText('permissions_array')->default(json_encode(array()));
+
+            $table->enum('as',['HR','ONTHER'])->default('ONTHER');
+
             $table->rememberToken();
             $table->timestamps();
         });
@@ -33,7 +37,10 @@ class CreateUsersTable extends Migration
         $fak_en = \Faker\Factory::create();
 
         DB::table('users')->insert([
-            ['name'=>$fak_en->name(),'email'=>'fadyfared141@gmail.com','password'=>'$2y$10$CvNMruPNAv02ZM05iCPp7OGgOYDInzczf706HACP1NaAvHfv6zVpG','employee_id'=>1],
+            ['name'=>$fak_en->name(),'email'=>'fadyfared141@gmail.com','password'=>'$2y$10$CvNMruPNAv02ZM05iCPp7OGgOYDInzczf706HACP1NaAvHfv6zVpG','employee_id'=>1,'permissions_array'=>json_encode(array()),'as'=>"ONTHER"],
+            ['name'=>$fak_en->name(),'email'=>'fadyfared142@gmail.com','password'=>'$2y$10$CvNMruPNAv02ZM05iCPp7OGgOYDInzczf706HACP1NaAvHfv6zVpG','employee_id'=>2,'permissions_array'=>json_encode(array()),'as'=>"ONTHER"],
+            ['name'=>'Hr','email'=>'fadyfared143@gmail.com','password'=>'$2y$10$CvNMruPNAv02ZM05iCPp7OGgOYDInzczf706HACP1NaAvHfv6zVpG','employee_id'=>3,'permissions_array'=>json_encode(array(1,2,3,7)),'as'=>"HR"],
+
             /*['name'=>$fak_en->name(),'email'=>$fak_en->email,'password'=>'$2y$10$CvNMruPNAv02ZM05iCPp7OGgOYDInzczf706HACP1NaAvHfv6zVpG','employee_id'=>1],
             ['name'=>$fak_en->name(),'email'=>$fak_en->email,'password'=>'$2y$10$CvNMruPNAv02ZM05iCPp7OGgOYDInzczf706HACP1NaAvHfv6zVpG','employee_id'=>1],
             ['name'=>$fak_en->name(),'email'=>$fak_en->email,'password'=>'$2y$10$CvNMruPNAv02ZM05iCPp7OGgOYDInzczf706HACP1NaAvHfv6zVpG','employee_id'=>1],

@@ -24,7 +24,7 @@ use Illuminate\Support\Facades\DB;
 
 $group = [
     'prefix' => LaravelLocalization::setLocale(),
-    'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath'],
+    'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath','auth','hr'],
 ];
 
 Route::group($group,function (){
@@ -207,12 +207,12 @@ Route::group($group,function (){
 
 
 
-   
+
 
     //executive manger
     Route::get('show-executive-manger','BasicEmployeeController@editMangerEceutive')->name('show.executive.manger');
     Route::post('update-executive-manger','BasicEmployeeController@updateMangerEceutive')->name('update.executive.manger');
-    
+
     //genral manger
     Route::get('show-general-manger','BasicEmployeeController@editGeneralManger')->name('show.general.manger');
     Route::post('update-general-manger','BasicEmployeeController@updateGeneralManger')->name('update.general.manger');

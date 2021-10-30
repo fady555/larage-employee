@@ -69,6 +69,9 @@ class Kernel extends HttpKernel
         'localeCookieRedirect'    => \Mcamara\LaravelLocalization\Middleware\LocaleCookieRedirect::class,
         'localeViewPath'          => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationViewPath::class,
         //--------------------------------------------------cameralocalization packge --------------
-
+        'head_hr' => \App\Http\Middleware\HeadHR::class,
+        'hr' => \App\Http\Middleware\HR::class,
+        'hr_perm' => \App\Http\Middleware\HR_Permiss::class,
+        //---------------------------------------------------------------------------------------
     ];
 }

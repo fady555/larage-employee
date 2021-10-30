@@ -166,23 +166,23 @@
                 {{----------------------}}
 
                 <li>
-                    <a class="sidenav-item-link" href="{{route('show.companies.branchs')}}">
+                    <a class="sidenav-item-link" href="{{route('show.executive.manger')}}">
                         <i class="mdi mdi-30px mdi-chess-queen"></i>
-                        <span class="nav-text">@lang('app.hrs')</span>
+                        <span class="nav-text">@lang('app.Executive Director')</span>
                     </a>
                 </li>
 
                 <li>
-                    <a class="sidenav-item-link" href="{{route('show.executive.manger')}}">
+                    <a class="sidenav-item-link" href="{{route('show.general.manger')}}">
                         <i class="mdi mdi-30px mdi-chess-king"></i>
-                        <span class="nav-text">@lang('app.Executive Director')</span>
+                        <span class="nav-text">@lang('app.General Director')</span>
                     </a>
                 </li>
-                
+
                 <li>
-                    <a class="sidenav-item-link" href="{{route('show.companies.branchs')}}">
+                    <a class="sidenav-item-link" href="{{route('show.hr.manger')}}">
                         <i class="mdi mdi-30px mdi-chess-pawn"></i>
-                        <span class="nav-text">@lang('app.general manger')</span>
+                        <span class="nav-text">@lang('app.Humman Resuorce Director')</span>
                     </a>
                 </li>
 

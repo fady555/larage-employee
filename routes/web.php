@@ -99,7 +99,20 @@ Route::get('img/{a?}/{b?}', [
 //{{URL("/img/".'national_card_imgs/5un422FebQH1SVdbHipqzSPIAs6w5uFuoAdGL201.jpg')}}
 
 
-Route::view('/ii', 'hr.basic');
+Route::view('/ii', 'hr.basic')->middleware('hr');
+
+
+Route::get('/cc', function () {
+
+    return auth()->user();
+
+})->middleware(['auth','hr','hr_perm:300']);
+
+
+
+
+//})->middleware(['auth','hr','hr_perm:1']);
+//})->middleware(['auth','hr','head_hr']);
 
 
 
