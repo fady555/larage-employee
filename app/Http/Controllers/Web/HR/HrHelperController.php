@@ -3,138 +3,141 @@
 namespace App\Http\Controllers\web\hr;
 
 use App\Employee;
-use App\Address;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Permission;
 use App\Rules\Arabic;
 use App\Rules\PhoneCode;
+use App\User;
+use Illuminate\Http\Request;
 
-class BasicEmployeeController extends Controller
+class HrHelperController extends Controller
 {
-
-    //---------------executive manger ---------------
-    public function editMangerEceutive(){
-
-        $employee = Employee::with(['address'])->find(1);
-
-        return view('hr.mangers')->with(['employee'=>$employee]);
-
+    public function index()
+    {
+        return view('hr.hr_helper')->with(['employees'=>Employee::where('jop_id',4)->get()]);
     }
 
 
+    public function create(){
+        return view('hr.hr_helper')->with(['permissions_array'=>Permission::get()]);
+    }
 
 
-    public function updateMangerEceutive(Request $request,$id = 1){
+    public function store(Request $request)
+    {
 
-
-        //return $request->all('gender');
-
-        $result = validator($request->all(),$this->rules($id),[],$this->customAttributes());
+        dd($request->all());
+        $result = validator($request->all(),$this->rules(),[],$this->customAttributes());
 
         if($result->fails()):
             return redirect()->back()->withErrors($result)->withInput();
         endif;
 
-
-        $editEmployee = request()->except('_token');
-
-
-
-        if(isset($editEmployee['avatar'])): $editEmployee['avatar'] = request()->file('avatar')->store('/avatars');endif;
-        if(isset($editEmployee['national_card_img'])): $editEmployee['national_card_img'] = request()->file('national_card_img')->store('/national_card_imgs');  endif;
-
-        if(!isset($editEmployee['military_services_id'])): $editEmployee['military_services_id'] = 1; endif;
-
-
-
-
-        $x = Employee::with(['address'])->find($id)->update($editEmployee);
-
-
-        session()->flash('message',trans('app.edit_success'));
-
+        Employee::create($request->except('_token'));
+        session()->flash('message',trans('app.add_success'));
         return back();
-
     }
 
-    //-----------------Gneral manger -------------------
-    public function editGeneralManger(){
-        $employee = Employee::with(['address'])->find(2);
 
-        return view('hr.mangers')->with(['employee'=>$employee]);
-
+    public function show($id)
+    {
+        //
     }
 
-    public function updateGeneralManger(Request $request,$id = 2){
+
+    public function edit($id)
+    {
+        return view('hr.hr_helper')->with(['employee'=>Employee::find($id)]);
+    }
 
 
-        $result = validator($request->all(),$this->rules($id),[],$this->customAttributes());
+    public function update(Request $request, $id)
+    {
+
+        $protect = [1,2,3];
+        if(in_array($id,$protect)){
+            return back();
+        }
+        $result = validator($request->all(),$this->rulesEdit($id),[],$this->customAttributes());
 
         if($result->fails()):
             return redirect()->back()->withErrors($result)->withInput();
         endif;
 
+        $data  = $request->except('_token');
+        $data['jop_id']= 4;
+        $data['jop_level_id']= 4;
 
-        $editEmployee = request()->except('_token');
+        Employee::find($id)->update($data);
 
-
-
-        if(isset($editEmployee['avatar'])): $editEmployee['avatar'] = request()->file('avatar')->store('/avatars');endif;
-        if(isset($editEmployee['national_card_img'])): $editEmployee['national_card_img'] = request()->file('national_card_img')->store('/national_card_imgs');  endif;
-
-        if(!isset($editEmployee['military_services_id'])): $editEmployee['military_services_id'] = 1; endif;
-
-
-
-
-        $x = Employee::with(['address'])->find($id)->update($editEmployee);
-
+        User::where('employee_id',$id)->update(['email'=>$request->email]);
 
         session()->flash('message',trans('app.edit_success'));
 
         return back();
     }
 
-    //------------------Hr director -----------------
 
-    public function editHrDirect(){
-        $employee = Employee::with(['address'])->find(3);
+    public function destroy($id)
+    {
 
-        return view('hr.mangers')->with(['employee'=>$employee]);
+        $protect = [1,2,3];
+        if(in_array($id,$protect)){
+            return true;
+        }
+
+        Employee::destroy($id);
+
+        return true;
 
     }
 
-    public function updateHrDirect(Request $request,$id = 3){
-        $result = validator($request->all(),$this->rules($id),[],$this->customAttributes());
-
-        if($result->fails()):
-            return redirect()->back()->withErrors($result)->withInput();
-        endif;
 
 
-        $editEmployee = request()->except('_token');
+    private  function rules()
+    {
+        return [
+
+                "full_name_en"=>['required','string','unique:employees,full_name_en'],
+                "full_name_ar"=>['required',new Arabic(trans('app.name must arabic'))],
+                "national_id"=>['required','string'],
+                "national_card_Release_date"=>['required','date','date_format:Y-m-d'],
+                "passport_id"=>['nullable','string','max:12'],
+                "passport_release_date"=>['nullable','date','date_format:Y-m-d'],
+                "passport_expire_date"=>['nullable','date','date_format:Y-m-d'],
+                "nationality_id"=>['required','exists:nationalities,id'],
+                "gender"=>['required','in:F,M'],
+                "age"=>['required','numeric','between:1,99'],
+                "military_services_id"=>['nullable','exists:military_services,id'],
+                "marital_statuses_id"=>['required','exists:marital_statuses,id'],
+                "number_of_wif_husband"=>['nullable','numeric','between:1,4'],
+                "number_of_wif_children"=>['nullable','numeric','between:1,4'],
+                "name_of_bank"=>['nullable','string'],
+                "number_of_account"=>['nullable','string'],
+                "email"=>['required','email','unique:Employees,email'],
+
+                "phone"=>['required','string',new PhoneCode(trans('app.error_phone'))],
+
+                "country_id"=>['required','exists:countries,id'],
+                "city_id"=>['nullable','exists:cities,id'],
+                "address_desc_en"=>['required','string'],
+                "address_desc_ar"=>['required','string',new Arabic(trans('app.address must arabic'))],
+                "national_card_address_description"=>['nullable','string'],
+                "passport_address_description"=>['nullable','string'],
+                "degree_id"=>['required','exists:degrees,id'],
+                "experience_description"=>['required','string'],
 
 
+                'fixed_salary'=>['nullable','numeric','min:0','max:1000000'],
 
-        if(isset($editEmployee['avatar'])): $editEmployee['avatar'] = request()->file('avatar')->store('/avatars');endif;
-        if(isset($editEmployee['national_card_img'])): $editEmployee['national_card_img'] = request()->file('national_card_img')->store('/national_card_imgs');  endif;
+                "type_work_id"=>['nullable','exists:type_of_works,id'],
 
-        if(!isset($editEmployee['military_services_id'])): $editEmployee['military_services_id'] = 1; endif;
+                "avatar"=>['nullable','file','mimes:png,jpg','max:1000000'],
+                "national_card_img"=>['nullable','file','mimes:png,jpg','max:1000000'],
 
-
-
-
-        $x = Employee::with(['address'])->find($id)->update($editEmployee);
-
-
-        session()->flash('message',trans('app.edit_success'));
-
-        return back();
+            ];
     }
-    //-----------------------------------------------
-
-
-    private  function rules($id)
+    private  function rulesEdit($id)
     {
         return [
 
@@ -218,6 +221,4 @@ class BasicEmployeeController extends Controller
 
         ];
     }
-
-
 }

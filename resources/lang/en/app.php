@@ -207,6 +207,14 @@ return [
 
     'hr_permission'=>'You do not have permission to access this page',
 
+    'log out'=>'Log Out',
+    'message'=>'Message',
+    'my profile'=>'My Profile',
+
+    'helper hr'=>'Helper For Humman Resource',
+    'edit helper hr'=>'Edit Hr Helper',
+    'add helper hr'=>'Add Hr Helper',
+    'permisson hr'=>'Premisson Hr',
 
 
 

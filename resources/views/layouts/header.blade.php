@@ -84,34 +84,41 @@
                 <!-- User Account -->
                 <li class="dropdown user-menu">
                     <button href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-                        <img src="{{asset('/public/assets/img/user/user.png')}}" class="user-image" alt="User Image" />
-                        <span class="d-none d-lg-inline-block">Abdus Salam</span>
+
+
+
+                        @if (is_null( \App\Employee::find(auth()->user()->id)->avatar ))
+                            <img src="{{asset('/public/assets/img/user/tdi3NGa.png')}}" class="user-image" alt="User Image" />
+                        @else
+                            <img src="{{URL('img/'.\App\Employee::find(auth()->user()->id)->avatar)}}" class="user-image" alt="User Image" />
+                        @endif
+
+                        <span class="d-none d-lg-inline-block">{{ \App\Employee::find(auth()->user()->id)->{'full_name_'.app()->getlocale()} }}</span>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-right">
                         <!-- User image -->
                         <li class="dropdown-header">
                             <img src="{{asset('/public/assets/img/user/user.png')}}" class="img-circle" alt="User Image" />
                             <div class="d-inline-block">
-                                Abdus Salam <small class="pt-1">abdus@gmail.com</small>
+                                 <small class="pt-1">{{auth()->user()->email}}</small>
+                                 <small class="pt-1">{{ \App\Employee::find(auth()->user()->id)->{'full_name_'.app()->getlocale()} }}</small>
                             </div>
                         </li>
 
                         <li>
                             <a href="profile.html">
-                                <i class="mdi mdi-account"></i> My Profile
+                                <i class="mdi mdi-account"></i> @lang('app.my profile')
                             </a>
                         </li>
                         <li>
                             <a href="email-inbox.html">
-                                <i class="mdi mdi-email"></i> Message
+                                <i class="mdi mdi-email"></i> @lang('app.message')
                             </a>
                         </li>
                         <li>
-                            <a href="#"> <i class="mdi mdi-diamond-stone"></i> Projects </a>
+                            <a href="{{route('show.notifications')}}"> <i class="mdi mdi-bell-outline"></i> @lang('app.notification') </a>
                         </li>
-                        <li>
-                            <a href="#"> <i class="mdi mdi-settings"></i> Account Setting </a>
-                        </li>
+
 
                         <li class="dropdown-footer">
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -119,7 +126,7 @@
                             </form>
                             <a href="javascript:;" onclick="document.getElementById('logout-form').submit();">
                                 <i class="mdi mdi-logout" ></i>
-                                Log Out
+                                @lang('app.log out')
                             </a>
                         </li>
                     </ul>
