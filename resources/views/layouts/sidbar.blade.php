@@ -52,7 +52,6 @@
 
 
 
-
                             <li >
                                 <a class="sidenav-item-link" href="analytics.html">
                                     <span class="nav-text">Analytics</span>
@@ -97,8 +96,18 @@
                                 </a>
                             </li>
                             <li >
-                                <a class="sidenav-item-link" href="index.html">
+                                <a class="sidenav-item-link" href="{{route('create.employee')}}">
                                     <span class="nav-text">@lang('app.add employee')</span>
+                                </a>
+                            </li>
+                            <li >
+                                <a class="sidenav-item-link" href="{{route('show.hrs.helpers')}}">
+                                    <span class="nav-text">@lang('app.helper hr')</span>
+                                </a>
+                            </li>
+                            <li >
+                                <a class="sidenav-item-link" href="{{route('add.hr.helper')}}">
+                                    <span class="nav-text">@lang('app.add helper hr')</span>
                                 </a>
                             </li>
 
@@ -107,6 +116,43 @@
                         </div>
                     </ul>
                 </li>
+
+
+                <li  class="has-sub" >
+                    <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#mangers"
+                       aria-expanded="false" aria-controls="mangers">
+                        <i class="mdi mdi-account"></i>
+                        <span class="nav-text">@lang('app.managers')</span> <b class="caret"></b>
+                    </a>
+                    <ul  class="collapse"  id="mangers"
+                         data-parent="#sidebar-menu">
+                        <div class="sub-menu">
+
+
+
+                            <li >
+                                <a class="sidenav-item-link" href="{{route('show.executive.manger')}}">
+                                    <span class="nav-text">@lang('app.Executive Director')</span>
+                                </a>
+                            </li>
+
+                            <li >
+                                <a class="sidenav-item-link" href="{{route('show.general.manger')}}">
+                                    <span class="nav-text">@lang('app.General Director')</span>
+                                </a>
+                            </li>
+                            <li >
+                                <a class="sidenav-item-link" href="{{route('show.hr.manger')}}">
+                                    <span class="nav-text">@lang('app.Humman Resuorce Director')</span>
+                                </a>
+                            </li>
+
+
+                        </div>
+                    </ul>
+                </li>
+
+
 
 
                 <li>
@@ -162,33 +208,6 @@
                         <span class="nav-text">@lang('app.company departement')</span>
                     </a>
                 </li>
-
-                {{----------------------}}
-
-                <li>
-                    <a class="sidenav-item-link" href="{{route('show.executive.manger')}}">
-                        <i class="mdi mdi-30px mdi-chess-queen"></i>
-                        <span class="nav-text">@lang('app.Executive Director')</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a class="sidenav-item-link" href="{{route('show.general.manger')}}">
-                        <i class="mdi mdi-30px mdi-chess-king"></i>
-                        <span class="nav-text">@lang('app.General Director')</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a class="sidenav-item-link" href="{{route('show.hr.manger')}}">
-                        <i class="mdi mdi-30px mdi-chess-pawn"></i>
-                        <span class="nav-text">@lang('app.Humman Resuorce Director')</span>
-                    </a>
-                </li>
-
-                {{---------------------}}
-
-
 
 
 

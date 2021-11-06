@@ -18,7 +18,7 @@ class CreateJopLevelsTable extends Migration
             $table->id();
             $table->string('level_en');
             $table->string('level_ar');
-            $table->tinyInteger('number');
+            $table->string('number');
             $table->timestamps();
         });
 

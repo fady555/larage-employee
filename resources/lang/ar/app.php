@@ -28,9 +28,9 @@ return [
     'number of annual leave days'=>'عدد الاجازات السنويه للموظف',
     'file number'=>'رقم الملف',
     'national id'=>'الرقم القومى',
-    'national card img'=>'صوره البطاقه الشخثيه',
+    'national card img'=>'صوره البطاقه الشخصيه',
     'national_card_address_description'=>'وصف العنوان المكتوب على البطاقه',
-    'national_card_Release_date'=>'تاريخ اصدار البطاقه الشخصيه',
+    'national_card_Release_date'=>'تاريخ انتهاء البطاقه الشخصيه',
     'passport_id'=>'رقم جواز السفر',
     'passport_address_description'=>'وصف العنوان المكتوب فى جواز السفر',
     'passport_release_date'=>'تاريخ اصدار جواز السفر',
@@ -209,6 +209,14 @@ return [
 
     'message'=>'الرسائل',
     'my profile'=>'الصفحه الشخصيه',
+    'helper hr'=>'مساعد الموارد البشريه',
+    'edit helper hr'=>'التعديل على مساعد الموارد البشريه',
+    'add helper hr'=>'اضافه مساعد مواد بشريه',
+    'permisson hr'=>'صلاحيات مساعد المواد البشريه',
+
+
+    'managers'=>'المديرين',
+    'There is a manager for that department and branch already'=>'هناك مدير لذالك القسم والفرع بالفعل ',
 
 
 

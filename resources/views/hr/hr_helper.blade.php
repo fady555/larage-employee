@@ -405,6 +405,36 @@
                 </div>
             </div>
 
+            {{----------------------time of attendance and go ----------------}}
+            <div class="col-lg-12">
+                <div class="card card-default">
+                    <div class="card-header card-header-border-bottom bg-primary">
+                        <h2>@lang('app.permisson hr')</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-row">
+
+                            <div class="col-md-6 mb-3">
+                                <label >@lang('app.time_of_attendees')<i class="text-danger">*</i></label>
+                                <input type="text" name="time_of_attendees" value="{{old('time_of_attendees')}}"  class="form-control time">
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label >@lang('app.time_of_go')<i class="text-danger">*</i></label>
+                                <input type="text"   name="time_of_go" value="{{old('time_of_go')}}" class="form-control time" >
+                            </div>
+
+
+
+                            <div class="col-md-6 mb-3">
+                                <label >@lang('app.Fixed salary')@lang('app.sar')<i class="text-danger">*</i></label>
+                                <input type="number" name="fixed_salary" value="{{old('fixed_salary')}}" class="form-control" min="0000000" max="1000000">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
             {{----------------------premission-------------------------------}}
 
             <div class="col-lg-12">
@@ -836,6 +866,64 @@
                         </div>
                     </div>
                 </div>
+
+                {{----------------------time of attendance and go ----------------}}
+            <div class="col-lg-12">
+                <div class="card card-default">
+                    <div class="card-header card-header-border-bottom bg-primary">
+                        <h2>@lang('app.permisson hr')</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-row">
+
+                            <div class="col-md-6 mb-3">
+                                <label >@lang('app.time_of_attendees')<i class="text-danger">*</i></label>
+                                <input type="text" name="time_of_attendees" value="{{old('time_of_attendees',$employee->time_of_attendees)}}"  class="form-control time">
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label >@lang('app.time_of_go')<i class="text-danger">*</i></label>
+                                <input type="text"   name="time_of_go" value="{{old('time_of_go',$employee->time_of_go)}}" class="form-control time" >
+                            </div>
+
+
+
+                            <div class="col-md-6 mb-3">
+                                <label >@lang('app.Fixed salary')@lang('app.sar')<i class="text-danger">*</i></label>
+                                <input type="number" name="fixed_salary" value="{{old('fixed_salary',$employee->fixed_salary)}}" class="form-control" min="0000000" max="1000000">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            {{----------------------premission-------------------------------}}
+
+            <div class="col-lg-12">
+                <div class="card card-default">
+                    <div class="card-header card-header-border-bottom bg-primary">
+                        <h2>@lang('app.permisson hr')</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+
+                            @foreach ($permissions_array as $permission)
+                                <div class="col-sm-3 col-3 mb-3">
+                                    <label>{{$permission->{'name_'.app()->getlocale()} }}</label><br/>
+                                    <label class="switch switch-icon switch-primary switch-pill form-control-label">
+                                        <input type="checkbox" name="permissions_array[]" class="switch-input form-check-input" value="{{$permission->id}}"    @if(in_array($permission->id, (array)json_decode($employee->user['permissions_array'],true) )) checked @endif >
+                                        <span class="switch-label"></span>
+                                        <span class="switch-handle"></span>
+                                    </label>
+                                </div>
+
+                            @endforeach
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
 
 
                 <button onclick="event.preventDefault();" class="btn btn-primary btn-lg btn-block btnEdit">@lang('app.edit')</button>

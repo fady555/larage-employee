@@ -8,6 +8,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 use App\Http\Controllers\Web\HR\EmployeeController;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Rules\Exists;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,7 +25,7 @@ use Illuminate\Support\Facades\DB;
 
 $group = [
     'prefix' => LaravelLocalization::setLocale(),
-    'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath','auth','hr'],
+    'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath','auth','verified','hr'],
 ];
 
 Route::group($group,function (){
@@ -32,9 +33,6 @@ Route::group($group,function (){
     //employee
 
     //Route::get('show-employees','EmployeeController@index')->name('show.employees');
-
-    Route::get('show-employee/{id?}','EmployeeController@show')->name('show.employee');
-
 
     Route::get('create-employee','EmployeeController@create')->name('create.employee');
     Route::post('store-employee','EmployeeController@store')->name('store.employee');
@@ -177,6 +175,14 @@ Route::group($group,function (){
 
         //return $branch.$department.$level->middleware('hr_perm:30');
 
+        if($level <=2 or $department <= 2 ):
+            $data['from'] = [];
+            $data['for'] = [];
+
+            return json_encode($data);
+
+        endif;
+
 
 
         if($level == 3):
@@ -187,21 +193,31 @@ Route::group($group,function (){
 
 
         if($level == 3):
-            $employeeFor =Employee::where('jop_level_id',$level+1)->get();
-        elseif($level == 4):
             $employeeFor =Employee::where('company_branch_id',$branch)->where('comapny_departments_id',$department)->where('jop_level_id',$level+1)->get();
+        elseif($level == 4):
+            $employeeFor =[];
         endif;
 
 
 
-        $data[] = $employeeFrom;
-        $data[] = $employeeFor;
+        $data['from'] = $employeeFrom;
+        $data['for'] = $employeeFor;
 
 
         return json_encode($data);
 
 
     })->name('form.for');
+
+
+
+    Route::get('cheeck-direct-exist/{branch?}/{department?}', function ($branch,$department) {
+
+        $emLvel = Employee::where('company_branch_id',$branch)->where('comapny_departments_id',$department)->where('jop_level_id',3)->exists();
+
+        if($emLvel): return true; else: return false;  endif;
+
+    })->name('cheeck.direct.exist');
 
 
 
@@ -221,15 +237,15 @@ Route::group($group,function (){
 
     //hr_helper
 
-    Route::get('show-hrs-helper','HrHelperController@index')->name('show.hrs.helpers');
+    Route::get('show-hrs-helper','HrHelperController@index')->name('show.hrs.helpers')->middleware('head_hr');
 
-    Route::get('add-hr-helper','HrHelperController@create')->name('add.hr.helper');
-    Route::post('store-hr-helper','HrHelperController@store')->name('store.hr.helper');
+    Route::get('add-hr-helper','HrHelperController@create')->name('add.hr.helper')->middleware('head_hr');
+    Route::post('store-hr-helper','HrHelperController@store')->name('store.hr.helper')->middleware('head_hr');
 
-    Route::get('edit-hr-helper/{id?}','HrHelperController@edit')->where('id','[3-g]')->name('edit.hr.helper');
-    Route::post('update-hr-helper/{id?}','HrHelperController@update')->name('update.hr.helper');
+    Route::get('edit-hr-helper/{id?}','HrHelperController@edit')->where('id','[3-g]')->name('edit.hr.helper')->middleware('head_hr');
+    Route::post('update-hr-helper/{id?}','HrHelperController@update')->name('update.hr.helper')->middleware('head_hr');
 
-    Route::post('delete-hr-helper/{id?}','HrHelperController@destroy')->name('delete.hr.helper');
+    Route::post('delete-hr-helper/{id?}','HrHelperController@destroy')->name('delete.hr.helper')->middleware('head_hr');
 
 
 

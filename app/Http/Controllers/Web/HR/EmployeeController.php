@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Web\HR;
 use App\Address;
 use App\Employee;
 use App\Http\Controllers\Controller;
+use App\Permission;
 use App\Rules\Arabic;
+use App\Rules\LevelCheeck;
 use App\Rules\PhoneCode;
 use App\User;
 use Illuminate\Http\Request;
@@ -23,7 +25,7 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        //
+        //return  view('hr.add_employee')->
     }
 
     /**
@@ -33,7 +35,7 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        return view('hr.createEmployee');
+        return view('hr.add_employee')->with(['permissions_array'=>Permission::get()]);
     }
 
     /**
@@ -66,7 +68,7 @@ class EmployeeController extends Controller
                 "number_of_account"=>['nullable','string'],
                 "email"=>['required','email','unique:employees,email','unique:users,email'],
 
-                "phone"=>['required','string',new PhoneCode(trans('app.error_phone'))],
+                "phone"=>['required','string',/*new PhoneCode(trans('app.error_phone'))*/],
 
                 "country_id"=>['required','exists:countries,id'],
                 "city_id"=>['nullable','exists:cities,id'],
@@ -84,13 +86,18 @@ class EmployeeController extends Controller
                 'fixed_salary'=>['required','numeric','min:0','max:1000000'],
 
                 "type_work_id"=>['required','exists:type_of_works,id'],
-                "company_id"=>['required','exists:companies,id'],
+                //"company_id"=>['required','exists:companies,id'],
+
+                'select_From_employee'=>['exists:employees,id'],
+
                 "branch_id"=>['required','exists:company_branches,id'],
                 "comapny_departments_id"=>['required','exists:comapny_departments,id'],
-                "jop_level_id"=>['required','exists:jop_levels,id'],
+
+                "jop_level_id"=>['required','exists:jop_levels,id',new LevelCheeck(request()->branch_id,request()->comapny_departments_id,request()->jop_level_id)],
+
                 "number_file"=>['nullable','string'],
-                "avatar"=>['nullable','file','mimes:pdf','max:4000'],
-                "national_card_img"=>['required','file','mimes:pdf','max:4000'],
+                "avatar"=>['nullable','file','mimes:png,jpg,gif','max:40000'],
+                "national_card_img"=>['nullable','file','mimes:png,jpg,gif','max:40000'],
 
             ];
     }
@@ -131,14 +138,16 @@ class EmployeeController extends Controller
             "jop_id"=>trans('app.jop'),
             'time_of_attendees'=>trans('app.time_of_attendees'),
             'time_of_go'=>trans('app.time_of_go'),
+            'fixed_salary'=>trans('app.Fixed salary'),
             "type_work_id"=>trans('app.type work'),
-            "company_id"=>trans('app.company'),
+            //"company_id"=>trans('app.company'),
             "branch_id"=>trans('app.branch'),
             "comapny_departments_id"=>trans('app.company departement'),
             "jop_level_id"=>trans('app.jop level'),
             "number_file"=>trans('app.file number'),
             "avatar"=>trans('app.avatar'),
             "national_card_img"=>trans('app.national card img'),
+            'select_From_employee'=>trans('app.responsible from'),
 
             //"address_id"=>trans('app.address'),
 
@@ -180,6 +189,10 @@ class EmployeeController extends Controller
 
         ]);
 
+        $newEmployee['company_id']= 1;
+        $newEmployee['company_branch_id']= $request->branch_id;
+        $newEmployee['jop_level_id']= $request->jop_level_id;
+        $newEmployee['direct_employee_id']= $request->select_From_employee;
 
         $x = Employee::create($newEmployee);
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\web\hr;
 
+use App\Address;
 use App\Employee;
 use App\Http\Controllers\Controller;
 use App\Permission;
@@ -9,6 +10,8 @@ use App\Rules\Arabic;
 use App\Rules\PhoneCode;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Symfony\Component\VarDumper\Cloner\Data;
 
 class HrHelperController extends Controller
 {
@@ -26,14 +29,48 @@ class HrHelperController extends Controller
     public function store(Request $request)
     {
 
-        dd($request->all());
         $result = validator($request->all(),$this->rules(),[],$this->customAttributes());
 
         if($result->fails()):
             return redirect()->back()->withErrors($result)->withInput();
         endif;
 
-        Employee::create($request->except('_token'));
+        $data  = $request->except('_token');
+        $data['jop_id']= 4;
+        $data['jop_level_id']= 4;
+
+        if(isset($data['avatar'])): $data['avatar'] = request()->file('avatar')->store('/avatars');endif;
+        if(isset($data['national_card_img'])): $data['national_card_img'] = request()->file('national_card_img')->store('/national_card_imgs');  endif;
+
+        if(!isset($data['military_services_id'])): $data['military_services_id'] = 1; endif;
+
+
+        $data['address_id'] = Address::insertGetId([
+            'address_desc_en'=>request()->input('address_desc_en'),
+            'address_desc_ar'=>request()->input('address_desc_ar'),
+            'country_id'=>request()->input('country_id'),
+            'city_id'=>request()->input('city_id'),
+
+        ]);
+
+        $data['company_id'] = 1;
+        $data['company_branch_id'] = 1 ;
+
+        $data['comapny_departments_id'] = 3 ;
+
+
+
+        $em = Employee::create($data);
+
+        User::create([
+            'name'=>'hr_helper',
+            'email'=>$em->email,
+            'password'=>Hash::make($em->national_id),
+            'employee_id'=>$em->id,
+            'permissions_array'=>json_encode($request->permissions_array),
+            'as'=>'HR',
+        ]);
+
         session()->flash('message',trans('app.add_success'));
         return back();
     }
@@ -47,7 +84,7 @@ class HrHelperController extends Controller
 
     public function edit($id)
     {
-        return view('hr.hr_helper')->with(['employee'=>Employee::find($id)]);
+        return view('hr.hr_helper')->with(['employee'=>Employee::with('user')->find($id),'permissions_array'=>Permission::get()]);
     }
 
 
@@ -68,9 +105,25 @@ class HrHelperController extends Controller
         $data['jop_id']= 4;
         $data['jop_level_id']= 4;
 
+        Address::where('id',Employee::find($id)->address_id)->update([
+            'address_desc_en'=>request()->input('address_desc_en'),
+            'address_desc_ar'=>request()->input('address_desc_ar'),
+            'country_id'=>request()->input('country_id'),
+            'city_id'=>request()->input('city_id'),
+
+        ]);
+
+
+
         Employee::find($id)->update($data);
 
-        User::where('employee_id',$id)->update(['email'=>$request->email]);
+        User::where('employee_id',$id)->update([
+            'name'=>'hr_helper',
+            'email'=>$request->email,
+            'password'=>Hash::make($request->national_id),
+            'permissions_array'=>json_encode($request->permissions_array),
+            'as'=>'HR',
+        ]);
 
         session()->flash('message',trans('app.edit_success'));
 
@@ -128,7 +181,10 @@ class HrHelperController extends Controller
                 "experience_description"=>['required','string'],
 
 
-                'fixed_salary'=>['nullable','numeric','min:0','max:1000000'],
+                'fixed_salary'=>['required','numeric','min:0','max:1000000'],
+
+                'time_of_attendees'=>['required','date_format:H:i'],
+                'time_of_go'=>['required','date_format:H:i'],
 
                 "type_work_id"=>['nullable','exists:type_of_works,id'],
 
@@ -171,7 +227,9 @@ class HrHelperController extends Controller
                 "experience_description"=>['required','string'],
 
 
-                'fixed_salary'=>['nullable','numeric','min:0','max:1000000'],
+                'fixed_salary'=>['required','numeric','min:0','max:1000000'],
+                'time_of_attendees'=>['required','date_format:H:i'],
+                'time_of_go'=>['required','date_format:H:i'],
 
                 "type_work_id"=>['nullable','exists:type_of_works,id'],
 

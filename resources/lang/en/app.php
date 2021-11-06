@@ -33,7 +33,7 @@ return [
     'national id'=>'Nationa/Civil Id',
     'national card img'=>'ID Card Photo',
     'national_card_address_description'=>'The address written on the identity card',
-    'national_card_Release_date'=>'National Card Release Date',
+    'national_card_Release_date'=>'National Card Expiry Date',
     'passport_id'=>'Passport Number',
     'passport_address_description'=>'Passport Address Adrescription',
     'passport_release_date'=>'Passport Release date',
@@ -216,6 +216,9 @@ return [
     'add helper hr'=>'Add Hr Helper',
     'permisson hr'=>'Premisson Hr',
 
+
+    'managers'=>'Managers',
+    'There is a manager for that department and branch already'=>'There is a manager for that department and branch already',
 
 
 ];

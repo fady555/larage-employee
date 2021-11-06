@@ -4,10 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+use Laravel\Scout\Searchable;
 
 
 class Employee extends Model
 {
+
+    use Searchable;
+
     protected $table='employees';
     protected $fillable = [
         'full_name_ar',
@@ -47,10 +51,12 @@ class Employee extends Model
         'direct_employee_id',
         'military_services_id',
         'comapny_departments_id',
+        'company_branch_id',
         'marital_statuses_id',
         'fixed_salary',
         'military_services_id',
         'gender',
+        'jop_level_id',
 
 
 
@@ -90,7 +96,7 @@ class Employee extends Model
     }
 
     public function user(){
-        return $this->hasOne(User::class,'id');
+        return $this->hasOne(User::class,'employee_id','id');
     }
 
 }

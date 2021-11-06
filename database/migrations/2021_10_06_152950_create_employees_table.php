@@ -68,7 +68,7 @@ class CreateEmployeesTable extends Migration
             $table->unsignedBigInteger('jop_id')->nullable();
             $table->foreign('jop_id')->references('id')->on('jops')->onUpdate('cascade')->onDelete('cascade');
             //=============================================================
-            $table->unsignedBigInteger('jop_level_id')->nullable();
+            $table->unsignedBigInteger('jop_level_id');
             $table->foreign('jop_level_id')->references('id')->on('jop_levels')->onUpdate('cascade')->onDelete('cascade');
             //=============================================================
 

@@ -18,6 +18,9 @@ Create Employee
 <div class="content-wrapper">
     <div class="content">
 
+
+
+
             <form class="form-row" method="POST"  action="{{route('store.employee')}}" runat="server" enctype="multipart/form-data">
 
                 @csrf
@@ -660,4 +663,3 @@ Create Employee
 
 @endsection
 
- 

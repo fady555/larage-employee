@@ -35,7 +35,6 @@ class CreateComapnyDepartmentsTable extends Migration
             ['depart_en'=>'Sales Administration','depart_ar'=>'إدارة المبيعات'],
             ['depart_en'=>'Operations Management','depart_ar'=>'إدارة العمليات'],
             ['depart_en'=>'financial Management','depart_ar'=>'الإدارة المالية'],
-            ['depart_en'=>'Human Resource Management','depart_ar'=>'إدارة الموارد البشرية'],
         ]);
     }
 

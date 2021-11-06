@@ -46,6 +46,14 @@ class BasicEmployeeController extends Controller
         if(!isset($editEmployee['military_services_id'])): $editEmployee['military_services_id'] = 1; endif;
 
 
+        Address::where('id',Employee::find($id)->address_id)->update([
+            'address_desc_en'=>request()->input('address_desc_en'),
+            'address_desc_ar'=>request()->input('address_desc_ar'),
+            'country_id'=>request()->input('country_id'),
+            'city_id'=>request()->input('city_id'),
+
+        ]);
+
 
 
         $x = Employee::with(['address'])->find($id)->update($editEmployee);
@@ -84,10 +92,17 @@ class BasicEmployeeController extends Controller
 
         if(!isset($editEmployee['military_services_id'])): $editEmployee['military_services_id'] = 1; endif;
 
+        Address::where('id',Employee::find($id)->address_id)->update([
+            'address_desc_en'=>request()->input('address_desc_en'),
+            'address_desc_ar'=>request()->input('address_desc_ar'),
+            'country_id'=>request()->input('country_id'),
+            'city_id'=>request()->input('city_id'),
+
+        ]);
 
 
 
-        $x = Employee::with(['address'])->find($id)->update($editEmployee);
+        $x = Employee::find($id)->update($editEmployee);
 
 
         session()->flash('message',trans('app.edit_success'));
@@ -122,9 +137,16 @@ class BasicEmployeeController extends Controller
         if(!isset($editEmployee['military_services_id'])): $editEmployee['military_services_id'] = 1; endif;
 
 
+        Address::where('id',Employee::find($id)->address_id)->update([
+            'address_desc_en'=>request()->input('address_desc_en'),
+            'address_desc_ar'=>request()->input('address_desc_ar'),
+            'country_id'=>request()->input('country_id'),
+            'city_id'=>request()->input('city_id'),
+
+        ]);
 
 
-        $x = Employee::with(['address'])->find($id)->update($editEmployee);
+        $x = Employee::find($id)->update($editEmployee);
 
 
         session()->flash('message',trans('app.edit_success'));
