@@ -32,16 +32,16 @@ Route::group($group,function (){
 
     //employee
 
-    //Route::get('show-employees','EmployeeController@index')->name('show.employees');
+    //Route::get('show-employees','EmployeeController@index')->name('show.employees')->middleware('hr_perm:1');
 
-    Route::get('create-employee','EmployeeController@create')->name('create.employee');
-    Route::post('store-employee','EmployeeController@store')->name('store.employee');
+    Route::get('create-employee','EmployeeController@create')->name('create.employee')->middleware('hr_perm:2');
+    Route::post('store-employee','EmployeeController@store')->name('store.employee')->middleware('hr_perm:2');
 
-    Route::get('edit-employee/{id?}','EmployeeController@edit')->name('edit.employee');
-    Route::post('update-employee/{id?}','EmployeeController@update')->name('update.employee');
+    Route::get('edit-employee/{id?}','EmployeeController@edit')->where('id','[4-g]')->name('edit.employee')->middleware(['employee_edit','hr_perm:3']);
+    Route::post('update-employee/{id?}','EmployeeController@update')->where('id','[4-g]')->name('update.employee')->middleware(['employee_edit','hr_perm:3']);
 
 
-    Route::post('delete-employee/{id?}','EmployeeController@update')->name('update.employee');
+    Route::post('delete-employee/{id?}','EmployeeController@update')->where('id','[4-g]')->name('update.employee')->middleware(['employee_edit','hr_perm:4']);
 
 
 
@@ -210,6 +210,46 @@ Route::group($group,function (){
     })->name('form.for');
 
 
+    Route::get('getemployee-from-for-edit/{branch?}/{department?}/{level?}/{employeeEditId?}', function ($branch,$department,$level,$employeeEditId)
+    {
+
+
+       //return $branch.$department.$level->middleware('hr_perm:30');
+
+       if($level <=2 or $department <= 2 ):
+           $data['from'] = [];
+           $data['for'] = [];
+
+           return json_encode($data);
+
+       endif;
+
+
+
+       if($level == 3):
+           $employeeFrom =Employee::where('jop_level_id',$level-1)->get();
+       elseif($level == 4):
+           $employeeFrom =Employee::where('company_branch_id',$branch)->where('comapny_departments_id',$department)->where('jop_level_id',$level-1)->where('id','!=',$employeeEditId)->get();
+       endif;
+
+
+       if($level == 3):
+           $employeeFor =Employee::where('company_branch_id',$branch)->where('comapny_departments_id',$department)->where('jop_level_id',$level+1)->get();
+       elseif($level == 4):
+           $employeeFor =[];
+       endif;
+
+
+
+       $data['from'] = $employeeFrom;
+       $data['for'] = $employeeFor;
+
+
+       return json_encode($data);
+
+
+   })->name('form.for.edit');
+
 
     Route::get('cheeck-direct-exist/{branch?}/{department?}', function ($branch,$department) {
 
@@ -223,17 +263,11 @@ Route::group($group,function (){
 
 
 
-    //executive manger
-    Route::get('show-executive-manger','BasicEmployeeController@editMangerEceutive')->name('show.executive.manger');
-    Route::post('update-executive-manger','BasicEmployeeController@updateMangerEceutive')->name('update.executive.manger');
+    // mangers
+    Route::get('edit-manger/{id?}','BasicEmployeeController@edit')->where('id','[1-3]')->name('edit.manger');
+    Route::post('update-manger/{id?}','BasicEmployeeController@update')->where('id','[1-3]')->name('update.manger');
 
-    //genral manger
-    Route::get('show-general-manger','BasicEmployeeController@editGeneralManger')->name('show.general.manger');
-    Route::post('update-general-manger','BasicEmployeeController@updateGeneralManger')->name('update.general.manger');
 
-    //hr
-    Route::get('show-hr-manger','BasicEmployeeController@editHrDirect')->name('show.hr.manger');
-    Route::post('update-hr-manger','BasicEmployeeController@updateHrDirect')->name('update.hr.manger');
 
     //hr_helper
 
@@ -242,10 +276,10 @@ Route::group($group,function (){
     Route::get('add-hr-helper','HrHelperController@create')->name('add.hr.helper')->middleware('head_hr');
     Route::post('store-hr-helper','HrHelperController@store')->name('store.hr.helper')->middleware('head_hr');
 
-    Route::get('edit-hr-helper/{id?}','HrHelperController@edit')->where('id','[3-g]')->name('edit.hr.helper')->middleware('head_hr');
-    Route::post('update-hr-helper/{id?}','HrHelperController@update')->name('update.hr.helper')->middleware('head_hr');
+    Route::get('edit-hr-helper/{id?}','HrHelperController@edit')->where('id','[4-g]')->name('edit.hr.helper')->middleware(['head_hr','hr_help_edit']);
+    Route::post('update-hr-helper/{id?}','HrHelperController@update')->where('id','[4-g]')->name('update.hr.helper')->middleware(['head_hr','hr_help_edit']);
 
-    Route::post('delete-hr-helper/{id?}','HrHelperController@destroy')->name('delete.hr.helper')->middleware('head_hr');
+    Route::post('delete-hr-helper/{id?}','HrHelperController@destroy')->where('id','[4-g]')->name('delete.hr.helper')->middleware('head_hr');
 
 
 

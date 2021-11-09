@@ -26,6 +26,14 @@ class CreatePermissionsTable extends Migration
 
         DB::table('permissions')->insert([
 
+
+             //employee]
+             ['name_en'=>'Show employees','name_ar'=>'اظهار الموظفين','cheek'=>'1'],//1
+             ['name_en'=>'Add employee','name_ar'=>'اضافه الموظف','cheek'=>'0'],//2
+             ['name_en'=>'edit employee','name_ar'=>'التعديل على الموظف','cheek'=>'0'],//3
+             ['name_en'=>'Delete employee','name_ar'=>'حذف الموظف','cheek'=>'0'],//4
+
+
             //jop
             ['name_en'=>'Show jops','name_ar'=>'اظهار الوظائف','cheek'=>'1'],//5
             ['name_en'=>'Add jop','name_ar'=>'اضافه وظيفه','cheek'=>'0'],//6

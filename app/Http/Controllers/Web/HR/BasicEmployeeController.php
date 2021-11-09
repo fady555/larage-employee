@@ -8,14 +8,15 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Rules\Arabic;
 use App\Rules\PhoneCode;
+use App\User;
+use Illuminate\Support\Facades\Hash;
 
 class BasicEmployeeController extends Controller
 {
 
-    //---------------executive manger ---------------
-    public function editMangerEceutive(){
+    public function edit($id){
 
-        $employee = Employee::with(['address'])->find(1);
+        $employee = Employee::with(['address'])->find($id);
 
         return view('hr.mangers')->with(['employee'=>$employee]);
 
@@ -24,20 +25,18 @@ class BasicEmployeeController extends Controller
 
 
 
-    public function updateMangerEceutive(Request $request,$id = 1){
+    public function update(Request $request,$id){
 
 
-        //return $request->all('gender');
-
+       // return $request->all();
         $result = validator($request->all(),$this->rules($id),[],$this->customAttributes());
 
-        if($result->fails()):
-            return redirect()->back()->withErrors($result)->withInput();
-        endif;
+        if($result->fails()){
+            return back()->withErrors($result)->withInput();
+        }
 
 
-        $editEmployee = request()->except('_token');
-
+        $editEmployee = request()->all();
 
 
         if(isset($editEmployee['avatar'])): $editEmployee['avatar'] = request()->file('avatar')->store('/avatars');endif;
@@ -46,17 +45,19 @@ class BasicEmployeeController extends Controller
         if(!isset($editEmployee['military_services_id'])): $editEmployee['military_services_id'] = 1; endif;
 
 
-        Address::where('id',Employee::find($id)->address_id)->update([
+
+
+        Employee::find($id)->address()->update([
             'address_desc_en'=>request()->input('address_desc_en'),
             'address_desc_ar'=>request()->input('address_desc_ar'),
             'country_id'=>request()->input('country_id'),
             'city_id'=>request()->input('city_id'),
-
         ]);
 
 
+         Employee::find($id)->update($editEmployee);
 
-        $x = Employee::with(['address'])->find($id)->update($editEmployee);
+        User::where('employee_id',$id)->update(['name'=>$request->full_name_en,'email'=>$request->email]);
 
 
         session()->flash('message',trans('app.edit_success'));
@@ -65,95 +66,7 @@ class BasicEmployeeController extends Controller
 
     }
 
-    //-----------------Gneral manger -------------------
-    public function editGeneralManger(){
-        $employee = Employee::with(['address'])->find(2);
 
-        return view('hr.mangers')->with(['employee'=>$employee]);
-
-    }
-
-    public function updateGeneralManger(Request $request,$id = 2){
-
-
-        $result = validator($request->all(),$this->rules($id),[],$this->customAttributes());
-
-        if($result->fails()):
-            return redirect()->back()->withErrors($result)->withInput();
-        endif;
-
-
-        $editEmployee = request()->except('_token');
-
-
-
-        if(isset($editEmployee['avatar'])): $editEmployee['avatar'] = request()->file('avatar')->store('/avatars');endif;
-        if(isset($editEmployee['national_card_img'])): $editEmployee['national_card_img'] = request()->file('national_card_img')->store('/national_card_imgs');  endif;
-
-        if(!isset($editEmployee['military_services_id'])): $editEmployee['military_services_id'] = 1; endif;
-
-        Address::where('id',Employee::find($id)->address_id)->update([
-            'address_desc_en'=>request()->input('address_desc_en'),
-            'address_desc_ar'=>request()->input('address_desc_ar'),
-            'country_id'=>request()->input('country_id'),
-            'city_id'=>request()->input('city_id'),
-
-        ]);
-
-
-
-        $x = Employee::find($id)->update($editEmployee);
-
-
-        session()->flash('message',trans('app.edit_success'));
-
-        return back();
-    }
-
-    //------------------Hr director -----------------
-
-    public function editHrDirect(){
-        $employee = Employee::with(['address'])->find(3);
-
-        return view('hr.mangers')->with(['employee'=>$employee]);
-
-    }
-
-    public function updateHrDirect(Request $request,$id = 3){
-        $result = validator($request->all(),$this->rules($id),[],$this->customAttributes());
-
-        if($result->fails()):
-            return redirect()->back()->withErrors($result)->withInput();
-        endif;
-
-
-        $editEmployee = request()->except('_token');
-
-
-
-        if(isset($editEmployee['avatar'])): $editEmployee['avatar'] = request()->file('avatar')->store('/avatars');endif;
-        if(isset($editEmployee['national_card_img'])): $editEmployee['national_card_img'] = request()->file('national_card_img')->store('/national_card_imgs');  endif;
-
-        if(!isset($editEmployee['military_services_id'])): $editEmployee['military_services_id'] = 1; endif;
-
-
-        Address::where('id',Employee::find($id)->address_id)->update([
-            'address_desc_en'=>request()->input('address_desc_en'),
-            'address_desc_ar'=>request()->input('address_desc_ar'),
-            'country_id'=>request()->input('country_id'),
-            'city_id'=>request()->input('city_id'),
-
-        ]);
-
-
-        $x = Employee::find($id)->update($editEmployee);
-
-
-        session()->flash('message',trans('app.edit_success'));
-
-        return back();
-    }
-    //-----------------------------------------------
 
 
     private  function rules($id)

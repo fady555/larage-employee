@@ -219,7 +219,9 @@ return [
     'There is a manager for that department and branch already'=>'هناك مدير لذالك القسم والفرع بالفعل ',
 
 
+    'The chosen city'=>'المدينه المختاره',
 
+    'edit employee'=>'التعديل على الموظف',
 
 
 

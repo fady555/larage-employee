@@ -106,7 +106,10 @@
                                         </div>
 
                                         <div class="col-md-5 mb-3">
-                                            <label for="validationServer04">@lang('app.city')</label>
+                                            <label>
+                                                @lang('app.The chosen city')
+                                                ({{\App\City::find($company->address->city_id)->{'name_'.app()->getLocale()}  }})
+                                            </label>
 
                                             <select class="form-control" name="city_id" id="city_id">
 

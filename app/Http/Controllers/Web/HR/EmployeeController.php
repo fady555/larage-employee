@@ -102,6 +102,62 @@ class EmployeeController extends Controller
             ];
     }
 
+    private function rulesEdit($id){
+
+        return [
+
+                "full_name_en"=>['required','string'],
+                "full_name_ar"=>['required',new Arabic(trans('app.name must arabic'))],
+                "national_id"=>['required','string'],
+                "national_card_Release_date"=>['required','date','date_format:Y-m-d'],
+                "passport_id"=>['nullable','string','max:12'],
+                "passport_release_date"=>['nullable','date','date_format:Y-m-d'],
+                "passport_expire_date"=>['nullable','date','date_format:Y-m-d'],
+                "nationality_id"=>['required','exists:nationalities,id'],
+                "gender"=>['required','in:F,M'],
+                "age"=>['required','numeric','between:1,99'],
+                "military_services_id"=>['nullable','exists:military_services,id'],
+                "marital_statuses_id"=>['required','exists:marital_statuses,id'],
+                "number_of_wif_husband"=>['nullable','numeric','between:1,4'],
+                "number_of_wif_children"=>['nullable','numeric','between:1,4'],
+                "name_of_bank"=>['nullable','string'],
+                "number_of_account"=>['nullable','string'],
+                "email"=>['required','email','unique:employees,email,'.$id,'unique:users,email,'.$id],
+
+                "phone"=>['required','string',/*new PhoneCode(trans('app.error_phone'))*/],
+
+                "country_id"=>['required','exists:countries,id'],
+                "city_id"=>['nullable','exists:cities,id'],
+                "address_desc_en"=>['required','string'],
+                "address_desc_ar"=>['required','string',new Arabic(trans('app.address must arabic'))],
+                "national_card_address_description"=>['nullable','string'],
+                "passport_address_description"=>['nullable','string'],
+                "degree_id"=>['required','exists:degrees,id'],
+                "experience_description"=>['required','string'],
+                "jop_id"=>['required','exists:jops,id'],
+
+                'time_of_attendees'=>['required','date_format:H:i'],
+                'time_of_go'=>['required','date_format:H:i'],
+
+                'fixed_salary'=>['required','numeric','min:0','max:1000000'],
+
+                "type_work_id"=>['required','exists:type_of_works,id'],
+                //"company_id"=>['required','exists:companies,id'],
+
+                'select_From_employee'=>['exists:employees,id'],
+
+                "branch_id"=>['required','exists:company_branches,id'],
+                "comapny_departments_id"=>['required','exists:comapny_departments,id'],
+
+                "jop_level_id"=>['required','exists:jop_levels,id',new LevelCheeck(request()->branch_id,request()->comapny_departments_id,request()->jop_level_id)],
+
+                "number_file"=>['nullable','string'],
+                "avatar"=>['nullable','file','mimes:png,jpg,gif','max:40000'],
+                "national_card_img"=>['nullable','file','mimes:png,jpg,gif','max:40000'],
+
+            ];
+    }
+
 
     private  function customAttributes()
     {
@@ -198,7 +254,9 @@ class EmployeeController extends Controller
 
         User::create(['name'=>$request->full_name_en,'email'=>$request->email,'password'=>Hash::make(env('Defult_Password_Employee','tests2020')),'employee_id'=>$x->id]);
 
-    return "add employee sucess ";
+        session()->flash('message',trans('app.add_success'));
+
+        return back();
 
     }
 
@@ -221,7 +279,17 @@ class EmployeeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $employee = Employee::with([
+            'address',
+            'jop',
+            'degree',
+            'education',
+            'experience',
+            'direct',
+        ])->find($id);
+
+        //dd($employee);
+        return view('hr.edit_employee')->with(['permissions_array'=>Permission::get(),'employee'=>$employee]);
     }
 
     /**
@@ -233,7 +301,46 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        //dd($request->all());
+
+        $result = validator($request->all(),$this->rulesEdit($id),[],$this->customAttributes());
+
+        if($result->fails()){
+            return back()->withErrors($result)->withInput();
+        }
+
+
+        $newEmployee = request()->all();
+
+
+        if(isset($newEmployee['avatar'])): $newEmployee['avatar'] = request()->file('avatar')->store('/avatars');endif;
+        if(isset($newEmployee['national_card_img'])): $newEmployee['national_card_img'] = request()->file('national_card_img')->store('/national_card_imgs');  endif;
+
+        if(!isset($newEmployee['military_services_id'])): $newEmployee['military_services_id'] = 1; endif;
+
+
+
+
+        Employee::find($id)->address()->update([
+            'address_desc_en'=>request()->input('address_desc_en'),
+            'address_desc_ar'=>request()->input('address_desc_ar'),
+            'country_id'=>request()->input('country_id'),
+            'city_id'=>request()->input('city_id'),
+        ]);
+
+        $newEmployee['company_id']= 1;
+        $newEmployee['company_branch_id']= $request->branch_id;
+        $newEmployee['jop_level_id']= $request->jop_level_id;
+        $newEmployee['direct_employee_id']= $request->select_From_employee;
+
+       Employee::find($id)->update($newEmployee);
+
+        User::where('employee_id',$id)->update(['name'=>$request->full_name_en,'email'=>$request->email,'password'=>Hash::make(env('Defult_Password_Employee','tests2020'))]);
+
+        session()->flash('message',trans('app.edit_success'));
+
+        return back();
     }
 
     /**

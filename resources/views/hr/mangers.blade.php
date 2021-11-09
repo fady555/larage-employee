@@ -5,11 +5,11 @@
 @section('title')
 
 
-    @if (in_array('show-executive-manger',request()->segments()))
+    @if (in_array('1',request()->segments()))
         @lang('app.Executive Director')
-    @elseif (in_array('show-general-manger',request()->segments()))
+    @elseif (in_array('2',request()->segments()))
         @lang('app.General Director')
-    @elseif (in_array('show-hr-manger',request()->segments()))
+    @elseif (in_array('3',request()->segments()))
         @lang('app.Humman Resuorce Director')
     @endif
 
@@ -43,14 +43,7 @@
 
 
 
-        @if (in_array('show-executive-manger',request()->segments()))
-            <form class="form-row" method="POST"  action="{{route('update.executive.manger')}}" runat="server" enctype="multipart/form-data">
-        @elseif (in_array('show-general-manger',request()->segments()))
-            <form class="form-row" method="POST"  action="{{route('update.general.manger')}}" runat="server" enctype="multipart/form-data">
-        @elseif (in_array('show-hr-manger',request()->segments()))
-            <form class="form-row" method="POST"  action="{{route('update.hr.manger')}}" runat="server" enctype="multipart/form-data">
-        @endif
-
+            <form class="form-row" method="POST"  action="{{route('update.manger',[$employee->id])}}" runat="server" enctype="multipart/form-data">
 
 
                 @csrf
@@ -294,6 +287,9 @@
                                             <option value="{{old('country_id')}}">{{\App\Country::find(old('country_id'))->{'name_'.app()->getLocale()}  }}</option>
                                         @endif
 
+                                        <option value="{{$employee->address->country_id}}">{{\App\Country::find($employee->address->country_id)->{'name_'.app()->getLocale()}  }}</option>
+
+
                                         @foreach(\App\Country::get() as $country)
                                         <option value="{{$country->id}}">{{ $country->{'name_'.app()->getLocale()} }}</option>
                                         @endforeach
@@ -303,8 +299,10 @@
                                 </div>
 
                                 <div class="col-md-6 mb-3">
-                                    <label for="validationServer04">@lang('app.city')</label>
-
+                                    <label>
+                                        @lang('app.The chosen city')
+                                        ({{\App\City::find($employee->address->city_id)->{'name_'.app()->getLocale()}  }})
+                                    </label>
                                     <select class="form-control" name="city_id" id="city_id">
 
                                         @if ($errors->any())
@@ -337,10 +335,7 @@
                                 </div>
 
                             </div>
-                                <div class="form-row">
 
-
-                                </div>
                         </div>
                     </div>
                 </div>

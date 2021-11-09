@@ -24,7 +24,7 @@ class CreateJopsTable extends Migration
             ['name_en'=>"General Director",'name_ar'=>"المدير العام",'nik_name'=>"GD"],
             ['name_en'=>"Manger Director Human Resource",'name_ar'=>" مدير المباشر الموارد البشريه ",'nik_name'=>"Head HR"],
 
-            ['name_en'=>"Human Resource",'name_ar'=>"الموارد البشريه",'nik_name'=>"HR"],
+            ['name_en'=>"Human Resource (traninee)",'name_ar'=>"متدرب الموارد البشريه",'nik_name'=>"HR"],
             ['name_en'=>"law affires",'name_ar'=>"شئون قانونيه",'nik_name'=>"law"],
             ['name_en'=>"back end developer",'name_ar'=>"مطور الواجهه الخلفيه",'nik_name'=>"BK-end"],
             ['name_en'=>"front end developer",'name_ar'=>"مطور الواجهه الاماميه",'nik_name'=>"FR-end"],

@@ -72,6 +72,8 @@ class Kernel extends HttpKernel
         'head_hr' => \App\Http\Middleware\HeadHR::class,
         'hr' => \App\Http\Middleware\HR::class,
         'hr_perm' => \App\Http\Middleware\HR_Permiss::class,
+        'hr_help_edit' => \App\Http\Middleware\HrHelperEdit::class,
+        'employee_edit' => \App\Http\Middleware\EditEmployee::class,
         //---------------------------------------------------------------------------------------
     ];
 }

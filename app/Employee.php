@@ -10,7 +10,6 @@ use Laravel\Scout\Searchable;
 class Employee extends Model
 {
 
-    use Searchable;
 
     protected $table='employees';
     protected $fillable = [

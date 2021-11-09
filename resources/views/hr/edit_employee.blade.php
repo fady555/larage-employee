@@ -34,20 +34,27 @@
         @endif
 
 
-        {{--------ADD-------}}
-        <form class="form-row" method="POST"  action="{{route('store.employee')}}" runat="server" enctype="multipart/form-data">
+        {{--------edit-------}}
+        <form class="form-row" method="POST"  action="{{route('update.employee',[$employee->id])}}" runat="server" enctype="multipart/form-data">
             @csrf
 
             {{------------personal information----------------}}
             <div class="col-lg-12">
                 <div class="card card-default">
                     <div class="card-header card-header-border-bottom bg-primary">
-                        <h2>@lang('app.personal information')</h2>
+
+                        <h2>@lang('app.edit employee') </h2>
+
                         <input  type="file"  accept="image/*" id="avatar"  name="avatar" class="btn btn-md ml-auto btn-warning d-none form-control" placeholder="dd" />
 
                         <label  for='avatar' class="ml-auto">
 
-                            <img src="{{ asset('/public/assets/img/user/tdi3NGa.png') }}" width="70px" id='imgShow' class="user-image ml-auto" alt="User Image">
+                           @if(is_null($employee->avatar))
+                                <img src="{{ asset('/public/assets/img/user/tdi3NGa.png') }}" width="70px" id='imgShow' class="user-image ml-auto" alt="User Image">
+                           @else:
+                                <img src="{{ URL("/img/".$employee->avatar) }}" width="70px" id='imgShow' class="user-image ml-auto" alt="User Image">
+                           @endif;
+
 
                             <div class="text-warning">@lang('app.choose avatar')</div>
                         </label>
@@ -58,30 +65,36 @@
 
                                 <div class="col-md-6 mb-3">
                                     <label >@lang('app.full name by english')<i class="text-danger">*</i></label>
-                                    <input type="text" name="full_name_en"  class="form-control removeError"  placeholder="@lang('app.full name by english')" value="{{old('full_name_en')}}">
+                                    <input type="text" name="full_name_en"  class="form-control removeError"  placeholder="@lang('app.full name by english')" value="{{old('full_name_en',$employee->full_name_en)}}" ="">
                                 </div>
 
                                 <div class="col-md-6 mb-3">
                                     <label >@lang('app.full name by arabic')<i class="text-danger">*</i></label>
-                                    <input type="text" name="full_name_ar"  class="form-control"  placeholder="@lang('app.full name by arabic')" value="{{old('full_name_ar')}}">
+                                    <input type="text" name="full_name_ar"  class="form-control"  placeholder="@lang('app.full name by arabic')" value="{{old('full_name_ar',$employee->full_name_ar)}}">
                                 </div>
 
                                 <div class="col-md-6 mb-3">
                                     <label >@lang('app.national id')<i class="text-danger">*</i></label>
-                                    <input type="text" name="national_id" value="{{old('national_id')}}"  class="form-control"  data-mask="9999999999999999" placeholder="@lang('app.national id')" aria-label="" autocomplete="off" maxlength="19" ="">
+                                    <input type="text" name="national_id" value="{{old('national_id',$employee->national_id)}}"  class="form-control"  data-mask="9999999999999999" placeholder="@lang('app.national id')" aria-label="" autocomplete="off" maxlength="19" ="">
                                 </div>
 
                                 <div class="col-md-3 mb-3">
                                     <label>@lang('app.national_card_Release_date')<i class="text-danger">*</i></label>
-                                    <input type="text" name="national_card_Release_date" value="{{old('national_card_Release_date')}}" class="form-control" data-mask="0000-00-00" placeholder="" aria-label="" autocomplete="off" maxlength="10">
+                                    <input type="text" name="national_card_Release_date" value="{{old('national_card_Release_date',$employee->national_card_Release_date)}}" class="form-control" data-mask="0000-00-00" placeholder="" aria-label="" autocomplete="off" maxlength="10">
                                 </div>
 
                                 <div class="col-md-3 mb-3">
                                     <input type="file"  accept="image/*" id='card' name="national_card_img" value="{{old('national_card_img')}}"  class="form-control-file d-none"  placeholder="@lang('app.national card img')" >
 
                                     <label for="card" class="ml-auto">
-                                        <img src="{{ asset('/public/assets/img/user/tdi3NGa.png') }}" width="70px" id='cardShow' class="user-image ml-auto" alt="User Image">
-                                        <div>@lang('app.national card img')</div>
+
+                                        @if(is_null($employee->national_card_img))
+                                                <img src="{{ asset('/public/assets/img/user/tdi3NGa.png') }}" width="70px" id='cardShow' class="user-image ml-auto" alt="User Image">
+                                        @else
+                                                <img src="{{ URL("/img/".$employee->national_card_img) }}" width="70px" id='cardShow' class="user-image ml-auto" alt="User Image">
+                                        @endif
+
+                                    <div>@lang('app.national card img')</div>
                                     </label>
 
                                 </div>
@@ -90,16 +103,16 @@
 
                                 <div class="col-md-6 mb-3">
                                     <label>@lang('app.passport_id')</label>
-                                    <input type="text" name="passport_id" value="{{old('passport_id')}}" class="form-control"  placeholder="@lang('app.passport_id')"  autocomplete="off">
+                                    <input type="text" name="passport_id" value="{{old('passport_id',$employee->passport_id)}}" class="form-control"  placeholder="@lang('app.passport_id')"  autocomplete="off">
                                 </div>
 
                                 <div class="col-md-3 mb-3">
                                     <label>@lang('app.passport_release_date')</label>
-                                    <input type="text" name="passport_release_date" value="{{old('passport_release_date')}}" class="form-control" data-mask="0000-00-00" placeholder="" aria-label="" autocomplete="off" maxlength="10">
+                                    <input type="text" name="passport_release_date" value="{{old('passport_release_date',$employee->passport_release_date)}}" class="form-control" data-mask="0000-00-00" placeholder="" aria-label="" autocomplete="off" maxlength="10">
                                 </div>
                                 <div class="col-md-3 mb-3">
                                     <label>@lang('app.passport_expire_date')</label>
-                                    <input type="text" name="passport_expire_date" value="{{old('passport_expire_date')}}" class="form-control" data-mask="0000-00-00" placeholder="" aria-label="" autocomplete="off" maxlength="10">
+                                    <input type="text" name="passport_expire_date" value="{{old('passport_expire_date',$employee->passport_expire_date)}}" class="form-control" data-mask="0000-00-00" placeholder="" aria-label="" autocomplete="off" maxlength="10">
                                 </div>
 
                                 <div class="col-md-5 mb-3">
@@ -110,6 +123,9 @@
                                         @if ($errors->any())
                                         <option value="{{old('nationality_id')}}">{{\App\Nationality::find(old('nationality_id'))->{'country_'.app()->getLocale().'Name'}  }}</option>
                                         @endif
+
+                                        <option value="{{old('nationality_id',$employee->nationality_id)}}">{{\App\Nationality::find($employee->nationality_id)->{'country_'.app()->getLocale().'Name'}  }}</option>
+
 
                                         @foreach(\App\Nationality::get() as $ms)
                                         <option value="{{$ms->id}}">{{ $ms->{'country_'.app()->getLocale().'Name'} }}</option>
@@ -126,25 +142,25 @@
 
                                         <li class="d-inline-block mr-3">
                                             <label class="control control-radio">@lang('app.male')
-                                                <input type="radio" name="genderCheeck" value="M" onchange="$('[name=gender]').val(this.value); $('[name=gender]').click()"  @if(old('gender') == 'M') checked @endif    >
+                                                <input type="radio" name="genderCheeck" value="M" onchange="$('[name=gender]').val(this.value); $('[name=gender]').click()"  @if(old('gender',$employee->gender) == 'M') checked @endif    >
                                                 <div class="control-indicator"></div>
                                             </label>
                                         </li>
 
                                         <li class="d-inline-block ">
                                             <label class="control control-radio">@lang('app.female')
-                                                <input type="radio" name="genderCheeck" value="F" onchange="$('[name=gender]').val(this.value); $('[name=gender]').click()"  @if(old('gender') == 'F') checked @endif  >
+                                                <input type="radio" name="genderCheeck" value="F" onchange="$('[name=gender]').val(this.value); $('[name=gender]').click()"  @if(old('gender',$employee->gender) == 'F') checked @endif  >
                                                 <div class="control-indicator"></div>
                                             </label>
                                         </li>
 
                                     </ul>
-                                    <input type="hidden" class="form-control" name="gender" value="@if($errors->any()) @if(old('gender') == 'M') M @elseif (old('gender') == 'F') F  @endif @endif"  />
+                                    <input type="hidden" class="form-control" name="gender" value="@if($errors->any()) @if(old('gender') == 'M') M @elseif (old('gender') == 'F') F @endif  @else @if($employee->gender == 'M') M @elseif ($employee->gender == 'F') F @endif   @endif "  />
                                 </div>
 
                                 <div class="col-md-2 mb-3">
                                     <label>@lang('app.age')<i class="text-danger">*</i></label>
-                                    <input type="text" name="age" value="{{old('age')}}" class="form-control"  placeholder="@lang('app.age')" maxlength="3">
+                                    <input type="text" name="age" value="{{old('age',$employee->age)}}" class="form-control"  placeholder="@lang('app.age')" maxlength="3">
                                 </div>
 
 
@@ -152,6 +168,8 @@
                                     <label>@lang('app.military_services')<i class="text-danger">*</i></label>
 
                                     <select class="form-control" name="military_services_id" disabled>
+
+                                        <option value="{{\App\MilitaryService::find($employee->military_services_id)->id}}">{{ App\MilitaryService::find($employee->military_services_id)->{'name_'.app()->getLocale()} }}</option>
 
                                         @foreach(\App\MilitaryService::get() as $ms)
                                         <option value="{{$ms->id}}">{{ $ms->{'name_'.app()->getLocale()} }}</option>
@@ -165,6 +183,8 @@
 
                                     <select class="form-control" name="marital_statuses_id">
 
+                                        <option value="{{\App\MaritalStatus::find($employee->military_services_id)->id}}">{{ App\MilitaryService::find($employee->military_services_id)->{'name_'.app()->getLocale()} }}</option>
+
                                         @foreach(\App\MaritalStatus::get() as $ms)
                                         <option value="{{$ms->id}}">{{ $ms->{'name_'.app()->getLocale()} }}</option>
                                         @endforeach
@@ -176,30 +196,30 @@
 
                                 <div class="col-md-6 mb-3">
                                     <label>@lang('app.number_of_wif_husband')</label>
-                                    <input type="text" name="number_of_wif_husband" value="{{old('number_of_wif_husband')}}" class="form-control" data-mask="99" placeholder="" aria-label="" autocomplete="off" maxlength="2">
+                                    <input type="text" name="number_of_wif_husband" value="{{old('number_of_wif_husband',$employee->number_of_wif_husband)}}" class="form-control" data-mask="99" placeholder="" aria-label="" autocomplete="off" maxlength="2">
                                 </div>
 
                                 <div class="col-md-6 mb-3">
                                     <label>@lang('app.number_of_wif_children')</label>
-                                    <input type="text" name="number_of_wif_children" value="{{old('number_of_wif_children')}}" class="form-control" data-mask="99" placeholder="" aria-label="" autocomplete="off" maxlength="2">
+                                    <input type="text" name="number_of_wif_children" value="{{old('number_of_wif_children',$employee->number_of_wif_children)}}" class="form-control" data-mask="99" placeholder="" aria-label="" autocomplete="off" maxlength="2">
                                 </div>
 
 
                                 <div class="col-md-6 mb-3">
                                     <label>@lang('app.name_of_bank')</label>
-                                    <input type="text" name="name_of_bank" value="{{old('name_of_bank')}}" class="form-control">
+                                    <input type="text" name="name_of_bank" value="{{old('name_of_bank',$employee->name_of_bank)}}" class="form-control">
                                 </div>
 
                                 <div class="col-md-6 mb-3">
                                     <label>@lang('app.number_of_account')</label>
-                                    <input type="text" name="number_of_account" value="{{old('number_of_account')}}" class="form-control" data-mask="9999-9999-9999-9999" placeholder="" aria-label="" autocomplete="off" maxlength="16">
+                                    <input type="text" name="number_of_account" value="{{old('number_of_account',$employee->number_of_account)}}" class="form-control" data-mask="9999-9999-9999-9999" placeholder="" aria-label="" autocomplete="off" maxlength="16">
                                 </div>
 
 
 
                                 <div class="col-md-9 mb-3">
                                     <label>@lang('app.email')<i class="text-danger">*</i></label>
-                                    <input type="email" name="email" value="{{old('email')}}" class="form-control"  placeholder="@lang('app.email')">
+                                    <input type="email" name="email" value="{{old('email',$employee->email)}}" class="form-control"  placeholder="@lang('app.email')">
                                 </div>
 
 
@@ -209,7 +229,7 @@
                                     <select class="form-control" id="codes">
 
 
-                                    <option></option>
+                                       <option></option>
                                         @foreach (\App\Country_code_phone::get() as $code)
                                             <option value="{{$code->phonecode}}">{{ $code->name }} ({{$code->phonecode}})</option>
                                         @endforeach
@@ -219,7 +239,7 @@
 
                                 <div class="col-md-6 mb-3">
                                     <label>@lang('app.phone')<i class="text-danger">*</i></label>
-                                    <input type="text" name="phone" value="{{old('phone')}}" class="form-control"   >
+                                    <input type="text" name="phone" value="{{old('phone',$employee->phone)}}" class="form-control"   >
                                 </div>
 
 
@@ -230,6 +250,7 @@
                     </div>
                 </div>
             </div>
+
 
             {{-------address-----------}}
             <div class="col-lg-12">
@@ -250,6 +271,9 @@
                                         <option value="{{old('country_id')}}">{{\App\Country::find(old('country_id'))->{'name_'.app()->getLocale()}  }}</option>
                                     @endif
 
+                                    <option value="{{$employee->address->country_id}}">{{\App\Country::find($employee->address->country_id)->{'name_'.app()->getLocale()}  }}</option>
+
+
                                     @foreach(\App\Country::get() as $country)
                                     <option value="{{$country->id}}">{{ $country->{'name_'.app()->getLocale()} }}</option>
                                     @endforeach
@@ -258,8 +282,13 @@
 
                             </div>
 
+
+
                             <div class="col-md-6 mb-3">
-                                <label for="validationServer04">@lang('app.city')</label>
+                                <label>
+                                    @lang('app.The chosen city')
+                                    ({{\App\City::find($employee->address->city_id)->{'name_'.app()->getLocale()}  }})
+                                </label>
 
                                 <select class="form-control" name="city_id" id="city_id">
 
@@ -272,34 +301,32 @@
                             <div class="col-md-6 mb-3">
                                 <label >@lang('app.current address en')<i class="text-danger">*</i></label>
 
-                                <textarea class="form-control" name="address_desc_en" rows="3" style="margin-top: 0px; margin-bottom: 0px; height: 58px;" >{{old('address_desc_en')}}</textarea>
+                                <textarea class="form-control" name="address_desc_en" rows="3" style="margin-top: 0px; margin-bottom: 0px; height: 58px;" >{{old('address_desc_en',$employee->address->address_desc_en)}}</textarea>
                             </div>
 
                             <div class="col-md-6 mb-3">
                                 <label >@lang('app.current address ar')<i class="text-danger">*</i></label>
 
-                                <textarea class="form-control" name="address_desc_ar" rows="3" style="margin-top: 0px; margin-bottom: 0px; height: 58px;" >{{old('address_desc_ar')}}</textarea>
+                                <textarea class="form-control" name="address_desc_ar" rows="3" style="margin-top: 0px; margin-bottom: 0px; height: 58px;" >{{old('address_desc_ar',$employee->address->address_desc_ar)}}</textarea>
                             </div>
 
                             <div class="col-md-6 mb-3">
                                 <label >@lang('app.national_card_address_description')</label>
 
-                                <textarea class="form-control" name="national_card_address_description" rows="3" style="margin-top: 0px; margin-bottom: 0px; height: 58px;">{{old('national_card_address_description')}}</textarea>
+                                <textarea class="form-control" name="national_card_address_description" rows="3" style="margin-top: 0px; margin-bottom: 0px; height: 58px;">{{old('national_card_address_description',$employee->national_card_address_description)}}</textarea>
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label >@lang('app.passport_address_description')</label>
 
-                                <textarea class="form-control" name="passport_address_description" rows="3" style="margin-top: 0px; margin-bottom: 0px; height: 58px;">{{old('passport_address_description')}}</textarea>
+                                <textarea class="form-control" name="passport_address_description" rows="3" style="margin-top: 0px; margin-bottom: 0px; height: 58px;">{{old('passport_address_description',$employee->passport_address_description)}}</textarea>
                             </div>
 
                         </div>
-                            <div class="form-row">
 
-
-                            </div>
                     </div>
                 </div>
             </div>
+
 
             {{-------Previous experience and certifications-----------}}
             <div class="col-lg-12">
@@ -310,7 +337,7 @@
                     <div class="card-body">
                             <div class="form-row">
 
-                                <div class="col-md-6 col-sm-6 col-9 mb-3">
+                                <div class="col-md-6 mb-3">
                                     <label >@lang('app.education')<i class="text-danger">*</i></label>
                                     <select name="education_status_id" class="form-control">
 
@@ -318,6 +345,7 @@
                                         <option value="{{old('education_status_id')}}">{{\App\Education::find(old('education_status_id'))->{'education_status_'.app()->getLocale()}  }}</option>
                                         @endif
 
+                                            <option value="{{$employee->education_status_id}}">{{ \App\Education::find($employee->education_status_id)->{'education_status_'.app()->getlocale()} }}</option>
 
                                         @foreach (App\Education::get() as $education)
 
@@ -328,7 +356,7 @@
                                     </select>
                                 </div>
 
-                                <div class="col-md-6 col-sm-6 col-3 mb-3">
+                                <div class="col-md-6 mb-3">
                                     <label >@lang('app.education add')</label>
                                     <a class="btn btn-primary form-control"  href="{{route('show.educations')}}" target='_blanck'> @lang('app.add') </a>
                                 </div>
@@ -338,14 +366,16 @@
 
                             <div class="form-row">
 
-                                <div class="col-md-6 col-sm-6 col-9 mb-3">
+                                <div class="col-md-6 mb-3">
                                     <label >@lang('app.degree')<i class="text-danger">*</i></label>
                                     <select name="degree_id" class="form-control">
 
 
                                         @if ($errors->any())
-                                            <option value="{{old('degree_id')}}">{{\App\Degree::find(old('degree_id'))->{'degree_'.app()->getLocale()}  }}</option>
+                                        <option value="{{old('degree_id')}}">{{\App\Degree::find(old('degree_id'))->{'degree_'.app()->getLocale()}  }}</option>
                                         @endif
+
+                                            <option value="{{$employee->degree_id}}">{{ \App\Degree::find($employee->degree_id)->{'degree_'.app()->getlocale()} }}</option>
 
                                         @foreach (App\Degree::get() as $degree)
 
@@ -356,7 +386,7 @@
                                     </select>
                                 </div>
 
-                                <div class="col-md-6 col-sm-6 col-3 mb-3">
+                                <div class="col-md-6 mb-3">
                                     <label >@lang('app.degree add')</label>
                                     <a class="btn btn-primary form-control" href="{{route('show.degrees')}}" target='_blanck'> @lang('app.add') </a>
                                 </div>
@@ -365,7 +395,7 @@
 
                             <div class="form-row">
 
-                                <div class="col-md-6 col-sm-6 col-9 mb-3">
+                                <div class="col-md-6 mb-3">
                                     <label >@lang('app.level experience')<i class="text-danger">*</i></label>
                                     <select name="level_experience_id" class="form-control">
 
@@ -374,15 +404,19 @@
                                         <option value="{{old('level_experience_id')}}">{{\App\Experience::find(old('level_experience_id'))->{'level_experience_'.app()->getLocale()}  }}</option>
                                         @endif
 
+                                            <option value="{{$employee->degree_id}}">{{ \App\Experience::find($employee->level_experience_id)->{'level_experience_'.app()->getlocale()} }}</option>
+
 
                                         @foreach (App\Experience::get() as $ex)
+
                                             <option value="{{$ex->id}}">{{$ex->{'level_experience_'.app()->getlocale()} }}</option>
+
                                         @endforeach
 
                                     </select>
                                 </div>
 
-                                <div class="col-md-6 col-sm-6 col-3 mb-3">
+                                <div class="col-md-6 mb-3">
                                     <label >@lang('app.level experience add')</label>
                                     <a class="btn btn-primary form-control" href="{{route('show.levels.experiences')}}" target='_blanck'> @lang('app.add') </a>
                                 </div>
@@ -393,7 +427,7 @@
                             <div class="form-row">
                                 <div class="col-md-12 mb-3">
                                     <label >@lang('app.experience_description')<i class="text-danger">*</i></label>
-                                    <textarea class="form-control" name="experience_description" rows="3">{{old('experience_description')}}</textarea>
+                                    <textarea class="form-control" name="experience_description" rows="3">{{old('experience_description',$employee->experience_description)}}</textarea>
                                 </div>
                             </div>
 
@@ -417,9 +451,13 @@
                                     <label >@lang('app.jop')<i class="text-danger">*</i></label>
                                     <select name="jop_id" class="form-control">
 
+
                                         @if ($errors->any())
                                         <option value="{{old('jop_id')}}">{{\App\Jop::find(old('jop_id'))->{'name_'.app()->getLocale()}  }}</option>
                                         @endif
+
+                                        <option value="{{$employee->jop->id}}">{{$employee->jop->{'name_'.app()->getLocale()}  }}</option>
+
 
                                         @foreach (App\Jop::skip(4)->take(PHP_INT_MAX)->get() as $jop)
 
@@ -449,8 +487,11 @@
                                 <select name="type_work_id" class="form-control">
 
                                     @if ($errors->any())
-                                    <option value="{{old('type_work_id')}}">{{\App\Jop::find(old('type_work_id'))->{'work_type_'.app()->getLocale()}  }}</option>
+                                    <option value="{{old('type_work_id')}}">{{\App\TypeWork::find(old('type_work_id'))->{'work_type_'.app()->getLocale()}  }}</option>
                                     @endif
+
+                                    <option value="{{$employee->type_work_id}}">{{\App\TypeWork::find($employee->type_work_id)->{'work_type_'.app()->getLocale()}  }}</option>
+
 
                                     @foreach (App\TypeWork::get() as $type)
 
@@ -477,19 +518,19 @@
 
                             <div class="col-md-6 mb-3">
                                 <label >@lang('app.time_of_attendees')<i class="text-danger">*</i></label>
-                                <input type="text" name="time_of_attendees" value="{{old('time_of_attendees')}}"  class="form-control time">
+                                <input type="text" name="time_of_attendees" value="{{old('time_of_attendees',$employee->time_of_attendees)}}"  class="form-control time">
                             </div>
 
                             <div class="col-md-6 mb-3">
                                 <label >@lang('app.time_of_go')<i class="text-danger">*</i></label>
-                                <input type="text"   name="time_of_go" value="{{old('time_of_go')}}" class="form-control time" >
+                                <input type="text"   name="time_of_go" value="{{old('time_of_go',$employee->time_of_go)}}" class="form-control time" >
                             </div>
 
 
 
                             <div class="col-md-6 mb-3">
                                 <label >@lang('app.Fixed salary')@lang('app.sar')<i class="text-danger">*</i></label>
-                                <input type="number" name="fixed_salary" value="{{old('fixed_salary')}}" class="form-control" min="0000000" max="1000000">
+                                <input type="number" name="fixed_salary" value="{{old('fixed_salary',$employee->fixed_salary)}}" class="form-control" min="0000000" max="1000000">
                             </div>
                         </div>
 
@@ -504,6 +545,9 @@
                                     @if ($errors->any())
                                         <option value="{{old('branch_id')}}">{{\App\CompanyBranch::find(old('branch_id'))->{'name_branch_'.app()->getLocale()}  }}</option>
                                     @endif
+
+                                    <option value="{{$employee->company_branch_id}}">{{ \App\CompanyBranch::find($employee->company_branch_id)->{'name_branch_'.app()->getLocale()}  }}</option>
+
 
                                     @foreach (\App\CompanyBranch::get() as $branch)
                                         <option value="{{$branch->id}}">{{ $branch->{'name_branch_'.app()->getLocale()}  }}</option>
@@ -526,6 +570,8 @@
                                     @if ($errors->any())
                                     <option value="{{old('comapny_departments_id')}}">{{\App\ComapnyDepartment::find(old('comapny_departments_id'))->{'depart_'.app()->getLocale()}  }}</option>
                                     @endif
+
+                                    <option value="{{$employee->comapny_departments_id}}">{{\App\ComapnyDepartment::find($employee->comapny_departments_id)->{'depart_'.app()->getLocale()} }}</option>
 
                                     @foreach(\App\ComapnyDepartment::skip(3)->take(PHP_INT_MAX)->get() as $depart)
                                     <option value="{{$depart->id}}">{{ $depart->{'depart_'.app()->getLocale()} }}</option>
@@ -557,6 +603,8 @@
                                     <option  value="{{old('jop_level_id')}}">{{\App\JopLevel::find(old('jop_level_id'))->{'level_'.app()->getLocale()}  }}</option>
                                     @endif
 
+                                    <option value="{{$employee->jop_level_id}}">{{ \App\JopLevel::find($employee->jop_level_id)->{'level_'.app()->getLocale()} }}  ({{\App\JopLevel::find($employee->jop_level_id)->number}}) </option>
+
                                     @foreach(\App\JopLevel::get() as $jopLevel)
 
                                         @if ($jopLevel->id > 2 )
@@ -582,6 +630,8 @@
                                     @if ($errors->any())
                                     <option value=""></option>
                                     @endif
+
+                                    <option value="{{$employee->direct_employee_id}}">{{App\Employee::find($employee->direct_employee_id)->{'full_name_'.app()->getlocale()} }}</option>
 
                                 </select>
 
@@ -619,7 +669,7 @@
                     <div class="card-header card-header-border-bottom bg-primary">
                         <h2 class="mr-3">@lang('app.file name and number')</h2>
                         <div class="form-row">
-                        <input  type="text" name="number_file" value="{{old('number_file')}}" class=" ml-auto  form-control"  />
+                        <input  type="text" name="number_file" value="{{old('number_file',$employee->number_file)}}" class=" ml-auto  form-control"  />
                         </div>
                     </div>
 
@@ -629,8 +679,9 @@
 
 
 
-            <button type="submit" class="btn btn-primary btn-lg btn-block ">@lang('app.add')</button>
 
+            <button onclick="event.preventDefault();" class="btn btn-primary btn-lg btn-block btnEdit">@lang('app.edit')</button>
+            <button type="submit" class="btn btn-primary btn-lg btn-block btnSave d-none">@lang('app.save')</button>
         </form>
 
 
@@ -658,7 +709,7 @@
 
 <script>
 
-    @if (in_array('edit-hr-helper',request()->segments()))
+    @if (in_array('edit-employee',request()->segments()))
         $("input,textarea,select").attr('disabled',true);
     @endif
 
@@ -672,6 +723,8 @@
 
     $(".btnEdit").on('click',()=>{
         edit();
+        $("#em").attr('disabled',true);
+
     })
 
 
@@ -708,12 +761,12 @@ function checkdirect(branchDir,departmentDir){
 }
 
 
-function getEmployeeFromFor(branch,department,level){
+function getEmployeeFromForEdit(branch,department,level,employeeEditId = "{{$employee->id}}"){
         document.getElementById('select_From_employee').querySelectorAll('*').forEach( n => n.remove() );
         document.getElementById('select_For_employee').querySelectorAll('*').forEach( n => n.remove() );
 
 
-        let url = "{{route('form.for')}}/"+branch +"/"+ department +"/"+level;
+        let url = "{{route('form.for.edit')}}/"+branch +"/"+ department +"/"+level+"/"+employeeEditId;
 
         $.get(url,(array)=>{
 
@@ -760,7 +813,7 @@ function getEmployeeFromFor(branch,department,level){
 <script>
 
     $('#jop_level_id').change(function(){
-        getEmployeeFromFor($("select[name=branch_id]").val(),$("select[name=comapny_departments_id]").val(),this.value)
+        getEmployeeFromForEdit($("select[name=branch_id]").val(),$("select[name=comapny_departments_id]").val(),this.value)
     });
 
    $('select[name=comapny_departments_id],select[name=branch_id]').change(function (){
@@ -769,7 +822,7 @@ function getEmployeeFromFor(branch,department,level){
         $('.loaddd').removeClass('d-none');
 
         setTimeout(() => {
-            getEmployeeFromFor($("select[name=branch_id]").val(),$("select[name=comapny_departments_id]").val(),$('#jop_level_id').val());
+            getEmployeeFromForEdit($("select[name=branch_id]").val(),$("select[name=comapny_departments_id]").val(),$('#jop_level_id').val());
             $('.loaddd').addClass('d-none');
 
         }, 300);
@@ -778,16 +831,6 @@ function getEmployeeFromFor(branch,department,level){
 
 
 
-
-   /*$('#jop_level_id').on('change','select',function(){
-        getEmployeeFromFor($("select[name=branch_id]").val(),$("select[name=comapny_departments_id]").val(),this.value)
-    });*/
-
-
-   //getEmployeeFromFor($("select[name=branch_id]").val(),$("select[name=comapny_departments_id]").val(),$("select[name=jop_level_id]").val());
-
-   //checkdirect($("select[name=branch_id]").val(),$("select[name=comapny_departments_id]").val());
-   //getEmployeeFromFor($("select[name=branch_id]").val(),$("select[name=comapny_departments_id]").val(),$("select[name=jop_level_id]").val());
 
 
 </script>

@@ -131,18 +131,18 @@
 
 
                             <li >
-                                <a class="sidenav-item-link" href="{{route('show.executive.manger')}}">
+                                <a class="sidenav-item-link" href="{{route('edit.manger',['1'])}}">
                                     <span class="nav-text">@lang('app.Executive Director')</span>
                                 </a>
                             </li>
 
                             <li >
-                                <a class="sidenav-item-link" href="{{route('show.general.manger')}}">
+                                <a class="sidenav-item-link" href="{{route('edit.manger',['2'])}}">
                                     <span class="nav-text">@lang('app.General Director')</span>
                                 </a>
                             </li>
                             <li >
-                                <a class="sidenav-item-link" href="{{route('show.hr.manger')}}">
+                                <a class="sidenav-item-link" href="{{route('edit.manger',['3'])}}">
                                     <span class="nav-text">@lang('app.Humman Resuorce Director')</span>
                                 </a>
                             </li>

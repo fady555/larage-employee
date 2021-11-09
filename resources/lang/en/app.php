@@ -220,5 +220,7 @@ return [
     'managers'=>'Managers',
     'There is a manager for that department and branch already'=>'There is a manager for that department and branch already',
 
+    'The chosen city'=>'The chosen city',
+    'edit employee'=>'Edit Employee',
 
 ];
