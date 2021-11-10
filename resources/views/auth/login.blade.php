@@ -29,7 +29,8 @@
         @endif
 
         <!-- FAVICON -->
-        <link href="{{asset('/public/assets/img/favicon.png" rel="shortcut icon')}}" />
+
+        <link href="{{asset('/public/assets/img/favicon.png')}}" rel="shortcut icon" />
 
         <!--
           HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries
@@ -77,7 +78,18 @@
                             <span class="brand-name"><h4>@lang('app.human resource management system')</h4></span>
                         </a>
                     </div>
+
+                    @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                    <a class="btn btn-secondary btn-sm" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">{{ $properties['native'] }}</a>
+                    @endforeach
+
+
+
+
+
                 </div>
+
+
                 <div class="card-body p-5">
 
                     <h4 class="text-dark mb-5">@lang('app.sign in')</h4>
@@ -124,6 +136,8 @@
         </div>
     </div>
 </div>
+
+
 
 <script>
     function remove_error(id){
