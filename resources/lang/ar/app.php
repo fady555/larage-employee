@@ -224,8 +224,11 @@ return [
     'edit employee'=>'التعديل على الموظف',
 
 
+    //search form traslate
 
-
+    'results'=>'النتائج',
+    'search'=>'البحث عن موظف',
+    'name'=>'الاسم'
 
 
 

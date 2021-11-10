@@ -6,6 +6,7 @@ use App\ComapnyDepartment;
 use App\CompanyBranch;
 use App\Degree;
 use App\Education;
+use App\Employee;
 use App\EventAndEffects;
 use App\Experience;
 use App\General;
@@ -14,6 +15,7 @@ use App\Observers\CompanyBranchObserver;
 use App\Observers\CompDepartmentObserver;
 use App\Observers\DegreeObserver;
 use App\Observers\EducationObserver;
+use App\Observers\EmployeeObserver;
 use App\Observers\EventEffectObserver;
 use App\Observers\ExperienceObserver;
 use App\Observers\GeneralObserver;
@@ -50,5 +52,6 @@ class AppServiceProvider extends ServiceProvider
         CompanyBranch::observe(CompanyBranchObserver::class);
         EventAndEffects::observe(EventEffectObserver::class);
         General::observe(GeneralObserver::class);
+        Employee::observe(EmployeeObserver::class);
     }
 }

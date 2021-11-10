@@ -169,6 +169,11 @@
 
                                     <select class="form-control" name="military_services_id" disabled>
 
+                                        @if ($errors->any())
+                                        <option value="{{old('military_services_id')}}">{{\App\MilitaryService::find(old('military_services_id'))->{'name_'.app()->getLocale()}  }}</option>
+                                        @endif
+
+
                                         <option value="{{\App\MilitaryService::find($employee->military_services_id)->id}}">{{ App\MilitaryService::find($employee->military_services_id)->{'name_'.app()->getLocale()} }}</option>
 
                                         @foreach(\App\MilitaryService::get() as $ms)
@@ -182,6 +187,11 @@
                                     <label>@lang('app.marital_statuses')<i class="text-danger">*</i></label>
 
                                     <select class="form-control" name="marital_statuses_id">
+
+
+                                        @if ($errors->any())
+                                        <option value="{{old('marital_statuses_id')}}">{{\App\MaritalStatus::find(old('marital_statuses_id'))->{'name_'.app()->getLocale()}  }}</option>
+                                        @endif
 
                                         <option value="{{\App\MaritalStatus::find($employee->military_services_id)->id}}">{{ App\MilitaryService::find($employee->military_services_id)->{'name_'.app()->getLocale()} }}</option>
 

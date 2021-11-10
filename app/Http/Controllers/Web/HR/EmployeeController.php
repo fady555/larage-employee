@@ -25,7 +25,7 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        //return  view('hr.add_employee')->
+        return  view('hr.Show_employees');
     }
 
     /**
@@ -351,6 +351,13 @@ class EmployeeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $protect = [1,2,3];
+        if(in_array($id,$protect)){
+            return true;
+        }
+
+        Employee::destroy($id);
+
+        return true;
     }
 }

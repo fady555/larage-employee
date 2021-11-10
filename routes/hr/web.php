@@ -32,7 +32,7 @@ Route::group($group,function (){
 
     //employee
 
-    //Route::get('show-employees','EmployeeController@index')->name('show.employees')->middleware('hr_perm:1');
+    Route::get('show-employees','EmployeeController@index')->name('show.employees')->middleware('hr_perm:1');
 
     Route::get('create-employee','EmployeeController@create')->name('create.employee')->middleware('hr_perm:2');
     Route::post('store-employee','EmployeeController@store')->name('store.employee')->middleware('hr_perm:2');
@@ -41,7 +41,7 @@ Route::group($group,function (){
     Route::post('update-employee/{id?}','EmployeeController@update')->where('id','[4-g]')->name('update.employee')->middleware(['employee_edit','hr_perm:3']);
 
 
-    Route::post('delete-employee/{id?}','EmployeeController@update')->where('id','[4-g]')->name('update.employee')->middleware(['employee_edit','hr_perm:4']);
+    Route::post('delete-employee/{id?}','EmployeeController@destroy')->where('id','[4-g]')->name('delete.employee')->middleware(['employee_edit','hr_perm:4']);
 
 
 
@@ -261,8 +261,6 @@ Route::group($group,function (){
 
 
 
-
-
     // mangers
     Route::get('edit-manger/{id?}','BasicEmployeeController@edit')->where('id','[1-3]')->name('edit.manger');
     Route::post('update-manger/{id?}','BasicEmployeeController@update')->where('id','[1-3]')->name('update.manger');
@@ -282,6 +280,9 @@ Route::group($group,function (){
     Route::post('delete-hr-helper/{id?}','HrHelperController@destroy')->where('id','[4-g]')->name('delete.hr.helper')->middleware('head_hr');
 
 
+
+    //search
+    Route::get('search','SearchController@search')->name('search.employees');
 
 
 

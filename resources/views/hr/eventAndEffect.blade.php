@@ -31,7 +31,7 @@
             </div>
         </div>
 
-        @endiff
+        @endif
 
 
         @if(in_array('show-events-effects',request()->segments()))

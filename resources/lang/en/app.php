@@ -223,4 +223,13 @@ return [
     'The chosen city'=>'The chosen city',
     'edit employee'=>'Edit Employee',
 
+
+    //search form traslate
+
+    'results'=>'Results',
+    'search'=>'Searching for an employee',
+    'name'=>'Name'
+
+
+
 ];
