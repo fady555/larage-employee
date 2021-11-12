@@ -44,10 +44,24 @@ class evetEffect extends Command
         $data= EventAndEffects::select('id','title_en','title_ar','for_whom','created_at')->find($this->argument('event_effect_id'));
 
 
+        if($data->for_whom == 'FOR_HR'):
 
-        //dd(var_dump(json_encode($data)));
+            foreach(User::where('as','HR')->get() as $user):
+                Notification::send($user,new \App\Notifications\EventEffectNotification($data));
+            endforeach;
+
+        elseif($data->for_whom == 'FOR_COMPANY'):
+
             foreach(User::get() as $user):
                 Notification::send($user,new \App\Notifications\EventEffectNotification($data));
             endforeach;
+
+        endif;
+
+
+        //dd(var_dump(json_encode($data)));
+           /* foreach(User::get() as $user):
+                Notification::send($user,new \App\Notifications\EventEffectNotification($data));
+            endforeach;*/
     }
 }

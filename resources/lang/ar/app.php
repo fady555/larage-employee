@@ -87,7 +87,7 @@ return [
     'type work'=>'نوع العمل',
     'add type work'=>'اضافه نوع عمل',
 
-    'name must arabic'=>'الاسم لابد ان يكون بالغه العربيه',
+    'name must arabic'=>'النص لابد ان يكون بالغه العربيه',
     'address must arabic'=>'العنوان لابد ان يكون بالغه العربيه',
     'choose avatar'=>'اختر هنا الصوره الشخصيه',
 
@@ -175,7 +175,7 @@ return [
 
    'branch address'=>'عنوان الفرع',
    'title event en'=>'عنوان الحدث بالغه الانجليزيه',
-   'title event ar'=>'عنوان الحث بالغ الانجليزيه',
+   'title event ar'=>'عنوان الحث بالغه العربيه',
     'title'=>'عنوان الحدث',
     'for_whom'=>'لمن',
 

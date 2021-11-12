@@ -86,7 +86,7 @@ return [
     'type work'=>'Type Work',
     'add type work'=>'Add Type Work',
 
-    'name must arabic'=>'Full Name Must Be Arabic',
+    'name must arabic'=>'Text Must Be Arabic',
     'address must arabic'=>'Address Must Be Arabic',
     'choose avatar'=>'Choose Avatar',
 

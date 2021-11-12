@@ -32,7 +32,11 @@ class EmployeeNotifiy extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail','database'];
+        if(env('SEND_EMI_WITH_DATABASE_NOTIFICATION',false) == 1):
+            return ['mail','database'];
+        else:
+            return ['database'];
+        endif;
     }
 
     /**

@@ -119,7 +119,15 @@ Route::get('/cc', function () {
 
 
 
+Route::get('/963', function () {
 
+    if(env('SEND_EMI_WITH_DATABASE_NOTIFICATION',false) == 1):
+        return ['mail','database'];
+    else:
+        return ['database'];
+    endif;
+
+});
 
 
 

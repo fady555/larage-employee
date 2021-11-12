@@ -218,7 +218,7 @@ class CreateEmployeesTable extends Migration
                 'fixed_salary'=>2000,
                 'employee_status_id'=>1,
 
-                'comapny_departments_id'=>1,
+                'comapny_departments_id'=>2,
                 'company_id'=>1,
                 'company_branch_id'=>1,
                 'direct_employee_id'=>1,
@@ -265,7 +265,7 @@ class CreateEmployeesTable extends Migration
                 'fixed_salary'=>2000,
                 'employee_status_id'=>1,
 
-                'comapny_departments_id'=>1,
+                'comapny_departments_id'=>3,
                 'company_id'=>1,
                 'company_branch_id'=>1,
                 'direct_employee_id'=>2,

@@ -15,15 +15,13 @@ class EventEffectObserver
 
     public function created(EventAndEffects $eventAndEffects)
     {
-        if($eventAndEffects->for_whom == 'FOR_COMPANY'):
+
 
 
 
        Artisan::call('send:event'." ".$eventAndEffects->id);
 
 
-
-        endif;
     }
 
     public function updated(EventAndEffects $eventAndEffects)

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Web\HR;
 
+use App\CompanyBranch;
 use App\Employee;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -55,6 +56,8 @@ class GeneralController extends Controller
     {
 
 
+        //dd($request->all('departments'));
+
         $result = validator($request->all(),$this->rules(),[],$this->attributes());
 
         if($result->fails()):
@@ -65,9 +68,9 @@ class GeneralController extends Controller
         $reQuestAdd = $request->except(['_token']);
 
 
-        if(isset($request->branches)):$reQuestAdd['branches']=  $request->branches;  else: $reQuestAdd['branches'] = [];  endif;
+        if(isset($request->branches)):$reQuestAdd['branches']=  $request->branches;  else: $reQuestAdd['branches'] = $this->users(Employee::with('user')->get());  endif;
 
-        if(isset($request->departments)):$reQuestAdd['departments']=  $request->departments;  else: $reQuestAdd['departments'] = [];  endif;
+        if(isset($request->departments)):$reQuestAdd['departments']=  $request->departments;  else: $reQuestAdd['departments'] = $this->users(Employee::with('user')->get());  endif;
 
 
 
@@ -75,11 +78,14 @@ class GeneralController extends Controller
 
 
 
+        //dd($employees);
 
         // $this->users($employees);
 
         $reQuestAdd['for_whom'] = json_encode($this->users($employees));
 
+
+        //dd($reQuestAdd['for_whom']);
 
         General::create($reQuestAdd);
 

@@ -7,6 +7,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
+use PhpParser\Node\Stmt\Else_;
 
 class EventEffectNotification extends Notification
 {
@@ -33,7 +34,12 @@ class EventEffectNotification extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail','database'];
+
+        if(env('SEND_EMI_WITH_DATABASE_NOTIFICATION',false) == 1):
+            return ['mail','database'];
+        else:
+            return ['database'];
+        endif;
     }
 
     /**
