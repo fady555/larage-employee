@@ -113,8 +113,8 @@
 
                                             <select class="form-control" name="city_id" id="city_id">
 
-                                                @if ($errors->any())
-                                                    <option value="{{old('city_id')}}">{{\App\City::find(old('city_id'))->{'name_'.app()->getLocale()}  }}</option>
+                                                @if ($errors->any() and !is_null(old('city_id')))
+                                                <option value="{{old('city_id')}}">{{\App\City::find(old('city_id'))->{'name_'.app()->getLocale()}  }}</option>
                                                 @endif
                                             </select>
                                         </div>
@@ -223,8 +223,8 @@
 
                                         <select class="form-control" name="city_id" id="city_id">
 
-                                            @if ($errors->any())
-                                                <option value="{{old('city_id')}}">{{\App\City::find(old('city_id'))->{'name_'.app()->getLocale()}  }}</option>
+                                            @if ($errors->any() and !is_null(old('city_id')))
+                                            <option value="{{old('city_id')}}">{{\App\City::find(old('city_id'))->{'name_'.app()->getLocale()}  }}</option>
                                             @endif
                                         </select>
                                     </div>

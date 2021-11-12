@@ -88,9 +88,10 @@
 
                                         <select class="form-control" name="city_id" id="city_id">
 
-                                            @if ($errors->any())
+                                            @if ($errors->any() and !is_null(old('city_id')))
                                                 <option value="{{old('city_id')}}">{{\App\City::find(old('city_id'))->{'name_'.app()->getLocale()}  }}</option>
                                             @endif
+
                                         </select>
                                     </div>
 
@@ -179,13 +180,16 @@
                                     </div>
 
                                     <div class="col-md-5 mb-3">
-                                        <label for="validationServer04">@lang('app.city')</label>
-
+                                        <label>
+                                            @lang('app.The chosen city')
+                                            @if(!is_null($branch->address->city )) ({{\App\City::find($branch->address->city_id)->{'name_'.app()->getLocale()}  }})@endif
+                                        </label>
                                         <select class="form-control" name="city_id" id="city_id">
 
-                                            @if ($errors->any())
-                                                <option value="{{old('city_id')}}">{{\App\City::find(old('city_id'))->{'name_'.app()->getLocale()}  }}</option>
-                                            @endif
+                                            @if ($errors->any() and !is_null(old('city_id')))
+                                            <option value="{{old('city_id')}}">{{\App\City::find(old('city_id'))->{'name_'.app()->getLocale()}  }}</option>
+                                             @endif
+
                                         </select>
                                     </div>
 

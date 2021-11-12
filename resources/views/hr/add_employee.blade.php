@@ -18,6 +18,7 @@
 
 <div class="content-wrapper">
     <div class="content">
+
         @if (session()->has('message'))
 
         <div class="row">
@@ -153,7 +154,7 @@
 
                                     <select class="form-control" name="military_services_id" disabled>
 
-                                        @if ($errors->any())
+                                        @if ($errors->any() and !is_null(old('military_services_id')))
                                         <option value="{{old('military_services_id')}}">{{\App\MilitaryService::find(old('military_services_id'))->{'name_'.app()->getLocale()}  }}</option>
                                         @endif
 
@@ -271,8 +272,8 @@
 
                                 <select class="form-control" name="city_id" id="city_id">
 
-                                    @if ($errors->any())
-                                        <option value="{{old('city_id')}}">{{\App\City::find(old('city_id'))->{'name_'.app()->getLocale()}  }}</option>
+                                    @if ($errors->any() and !is_null(old('city_id')))
+                                    <option value="{{old('city_id')}}">{{\App\City::find(old('city_id'))->{'name_'.app()->getLocale()}  }}</option>
                                     @endif
                                 </select>
                             </div>

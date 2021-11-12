@@ -310,13 +310,14 @@
                                 <div class="col-md-6 mb-3">
                                     <label>
                                         @lang('app.The chosen city')
-                                        ({{\App\City::find($employee->address->city_id)->{'name_'.app()->getLocale()}  }})
+                                        @if(!is_null($employee->address->city )) ({{\App\City::find($employee->address->city_id)->{'name_'.app()->getLocale()}  }})@endif
                                     </label>
                                     <select class="form-control" name="city_id" id="city_id">
 
-                                        @if ($errors->any())
-                                            <option value="{{old('city_id')}}">{{\App\City::find(old('city_id'))->{'name_'.app()->getLocale()}  }}</option>
+                                        @if ($errors->any() and !is_null(old('city_id')))
+                                                <option value="{{old('city_id')}}">{{\App\City::find(old('city_id'))->{'name_'.app()->getLocale()}  }}</option>
                                         @endif
+
                                     </select>
                                 </div>
 
