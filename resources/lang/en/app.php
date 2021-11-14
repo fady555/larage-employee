@@ -228,7 +228,19 @@ return [
 
     'results'=>'Results',
     'search'=>'Searching for an employee',
-    'name'=>'Name'
+    'name'=>'Name',
+
+    //leve request
+
+    'search leave request'=>'Search Leave Request',
+    'leave request'=>'Leave Request',
+    'status request'=>'Status Request',
+    'Direct manager approval'=>'Direct manager approval',
+    'Hr manager approval'=>'HR manager approval',
+    'start'=>'Start',
+    'end'=>'End',
+    'reject'=>'Reject',
+    'accept'=>'Accept',
 
 
 

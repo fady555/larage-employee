@@ -91,7 +91,7 @@
 
 
                             <li >
-                                <a class="sidenav-item-link" href="index.html">
+                                <a class="sidenav-item-link" href="{{route('show.employees')}}">
                                     <span class="nav-text">@lang('app.employees')</span>
                                 </a>
                             </li>

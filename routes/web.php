@@ -117,16 +117,22 @@ Route::get('/cc', function () {
 
 
 
+use App\Http\Controllers\Web\HR\SearchController;
+use App\LeaveRequest;
+use Illuminate\Http\Request;
+
+use function GuzzleHttp\json_decode;
+
+Route::get('/963', function (Request $request) {
 
 
-Route::get('/963', function () {
+    $search = new SearchController();
+    $employee_id = (json_decode( $search->search($request)->content(),true))['id_employee'];
 
-    if(env('SEND_EMI_WITH_DATABASE_NOTIFICATION',false) == 1):
-        return ['mail','database'];
-    else:
-        return ['database'];
-    endif;
 
+    //return $employee_id;
+
+    return LeaveRequest::with('employee')->whereIn('employee_id',$employee_id)->get();
 });
 
 

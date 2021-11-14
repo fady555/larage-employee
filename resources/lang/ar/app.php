@@ -228,7 +228,21 @@ return [
 
     'results'=>'النتائج',
     'search'=>'البحث عن موظف',
-    'name'=>'الاسم'
+    'name'=>'الاسم',
+
+    //leve request
+
+
+    'search leave request'=>'البحث عن طلب اجازه',
+    'leave request'=>'طلبات الاجازه',
+    'status request'=>'حاله الطلب',
+    'Direct manager approval'=>'موافقه المدير المباشر',
+    'Hr manager approval'=>'موافقه ادراه الموارد البشريه',
+    'start'=>'بدايه',
+    'end'=>'نهايه',
+    'reject'=>'رفض',
+    'accept'=>'موافقه',
+
 
 
 

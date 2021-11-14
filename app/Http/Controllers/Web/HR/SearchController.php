@@ -41,10 +41,13 @@ class SearchController extends Controller
             return $query->where('as', '!=', "HR");
         });
 
+         if(empty($array)):
+             $id_employee = $res->where($array)->whereNotIn('id',[1,2])->pluck('id')->toArray();  else: $id_employee= $array;  endif;
 
         $content = array(
             'success' => true,
-            'data' => $data->get(),
+            'id_employee'=>$id_employee,
+            'data' => $data->get(['id','full_name_en','full_name_ar','avatar']),
             'message' => count($data->get()),
         );
 
@@ -54,3 +57,6 @@ class SearchController extends Controller
 
     }
 }
+
+
+
