@@ -242,6 +242,11 @@ return [
     'reject'=>'Reject',
     'accept'=>'Accept',
 
+    'approve_yes'=>'Yes,Accept the Request',
+    'approve_no'=>'NO,Reject the Request',
+    'has been accepted'=>'The Request Has Been Accepted',
+    'approved compelte'=>'Approved Complete',
+
 
 
 ];

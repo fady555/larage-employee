@@ -34,8 +34,11 @@ class LeveRequestController extends Controller
          return json_encode($leveRequest);
     }
 
-    public function assign(){
+    public function assign($id,$status){
 
+       $result =  LeaveRequest::find($id)->update(['status_request_hr_id'=>$status]);
+
+       return $result;
     }
 
     public function destroy($id)

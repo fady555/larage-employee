@@ -7,8 +7,6 @@
 
 @section('css')
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.11.3/datatables.min.css"/>
-https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css
-https://cdn.datatables.net/buttons/2.0.1/css/buttons.dataTables.min.css
 
 
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.0.1/css/buttons.dataTables.min.css"/>
@@ -278,7 +276,6 @@ https://cdn.datatables.net/buttons/2.0.1/css/buttons.dataTables.min.css
                                     <th>@lang('app.show')</th>
                                     <th>@lang('app.Direct manager approval')</th>
                                     <th>@lang('app.Hr manager approval')</th>
-                                    <th>@lang('app.reject')</th>
                                     <th>@lang('app.delete')</th>
                                 </tr>
                             </thead>
@@ -287,8 +284,10 @@ https://cdn.datatables.net/buttons/2.0.1/css/buttons.dataTables.min.css
 
                                 @foreach ($level_requests as $request)
                                 <tr>
-                                    <td>{{$request->employee->{'full_name_'.app()->getlocale()} }}</td>
-                                    <td>{{$request->start}}</td>
+                                    <td>
+                                        <a class="font-size-20 text-dark btn btn-sm" href="http://localhost/hr/ar/edit-employee/4">{{$request->employee->{'full_name_'.app()->getlocale()} }}</a>
+                                    </td>
+                                    <td><button>{{$request->start}}</button></td>
                                     <td>{{$request->end}}</td>
                                     <td>
                                         <div class="dropdown d-inline-block mb-1">
@@ -302,19 +301,11 @@ https://cdn.datatables.net/buttons/2.0.1/css/buttons.dataTables.min.css
                                     </td>
                                     <td>{{$request->status_dir->{'status_'.app()->getlocale()} }}</td>
                                     <td>
-                                        <label class="switch switch-icon switch-outline-alt-primary form-control-label diplay">
-                                            <input type="checkbox" onchange="alert(this.value)" class="switch-input form-check-input" value="2" name="approved" @if($request->status_request_hr_id == 2) checked @endif>
-                                            <span class="switch-label"></span>
-                                            <span class="switch-handle"></span>
-                                        </label>
+                                        <button class="btn btn-sm btn-secondary disabled">{{App\StatusRequest::find(1)->{'status_'.app()->getlocale()} }}<button>
+                                        <button class="btn btn-sm btn-success disabled">appprove<button>
+                                        <button class="btn btn-sm btn-danger disabled">reject<button>
                                     </td>
-                                    <td>
-                                        <label class="switch switch-icon switch-outline-alt-danger form-control-label diplay" @if($request->status_request_hr_id == 3) checked @endif>
-                                            <input type="checkbox" class="switch-input form-check-input" value="3" name="reject" >
-                                            <span class="switch-label"></span>
-                                            <span class="switch-handle"></span>
-                                        </label>
-                                    </td>
+
                                     <td>
                                         <a href="javascript:;" onclick="deleteEle('{{route('delete.leave.reqest',[$request->id])}}','{{route('show.leave.reqests')}}')"><i class="mdi mdi-delete-circle-outline text-danger h3"></i></a>
                                     </td>
@@ -351,7 +342,6 @@ https://cdn.datatables.net/buttons/2.0.1/css/buttons.dataTables.min.css
 
 
 
-<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.4.1/js/dataTables.buttons.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.4.1/js/buttons.flash.min.js"></script>
@@ -362,9 +352,6 @@ https://cdn.datatables.net/buttons/2.0.1/css/buttons.dataTables.min.css
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.4.1/js/buttons.print.min.js"></script>
 
 <script>
-
-
-
     function deleteEle(link,afterDeletelink){
         Swal.fire({
         title: "@lang('app.sure')",
@@ -383,13 +370,10 @@ https://cdn.datatables.net/buttons/2.0.1/css/buttons.dataTables.min.css
             }
         })
     }
-
 </script>
 
 
 <script>
-
-
 $(document).ready(function() {
     $('#example').DataTable( {
         "oLanguage": {
@@ -405,6 +389,40 @@ $(document).ready(function() {
 
     } );
 } );
+</script>
+
+
+<script>
+    function approved(request_id){
+        Swal.fire({
+        title: "@lang('app.sure')",
+        text: "@lang('app.revert')",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: "@lang('app.approve_yes')"
+
+        }).then((result) => {
+            if (result.isConfirmed) {
+            $.post("{{route('assign.leave.reqests')}}"+"/"+request_id+"/2",{'_token':'{{csrf_token()}}'},(response)=>{
+                if(response == true){
+                    Swal.fire("@lang('app.approved compelte')","@lang('app.has been accepted')",'success').then(()=>{
+                        if($("#R"+request_id).prop('checked') == true){
+                            $("#R"+request_id).prop('checked',false);
+                        }else{
+
+                            if(befor == true){$("#R"+request_id).prop('checked',true);}else if(befor ==false){$("#R"+request_id).prop('checked',false);}
+                        }
+
+                        });
+                }
+            });
+
+            }
+        })
+    }
+
 
 </script>
 

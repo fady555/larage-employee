@@ -164,12 +164,14 @@ Route::group($group,function (){
 
                                         //requests
 
-    //leve request
+    //leave request
 
     Route::get('show-leave-reqests','LeveRequestController@index')->name('show.leave.reqests')->middleware('hr_perm:41');
-    //Route::get('show-leave-reqests-ajax','LeveRequestController@getAjaxRequest')->name('show.leave.reqests.ajax')->middleware('hr_perm:41');
 
-    //Route::post('assign-leve-reqest','LeveRequestController@assign')->name('assign.leave.reqests')->middleware('hr_perm:41');
+    Route::post('assign-leve-reqest/{id?}/{status?}','LeveRequestController@assign')
+    ->name('assign.leave.reqests')
+    ->where('status','[2-3]')
+    ->middleware('hr_perm:41');
 
     Route::post('delete-leave-reqest/{id}','LeveRequestController@destroy')->name('delete.leave.reqest')->middleware('hr_perm:41');
 
