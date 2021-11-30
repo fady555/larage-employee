@@ -241,11 +241,14 @@ return [
     'end'=>'End',
     'reject'=>'Reject',
     'accept'=>'Accept',
+    'assign'=>'Assign',
+    'cancle'=>'Cancle',
 
     'approve_yes'=>'Yes,Accept the Request',
     'approve_no'=>'NO,Reject the Request',
-    'has been accepted'=>'The Request Has Been Accepted',
-    'approved compelte'=>'Approved Complete',
+    'not cant modify'=>'In the event that the request is assigned, you will not be able to modify it?',
+    'choose branch'=>'Choose Company Branch',
+
 
 
 

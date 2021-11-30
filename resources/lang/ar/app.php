@@ -198,6 +198,7 @@ return [
     'edit generals'=>'تعديل تعميم',
     'show'=>'اظهار',
 
+
     'notification'=>'اشعارت',
 
     'Executive Director'=>'المدير التنفيذ',
@@ -242,6 +243,16 @@ return [
     'end'=>'نهايه',
     'reject'=>'رفض',
     'accept'=>'موافقه',
+    'assign'=>'التاشير على الطلب',
+    'cancle'=>'اغلاق',
+
+
+    'approve_yes'=>'نعم،اوافق على الطلب',
+    'approve_no'=>'لا،اوافق على اطلب',
+    'not cant modify'=>'في حالة تعيين الطلب ، لن تتمكن من تعديله؟',
+
+    'choose branch'=>'البحث من خلال افرع الشركه',
+
 
 
 

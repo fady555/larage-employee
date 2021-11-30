@@ -20,248 +20,22 @@
 
 <div class="content-wrapper">
     <div class="content">
-            {{---------
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="card card-default">
-                                <div class="card-header card-header-border-bottom">
-                                    <h2>@lang('app.search leave request')</h2>
-                                </div>
-                                <div class="card-body">
-                                    <form method="get" id="search" action="{{route('search.employees')}}">
-                                        <div class="form-row">
 
-                                                <div class="col-md-6 mb-3">
-                                                    <label >@lang('app.name')<i class="text-danger">*</i></label>
-                                                    <input type="text" name="name"  class="form-control removeError"  placeholder="@lang('app.name')" value="{{old('name')}}">
-                                                </div>
-
-                                                <div class="col-md-6 mb-3">
-                                                    <label >@lang('app.national id')<i class="text-danger">*</i></label>
-                                                    <input type="text" name="national_id" value="{{old('national_id')}}"  class="form-control"  data-mask="9999999999999999" placeholder="@lang('app.national id')" aria-label="" autocomplete="off" maxlength="19" ="">
-                                                </div>
-
-                                                <div class="col-md-12">
-                                                    <label>@lang('app.gender')<i class="text-danger">*</i></label>
-
-                                                    <ul class="list-unstyled list-inline">
-
-                                                        <li class="d-inline-block mr-3">
-                                                            <label class="control control-radio">@lang('app.male')
-                                                                <input type="radio" name="genderCheeck" value="M" onchange="$('[name=gender]').val(this.value); $('[name=gender]').click()"  @if(old('gender') == 'M') checked @endif    >
-                                                                <div class="control-indicator"></div>
-                                                            </label>
-                                                        </li>
-
-                                                        <li class="d-inline-block ">
-                                                            <label class="control control-radio">@lang('app.female')
-                                                                <input type="radio" name="genderCheeck" value="F" onchange="$('[name=gender]').val(this.value); $('[name=gender]').click()"  @if(old('gender') == 'F') checked @endif  >
-                                                                <div class="control-indicator"></div>
-                                                            </label>
-                                                        </li>
-
-                                                    </ul>
-                                                    <input type="hidden" class="form-control" name="gender" value="@if($errors->any()) @if(old('gender') == 'M') M @elseif (old('gender') == 'F') F  @endif @endif"  />
-                                                </div>
-
-                                                <div class="col-md-3 mb-3">
-                                                    <label>@lang('app.age')<i class="text-danger">*</i></label>
-                                                    <input type="text" name="age" value="{{old('age')}}" class="form-control"  placeholder="@lang('app.age')" maxlength="3">
-                                                </div>
-
-                                                <div class="col-md-3 mb-3">
-                                                    <label>@lang('app.passport_id')</label>
-                                                    <input type="text" name="passport_id" value="{{old('passport_id')}}" class="form-control"  placeholder="@lang('app.passport_id')"  autocomplete="off">
-                                                </div>
-
-                                                <div class="col-md-3 mb-3">
-                                                    <label>@lang('app.nationality')<i class="text-danger">*</i></label>
-
-                                                    <select class="form-control" name="nationality_id">
-
-                                                        @if ($errors->any())
-                                                        <option value="{{old('nationality_id')}}">{{\App\Nationality::find(old('nationality_id'))->{'country_'.app()->getLocale().'Name'}  }}</option>
-                                                        @endif
-
-                                                        <option></option>
-
-
-                                                        @foreach(\App\Nationality::get() as $ms)
-                                                        <option value="{{$ms->id}}">{{ $ms->{'country_'.app()->getLocale().'Name'} }}</option>
-                                                        @endforeach
-
-                                                    </select>
-
-                                                </div>
-
-                                                <div class="col-md-3 mb-3">
-                                                    <label>@lang('app.military_services')<i class="text-danger">*</i></label>
-
-                                                    <select class="form-control" name="military_services_id">
-
-                                                        <option></option>
-
-                                                        @foreach(\App\MilitaryService::get() as $ms)
-                                                        <option value="{{$ms->id}}">{{ $ms->{'name_'.app()->getLocale()} }}</option>
-                                                        @endforeach
-
-                                                    </select>
-
-                                                </div>
-
-                                                <div class="col-md-3 mb-3">
-                                                    <label>@lang('app.marital_statuses')<i class="text-danger">*</i></label>
-
-                                                    <select class="form-control" name="marital_statuses_id">
-
-                                                        @if ($errors->any())
-                                                        <option value="{{old('marital_statuses_id')}}">{{\App\MaritalStatus::find(old('marital_statuses_id'))->{'name_'.app()->getLocale()}  }}</option>
-                                                        @endif
-
-                                                        <option></option>
-
-                                                        @foreach(\App\MaritalStatus::get() as $ms)
-                                                        <option value="{{$ms->id}}">{{ $ms->{'name_'.app()->getLocale()} }}</option>
-                                                        @endforeach
-
-                                                    </select>
-
-                                                </div>
-
-                                                <div class="col-md-3 mb-3">
-                                                    <label>@lang('app.name_of_bank')</label>
-                                                    <input type="text" name="name_of_bank" value="{{old('name_of_bank')}}" class="form-control">
-                                                </div>
-
-                                                <div class="col-md-3 mb-3">
-                                                    <label>@lang('app.number_of_account')</label>
-                                                    <input type="text" name="number_of_account" value="{{old('number_of_account')}}" class="form-control" data-mask="9999-9999-9999-9999" placeholder="" aria-label="" autocomplete="off" maxlength="16">
-                                                </div>
-
-                                                <div class="col-md-3 mb-3">
-                                                    <label>@lang('app.email')<i class="text-danger">*</i></label>
-                                                    <input type="email" name="email" value="{{old('email')}}" class="form-control"  placeholder="@lang('app.email')">
-                                                </div>
-
-                                                <div class="col-md-3 mb-3">
-                                                    <label>@lang('app.phone')<i class="text-danger">*</i></label>
-                                                    <input type="text" name="phone" value="{{old('phone')}}" class="form-control"   >
-                                                </div>
-
-                                                <div class="col-md-3 col-sm-6 col-9 mb-3">
-                                                    <label >@lang('app.level experience')<i class="text-danger">*</i></label>
-                                                    <select name="level_experience_id" class="form-control">
-
-
-                                                        @if ($errors->any())
-                                                        <option value="{{old('level_experience_id')}}">{{\App\Experience::find(old('level_experience_id'))->{'level_experience_'.app()->getLocale()}  }}</option>
-                                                        @endif
-
-                                                        <option></option>
-
-                                                        @foreach (App\Experience::get() as $ex)
-                                                            <option value="{{$ex->id}}">{{$ex->{'level_experience_'.app()->getlocale()} }}</option>
-                                                        @endforeach
-
-                                                    </select>
-                                                </div>
-
-                                                <div class="col-md-3 col-sm-6 col-9 mb-3">
-                                                    <label >@lang('app.jop')<i class="text-danger">*</i></label>
-                                                    <select name="jop_id" class="form-control">
-
-                                                        @if ($errors->any())
-                                                        <option value="{{old('jop_id')}}">{{\App\Jop::find(old('jop_id'))->{'name_'.app()->getLocale()}  }}</option>
-                                                        @endif
-
-                                                        <option></option>
-
-
-                                                        @foreach (App\Jop::skip(4)->take(PHP_INT_MAX)->get() as $jop)
-
-                                                            <option value="{{$jop->id}}">{{$jop->{'name_'.app()->getlocale()} }}</option>
-
-                                                        @endforeach
-
-                                                    </select>
-                                                </div>
-
-                                                <div class="col-md-3 col-sm-6 col-9 mb-3">
-                                                    <label >@lang('app.type work')<i class="text-danger">*</i></label>
-                                                    <select name="type_work_id" class="form-control">
-
-                                                        @if ($errors->any())
-                                                        <option value="{{old('type_work_id')}}">{{\App\Jop::find(old('type_work_id'))->{'work_type_'.app()->getLocale()}  }}</option>
-                                                        @endif
-
-                                                        <option></option>
-
-                                                        @foreach (App\TypeWork::get() as $type)
-
-                                                            <option value="{{$type->id}}">{{$type->{'work_type_'.app()->getlocale()} }}</option>
-
-                                                        @endforeach
-
-                                                    </select>
-                                                </div>
-
-                                                <div class="col-md-3 col-sm-6 col-9 mb-3">
-                                                    <label >@lang('app.branch')<i class="text-danger">*</i></label>
-
-                                                    <select class="form-control" name="branch_id" >
-                                                        @if ($errors->any())
-                                                            <option value="{{old('branch_id')}}">{{\App\CompanyBranch::find(old('branch_id'))->{'name_branch_'.app()->getLocale()}  }}</option>
-                                                        @endif
-
-                                                        <option></option>
-
-                                                        @foreach (\App\CompanyBranch::get() as $branch)
-                                                            <option value="{{$branch->id}}">{{ $branch->{'name_branch_'.app()->getLocale()}  }}</option>
-                                                        @endforeach
-
-                                                    </select>
-                                                </div>
-
-                                                <div class="col-md-3 col-sm-6 col-9 mb-3">
-                                                    <label>@lang('app.company departement')<i class="text-danger">*</i></label>
-
-                                                    <select class="form-control" id=''  name="comapny_departments_id"  >
-
-                                                        @if ($errors->any())
-                                                        <option value="{{old('comapny_departments_id')}}">{{\App\ComapnyDepartment::find(old('comapny_departments_id'))->{'depart_'.app()->getLocale()}  }}</option>
-                                                        @endif
-
-                                                        <option></option>
-
-                                                        @foreach(\App\ComapnyDepartment::skip(3)->take(PHP_INT_MAX)->get() as $depart)
-                                                        <option value="{{$depart->id}}">{{ $depart->{'depart_'.app()->getLocale()} }}</option>
-                                                        @endforeach
-
-                                                    </select>
-
-                                                </div>
-
-
-
-                                                <button onclick="event.preventDefault();search()" class="btn btn-primary btn-lg btn-block btnEdit">@lang('app.search leave request')</button>
-
-
-
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                ------------}}
         <div class="row">
             <div class="col-lg-12">
                 <div class="card card-default">
-                    <div class="card-header card-header-border-bottom">
+                    <div class="card-header d-flex justify-content-between align-items-center card-header-border-bottom">
                         <h2>
                             @lang('app.leave request')
                             <i class="loaddd mdi mdi-48px mdi-spin mdi-progress-download d-none "></i>
                         </h2>
+                        <select onchange="location = this.value;" >
+                            <option>@lang('app.choose branch')</option>
+                            <option value="{{route('show.leave.reqests')}}">@lang('app.all')</option>
+                            @foreach (App\CompanyBranch::get() as $branch )
+                            <option value="{{route('show.leave.reqests',[$branch->id])}}">{{$branch->{'name_branch_'.app()->getlocale()} }}</option>
+                            @endforeach
+                        </select>
                     </div>
 
                     <div class="card-body slim-scroll" id="emSearch">
@@ -276,6 +50,7 @@
                                     <th>@lang('app.show')</th>
                                     <th>@lang('app.Direct manager approval')</th>
                                     <th>@lang('app.Hr manager approval')</th>
+                                    <th>@lang('app.assign')</th>
                                     <th>@lang('app.delete')</th>
                                 </tr>
                             </thead>
@@ -287,7 +62,7 @@
                                     <td>
                                         <a class="font-size-20 text-dark btn btn-sm" href="http://localhost/hr/ar/edit-employee/4">{{$request->employee->{'full_name_'.app()->getlocale()} }}</a>
                                     </td>
-                                    <td><button>{{$request->start}}</button></td>
+                                    <td>{{$request->start}}</td>
                                     <td>{{$request->end}}</td>
                                     <td>
                                         <div class="dropdown d-inline-block mb-1">
@@ -300,12 +75,15 @@
                                         </div>
                                     </td>
                                     <td>{{$request->status_dir->{'status_'.app()->getlocale()} }}</td>
-                                    <td>
-                                        <button class="btn btn-sm btn-secondary disabled">{{App\StatusRequest::find(1)->{'status_'.app()->getlocale()} }}<button>
-                                        <button class="btn btn-sm btn-success disabled">appprove<button>
-                                        <button class="btn btn-sm btn-danger disabled">reject<button>
+                                    <td id="tdRQ{{$request->id }}">
+                                        {{App\StatusRequest::find($request->status_request_hr_id)->{'status_'.app()->getlocale()} }}
                                     </td>
 
+                                    <td id="tdRQAssign{{$request->id}}">
+                                        @if (!in_array($request->status_request_hr_id,[2,3]))
+                                            <a href="javascript:;" onclick="assign('{{$request->id}}')"><i class="mdi mdi-account-edit  text-info h3"></i></a>
+                                        @endif
+                                    </td>
                                     <td>
                                         <a href="javascript:;" onclick="deleteEle('{{route('delete.leave.reqest',[$request->id])}}','{{route('show.leave.reqests')}}')"><i class="mdi mdi-delete-circle-outline text-danger h3"></i></a>
                                     </td>
@@ -393,33 +171,48 @@ $(document).ready(function() {
 
 
 <script>
-    function approved(request_id){
+    function assign(request_id){
+
+
         Swal.fire({
-        title: "@lang('app.sure')",
-        text: "@lang('app.revert')",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: "@lang('app.approve_yes')"
+            title: "@lang('app.not cant modify')",
+            showDenyButton: true,
+            showCancelButton: true,
+            cancelButtonText: "@lang('app.cancle')",
+            confirmButtonText: "@lang('app.approve_yes')",
+            confirmButtonColor:'#3085d6',
+            denyButtonText: "@lang('app.approve_no')",
+        }).then(function (result){
+            /*
+                dismiss: "cancel"
+                isConfirmed: false
+                isDenied: false
+                isDismissed: true
+            */
 
-        }).then((result) => {
-            if (result.isConfirmed) {
-            $.post("{{route('assign.leave.reqests')}}"+"/"+request_id+"/2",{'_token':'{{csrf_token()}}'},(response)=>{
-                if(response == true){
-                    Swal.fire("@lang('app.approved compelte')","@lang('app.has been accepted')",'success').then(()=>{
-                        if($("#R"+request_id).prop('checked') == true){
-                            $("#R"+request_id).prop('checked',false);
-                        }else{
+            if(result.isConfirmed){
 
-                            if(befor == true){$("#R"+request_id).prop('checked',true);}else if(befor ==false){$("#R"+request_id).prop('checked',false);}
-                        }
+                $.post("{{route('assign.leave.reqests')}}/"+ request_id +"/2",{_token:"{{csrf_token()}}"})
+                 .done(function (data){
+                        $('#tdRQ'+request_id).css('text-decoration','line-through')
+                        $('#tdRQAssign'+request_id).html("")
+                })
 
-                        });
-                }
-            });
+            }else if(result.isDenied){
 
-            }
+                $.post("{{route('assign.leave.reqests')}}/"+ request_id +"/3",{_token:"{{csrf_token()}}"})
+                 .done(function (data){
+                        $('#tdRQ'+request_id).css('text-decoration','line-through')
+                        $('#tdRQAssign'+request_id).html("")
+                })
+
+            }else if(result.isDismissed){}
+
+
+
+
+            //console.log(result.isConfirmed);
+
         })
     }
 

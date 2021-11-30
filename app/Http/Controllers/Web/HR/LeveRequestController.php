@@ -13,10 +13,25 @@ use function GuzzleHttp\json_encode;
 
 class LeveRequestController extends Controller
 {
-    public function index(){
+    public $branch;
+    public function index($branch_id = null){
+
+        $this->branch = $branch_id;
+
+        if(is_null($branch_id)):
+            return view('hr.level_request')->with(['level_requests'=>LeaveRequest::with('employee')->get()]);
+        endif;
+
+        $leveRequest = LeaveRequest::whereHas('employee',function($query){
+
+            $query->where('company_branch_id',$this->branch);
+        })->get();
+
+        return view('hr.level_request')->with(['level_requests'=>$leveRequest]);
 
 
-        return view('hr.level_request')->with(['level_requests'=>LeaveRequest::with('employee')->get()]);
+
+
 
 
     }
@@ -40,6 +55,7 @@ class LeveRequestController extends Controller
 
        return $result;
     }
+
 
     public function destroy($id)
     {

@@ -166,7 +166,7 @@ Route::group($group,function (){
 
     //leave request
 
-    Route::get('show-leave-reqests','LeveRequestController@index')->name('show.leave.reqests')->middleware('hr_perm:41');
+    Route::get('show-leave-reqests/{branch_id?}','LeveRequestController@index')->name('show.leave.reqests')->middleware('hr_perm:41');
 
     Route::post('assign-leve-reqest/{id?}/{status?}','LeveRequestController@assign')
     ->name('assign.leave.reqests')
