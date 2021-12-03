@@ -98,8 +98,11 @@
                     <ul class="dropdown-menu dropdown-menu-right">
                         <!-- User image -->
                         <li class="dropdown-header">
-                            <img src="{{asset('/public/assets/img/user/user.png')}}" class="img-circle" alt="User Image" />
-                            <div class="d-inline-block">
+                                @if (is_null( \App\Employee::find(auth()->user()->id)->avatar ))
+                                    <img src="{{asset('/public/assets/img/user/tdi3NGa.png')}}" class="user-image" alt="User Image" />
+                                @else
+                                    <img src="{{URL('img/'.\App\Employee::find(auth()->user()->id)->avatar)}}" class="user-image" alt="User Image" />
+                                @endif                            <div class="d-inline-block">
                                  <small class="pt-1">{{auth()->user()->email}}</small>
                                  <small class="pt-1">{{ \App\Employee::find(auth()->user()->id)->{'full_name_'.app()->getlocale()} }}</small>
                             </div>

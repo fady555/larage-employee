@@ -171,9 +171,9 @@ Route::group($group,function (){
     Route::post('assign-leve-reqest/{id?}/{status?}','LeveRequestController@assign')
     ->name('assign.leave.reqests')
     ->where('status','[2-3]')
-    ->middleware('hr_perm:41');
+    ->middleware('hr_perm:42');
 
-    Route::post('delete-leave-reqest/{id}','LeveRequestController@destroy')->name('delete.leave.reqest')->middleware('hr_perm:41');
+    Route::post('delete-leave-reqest/{id}','LeveRequestController@destroy')->name('delete.leave.reqest')->middleware('hr_perm:43');
 
 
 

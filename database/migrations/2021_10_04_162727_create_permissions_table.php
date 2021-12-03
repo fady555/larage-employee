@@ -97,6 +97,11 @@ class CreatePermissionsTable extends Migration
             ['name_en'=>'Delete general','name_ar'=>'حذف تعاميم','cheek'=>'0'],//40
 
 
+            //leave request
+            ['name_en'=>'Show leave requests','name_ar'=>'اظهار طلبات الاجازه','cheek'=>'0'],//41
+            ['name_en'=>'Assign leave request','name_ar'=>'التاشير على طلبات الاجازه','cheek'=>'0'],//42
+            ['name_en'=>'Delete leave request','name_ar'=>'حذف طلبات الاجازه','cheek'=>'0'],//43
+
 
 
 

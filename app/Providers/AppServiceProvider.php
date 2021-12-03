@@ -11,6 +11,7 @@ use App\EventAndEffects;
 use App\Experience;
 use App\General;
 use App\Jop;
+use App\LeaveRequest;
 use App\Observers\CompanyBranchObserver;
 use App\Observers\CompDepartmentObserver;
 use App\Observers\DegreeObserver;
@@ -20,6 +21,7 @@ use App\Observers\EventEffectObserver;
 use App\Observers\ExperienceObserver;
 use App\Observers\GeneralObserver;
 use App\Observers\JopObserver;
+use App\Observers\LeaveRquestObserver;
 use App\Observers\TypeWorkObserver;
 use App\TypeWork;
 use Illuminate\Support\ServiceProvider;
@@ -53,5 +55,6 @@ class AppServiceProvider extends ServiceProvider
         EventAndEffects::observe(EventEffectObserver::class);
         General::observe(GeneralObserver::class);
         Employee::observe(EmployeeObserver::class);
+        LeaveRequest::observe(LeaveRquestObserver::class);
     }
 }

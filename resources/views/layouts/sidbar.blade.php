@@ -251,8 +251,8 @@
                         <div class="sub-menu">
 
                             <li >
-                                <a class="sidenav-item-link" href="index.html">
-                                    <span class="nav-text">@lang('app.add request')</span>
+                                <a class="sidenav-item-link" href="{{route('show.leave.reqests')}}">
+                                    <span class="nav-text">@lang('app.leave request')</span>
                                 </a>
                             </li>
 
